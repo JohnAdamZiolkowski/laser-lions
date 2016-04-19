@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>
+			Lions are the best
+		</title>
+	</head>
+	
+	<body onload=setup()>
+		<h1>
+			Project Lazer Lions
+		</h1>
+
+		<img src="LION.JPG" width=100>
+		</img>
+
+		<img src="LION.JPG" width=100>
+		</img>
+
+		<a href="http://reddit.com/r/lions">
+			Roar
+		</a>
+
+		<p id="Nametag">
+			Lions name is:
+		</p>
+
+		<input id="Text box">
+		</input>
+
+		<input type=button value=enter onclick=Namethelion()>
+		</input>
+		
+		<input type=range value=2 onchange=roll(this.value)>
+		</input>
+	</body>
+	
+	<script>
+		
+		var setup = function() {
+			console.log("STARTED UP");
+			document.getElementById('Text box').onkeypress = function(e) {
+
+				console.log(e.charCode)
+				if(e.charCode == 13) {
+					Namethelion();
+				}
+			};
+		};
+		
+		var roll = function(number) {
+			console.log(number);
+			
+			
+			if (number >= 75) {
+				console.log("B+");
+			}
+		};
+		
+		var Namethelion = function() {
+		
+			var One = 1;
+			One += 50;
+			var L = "lion";
+			if (One < 20) {
+				L = "Fox";
+			}
+			
+			var Red = document.getElementById("Text box");
+			//Red.value="different"
+			var p = document.getElementById("Nametag");
+			var lionnametag = "Lions name is: " + Red.value + L;
+			p.textContent = lionnametag;
+		};
+	
+	</script>
+</html>
