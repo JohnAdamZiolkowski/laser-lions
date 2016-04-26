@@ -18,19 +18,19 @@
 		Roar
 	</a>
 
-    <p id="Nametag">
+    <p id="nameTag">
         Lions name is:
     </p>
 
-    <p id="agetag">
-        Age: Adult
+    <p id="ageTag">
+        Age:
     </p>
 
-    <p id="Favefood">
-        Food: Waffles
+    <p id="foodTag">
+        Food:
     </p>
 
-    <p id="personality">
+    <p id="personalityTag">
         Personality:
         <ul>
             <li>
@@ -46,69 +46,67 @@
     </p>
 
 
-    <input id="Text box">
+    <input id="nameTextbox">
     </input>
 
-    <input type=button value="enter" onclick=Namethelion()>
+    <input type=button value="enter" onclick=nameTheLion()>
     </input>
 </body>
 
 <script>
-    var lioninfo;
+    var lionInfo;
 
     var foods = [
-      " Cookies",
-      " Waffles",
-      " Muffins",
-      " Sour Gummy Bears",
-      " Spaghetti",
-      " Cheese Burger",
-      " Watermelon",
+        "Cookies",
+        "Waffles",
+        "Muffins",
+        "Sour Gummy Bears",
+        "Spaghetti",
+        "Cheese Burger",
+        "Watermelon",
     ];
 
     var setup = function () {
-        console.log("STARTED UP");
-        document.getElementById('Text box').onkeypress = function (e) {
+        document.getElementById('nameTextbox').onkeypress = function (e) {
 
             console.log(e.charCode)
             if (e.charCode == 13) {
-                Namethelion();
+                nameTheLion();
             }
         };
-        createlion();
-        updatepage();
+        createLion();
+        updatePage();
     };
 
-    var createlion = function () {
-        lioninfo = {};
-        lioninfo.name = "Sam";
-        lioninfo.age = "Adult";
-        //lioninfo.personality=
+    var createLion = function () {
+        lionInfo = {};
+        lionInfo.name = "Sam";
+        lionInfo.age = "Adult";
+        //lionInfo.personalityTag=
 
-        var foodindex = Math.random();
-        foodindex = foodindex * foods.length;
-        foodindex = Math.floor(foodindex);
+        var foodIndex = Math.random();
+        foodIndex = foodIndex * foods.length;
+        foodIndex = Math.floor(foodIndex);
+        console.log("foodIndex:" + foodIndex);
 
-        console.log(foodindex);
-
-        lioninfo.food = foods[foodindex];
+        lionInfo.food = foods[foodIndex];
     };
 
-    var updatepage = function () {
-        var nametag = document.getElementById("Nametag");
-        var agetag = document.getElementById("agetag");
-        var favefood = document.getElementById("Favefood");
+    var updatePage = function () {
+        var nametag = document.getElementById("nameTag");
+        var ageTag = document.getElementById("ageTag");
+        var favefood = document.getElementById("foodTag");
 
-        nametag.textContent = "Lions name is: " + lioninfo.name;
-        agetag.textContent = "Age: " + lioninfo.age;
-        favefood.textContent = "Food: " + lioninfo.food;
+        nametag.textContent = "Lions name is: " + lionInfo.name;
+        ageTag.textContent = "Age: " + lionInfo.age;
+        favefood.textContent = "Food: " + lionInfo.food;
     };
 
-    var Namethelion = function () {
-        var textbox = document.getElementById("Text box");
+    var nameTheLion = function () {
+        var nameTextbox = document.getElementById("nameTextbox");
 
-        lioninfo.name = textbox.value;
-        updatepage();
+        lionInfo.name = nameTextbox.value;
+        updatePage();
     };
 </script>
 
