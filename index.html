@@ -1,76 +1,131 @@
 <html>
-	<head>
-		<title>
-			Lions are the best
-		</title>
-	</head>
-	
-	<body onload=setup()>
-		<h1>
-			Project Lazer Lions
-		</h1>
 
-		<img src="LION.JPG" width=100>
-		</img>
+<head>
+    <title>
+        Lions are the best
+    </title>
+</head>
 
-		<img src="LION.JPG" width=100>
-		</img>
+<body onload=setup()>
+    <h1>
+        Project Lazer Lions
+    </h1>
 
-		<a href="http://reddit.com/r/lions">
-			Roar
-		</a>
+    <img src="Laser Lions/Sprite2biggermane.png" width=100>
+    </img>
 
-		<p id="Nametag">
-			Lions name is:
-		</p>
 
-		<input id="Text box">
-		</input>
+    <a href="http://reddit.com/r/lions">
+        Roar
+    </a>
 
-		<input type=button value=enter onclick=Namethelion()>
-		</input>
-		
-		<input type=range value=2 onchange=roll(this.value)>
-		</input>
-	</body>
-	
-	<script>
-		
-		var setup = function() {
-			console.log("STARTED UP");
-			document.getElementById('Text box').onkeypress = function(e) {
+    <p id="Nametag">
+        Lions name is:
+    </p>
 
-				console.log(e.charCode)
-				if(e.charCode == 13) {
-					Namethelion();
-				}
-			};
-		};
-		
-		var roll = function(number) {
-			console.log(number);
-			
-			
-			if (number >= 75) {
-				console.log("B+");
-			}
-		};
-		
-		var Namethelion = function() {
-		
-			var One = 1;
-			One += 50;
-			var L = "lion";
-			if (One < 20) {
-				L = "Fox";
-			}
-			
-			var Red = document.getElementById("Text box");
-			//Red.value="different"
-			var p = document.getElementById("Nametag");
-			var lionnametag = "Lions name is: " + Red.value + L;
-			p.textContent = lionnametag;
-		};
-	
-	</script>
+    <p id="agetag">
+        Age: Adult
+    </p>
+
+    <p id="Favefood">
+        Food: Waffles
+    </p>
+
+    <p id="personality">
+        Personality:
+        <ul>
+            <li>
+                Proud
+            </li>
+            <li>
+                Shy
+            </li>
+            <li>
+                Playful
+            </li>
+
+        </ul>
+    </p>
+
+
+    <input id="Text box">
+    </input>
+
+    <input type=button value=enter onclick=Namethelion()>
+    </input>
+
+</body>
+
+<script>
+    var setup = function () {
+        console.log("STARTED UP");
+        document.getElementById('Text box').onkeypress = function (e) {
+
+            console.log(e.charCode)
+            if (e.charCode == 13) {
+                Namethelion();
+            }
+        };
+        createlion()
+        updatepage()
+    };
+
+
+    var Namethelion = function () {
+
+
+        var textbox = document.getElementById("Text box");
+
+        lioninfo.name = textbox.value
+        updatepage()
+    };
+
+
+    var lioninfo
+
+    var createlion = function () {
+
+        lioninfo = {}
+        lioninfo.name = "Sam"
+        lioninfo.age = "Adult"
+        //lioninfo.personality=
+
+
+        var foodindex = Math.random()
+        foodindex = foodindex * foods.length
+        foodindex = Math.floor(foodindex)
+
+        console.log(foodindex)
+
+        lioninfo.food = foods[foodindex]
+
+    }
+
+
+
+    var updatepage = function () {
+
+        var nametag = document.getElementById("Nametag");
+        var agetag = document.getElementById("agetag");
+        var favefood = document.getElementById("Favefood");
+
+
+        nametag.textContent = "Lions name is: " + lioninfo.name
+        agetag.textContent = "Age: " + lioninfo.age
+        favefood.textContent = "Food: " + lioninfo.food
+
+    }
+
+    var foods = [
+       " Cookies",
+       " Waffles",
+       " Muffins",
+       " Sour Gummy Bears",
+       " Spaghetti",
+       " Cheese Burger",
+       " Watermelon"
+
+    ]
+</script>
+
 </html>
