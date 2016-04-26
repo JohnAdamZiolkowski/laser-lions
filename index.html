@@ -8,16 +8,15 @@
 
 <body onload=setup()>
     <h1>
-        Project Lazer Lions
-    </h1>
+		Project Lazer Lions
+	</h1>
 
-    <img src="Laser Lions/Sprite2biggermane.png" width=100>
+    <img src="Images/Sprite2biggermane.png" width=100>
     </img>
 
-
     <a href="http://reddit.com/r/lions">
-        Roar
-    </a>
+		Roar
+	</a>
 
     <p id="Nametag">
         Lions name is:
@@ -43,7 +42,6 @@
             <li>
                 Playful
             </li>
-
         </ul>
     </p>
 
@@ -51,12 +49,23 @@
     <input id="Text box">
     </input>
 
-    <input type=button value=enter onclick=Namethelion()>
+    <input type=button value="enter" onclick=Namethelion()>
     </input>
-
 </body>
 
 <script>
+    var lioninfo;
+
+    var foods = [
+      " Cookies",
+      " Waffles",
+      " Muffins",
+      " Sour Gummy Bears",
+      " Spaghetti",
+      " Cheese Burger",
+      " Watermelon",
+    ];
+
     var setup = function () {
         console.log("STARTED UP");
         document.getElementById('Text box').onkeypress = function (e) {
@@ -66,66 +75,41 @@
                 Namethelion();
             }
         };
-        createlion()
-        updatepage()
+        createlion();
+        updatepage();
     };
-
-
-    var Namethelion = function () {
-
-
-        var textbox = document.getElementById("Text box");
-
-        lioninfo.name = textbox.value
-        updatepage()
-    };
-
-
-    var lioninfo
 
     var createlion = function () {
-
-        lioninfo = {}
-        lioninfo.name = "Sam"
-        lioninfo.age = "Adult"
+        lioninfo = {};
+        lioninfo.name = "Sam";
+        lioninfo.age = "Adult";
         //lioninfo.personality=
 
+        var foodindex = Math.random();
+        foodindex = foodindex * foods.length;
+        foodindex = Math.floor(foodindex);
 
-        var foodindex = Math.random()
-        foodindex = foodindex * foods.length
-        foodindex = Math.floor(foodindex)
+        console.log(foodindex);
 
-        console.log(foodindex)
-
-        lioninfo.food = foods[foodindex]
-
-    }
-
-
+        lioninfo.food = foods[foodindex];
+    };
 
     var updatepage = function () {
-
         var nametag = document.getElementById("Nametag");
         var agetag = document.getElementById("agetag");
         var favefood = document.getElementById("Favefood");
 
+        nametag.textContent = "Lions name is: " + lioninfo.name;
+        agetag.textContent = "Age: " + lioninfo.age;
+        favefood.textContent = "Food: " + lioninfo.food;
+    };
 
-        nametag.textContent = "Lions name is: " + lioninfo.name
-        agetag.textContent = "Age: " + lioninfo.age
-        favefood.textContent = "Food: " + lioninfo.food
+    var Namethelion = function () {
+        var textbox = document.getElementById("Text box");
 
-    }
-
-    var foods = [
-       " Cookies",
-       " Waffles",
-       " Muffins",
-       " Sour Gummy Bears",
-       " Spaghetti",
-       " Cheese Burger",
-       " Watermelon"
-
-    ]
+        lioninfo.name = textbox.value;
+        updatepage();
+    };
 </script>
 
 </html>
