@@ -46,11 +46,15 @@
     </p>
 
 
-    <input id="nameTextbox">
+    <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
     </input>
 
     <input type=button value="enter" onclick=nameTheLion()>
     </input>
+
+    <input type=button value="restart" onclick=restart()>
+    </input>
+
 </body>
 
 <script>
@@ -67,14 +71,18 @@
     ];
 
     var setup = function () {
-        document.getElementById('nameTextbox').onkeypress = function (e) {
-
-            console.log(e.charCode)
-            if (e.charCode == 13) {
-                nameTheLion();
-            }
-        };
+        load_from_cookie();
+        lionInfo = game_data.lionInfo;
+        if (!lionInfo) {
+            restart();
+        }
+        
+        updatePage();
+    };
+    
+    var restart = function () {
         createLion();
+        updateSaveData();
         updatePage();
     };
 
@@ -102,12 +110,30 @@
         favefood.textContent = "Food: " + lionInfo.food;
     };
 
+    var textBoxKeyPress = function (event) {
+        console.log(event.charCode);
+        if (event.charCode == 13) {
+            nameTheLion();
+        }
+    };
+    
     var nameTheLion = function () {
         var nameTextbox = document.getElementById("nameTextbox");
 
         lionInfo.name = nameTextbox.value;
+        
+        updateSaveData();
         updatePage();
     };
+    
+    var updateSaveData = function () {
+        var saveData = {};
+        saveData.lionInfo = lionInfo;
+        
+        update_game_from_object(saveData);
+        save_game_into_cookie();
+    };
 </script>
+<script src=save.js></script>
 
 </html>
