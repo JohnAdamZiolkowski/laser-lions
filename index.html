@@ -64,6 +64,7 @@
 </body>
 
 <script>
+    var lions;
     var lionInfo;
 
     var foods = [
@@ -78,22 +79,36 @@
 
     var setup = function () {
         load_from_cookie();
-        lionInfo = game_data.lionInfo;
-        if (!lionInfo) {
-            restart();
+        lions = game_data.lions;
+        if (lions) {
+            lionInfo = lions[0];
+        } else {
+           restart(); 
         }
         
         updatePage();
     };
     
     var restart = function () {
-        createLion();
+        createLions();
         updateSaveData();
         updatePage();
     };
+    
+    var createLions = function () {
+        var lionsToCreate = 3;
+        lions = [];
+        
+        var l;
+        for (l = 0; l < lionsToCreate; l++) {
+            var newLion = createLion();
+            lions.push(newLion);
+        }
+        lionInfo = lions[0];
+    };
 
     var createLion = function () {
-        lionInfo = {};
+        var lionInfo = {};
         lionInfo.name = "Sam";
         lionInfo.age = "Adult";
         //lionInfo.personalityTag=
@@ -104,6 +119,8 @@
         console.log("foodIndex:" + foodIndex);
 
         lionInfo.food = foods[foodIndex];
+        
+        return lionInfo;
     };
 
     var updatePage = function () {
@@ -134,7 +151,7 @@
     
     var updateSaveData = function () {
         var saveData = {};
-        saveData.lionInfo = lionInfo;
+        saveData.lions = lions;
         
         update_game_from_object(saveData);
         save_game_into_cookie();
