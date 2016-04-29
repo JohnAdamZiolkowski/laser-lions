@@ -28,6 +28,15 @@
         Lions name is:
     </p>
 
+    <p>
+        Rename:
+        <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
+        </input>
+
+        <input type=button value="enter" onclick=nameTheLion()>
+        </input>
+    </p>
+
     <p id="ageTag">
         Age:
     </p>
@@ -50,14 +59,6 @@
             </li>
         </ul>
     </p>
-
-
-    <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
-    </input>
-
-    <input type=button value="enter" onclick=nameTheLion()>
-    </input>
-
 
     <p>Your Lions:
         <select id="lionSelect" onchange="selectLion(this)">
@@ -141,19 +142,29 @@
         ageTag.textContent = "Age: " + lionInfo.age;
         favefood.textContent = "Food: " + lionInfo.food;
         
+        updateLionSelect();
+    };
+    
+    var updateLionSelect = function () {
         var lionSelect = document.getElementById("lionSelect");
+        
         //remove old options
-        for (var o = 0; o < lionSelect.length;) {
+        while (lionSelect.length > 0) {
             lionSelect.removeChild(lionSelect.firstChild);
         }
+        
         //add new options
-        for (var l = 0; l < lions.length; l++) {
-            var lion = lions[l];
+        var loopCount = 0;
+        while (loopCount < lions.length) {
+            var lion = lions[loopCount];
             var lionItem = document.createElement("option");
             lionItem.value = lion.name;
             lionItem.textContent = lion.name;
             lionSelect.appendChild(lionItem);
+        
+            loopCount += 1;
         }
+        
         lionSelect.selectedIndex = selectedLion;
     };
 
