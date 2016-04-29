@@ -58,6 +58,12 @@
     <input type=button value="enter" onclick=nameTheLion()>
     </input>
 
+
+    <p>Your Lions:
+        <select id="lionSelect" onchange="selectLion(this)">
+        </select>
+    </p>
+
     <input type=button value="restart" onclick=restart()>
     </input>
 
@@ -66,6 +72,7 @@
 <script>
     var lions;
     var lionInfo;
+    var selectedLion;
 
     var foods = [
         "Cookies",
@@ -81,7 +88,8 @@
         load_from_cookie();
         lions = game_data.lions;
         if (lions) {
-            lionInfo = lions[0];
+            selectedLion = 0;
+            lionInfo = lions[selectedLion];
         } else {
            restart(); 
         }
@@ -104,7 +112,8 @@
             var newLion = createLion();
             lions.push(newLion);
         }
-        lionInfo = lions[0];
+        selectedLion = 0;
+        lionInfo = lions[selectedLion];
     };
 
     var createLion = function () {
@@ -131,6 +140,21 @@
         nametag.textContent = "Lions name is: " + lionInfo.name;
         ageTag.textContent = "Age: " + lionInfo.age;
         favefood.textContent = "Food: " + lionInfo.food;
+        
+        var lionSelect = document.getElementById("lionSelect");
+        //remove old options
+        for (var o = 0; o < lionSelect.length;) {
+            lionSelect.removeChild(lionSelect.firstChild);
+        }
+        //add new options
+        for (var l = 0; l < lions.length; l++) {
+            var lion = lions[l];
+            var lionItem = document.createElement("option");
+            lionItem.value = lion.name;
+            lionItem.textContent = lion.name;
+            lionSelect.appendChild(lionItem);
+        }
+        lionSelect.selectedIndex = selectedLion;
     };
 
     var textBoxKeyPress = function (event) {
@@ -146,6 +170,15 @@
         lionInfo.name = nameTextbox.value;
         
         updateSaveData();
+        updatePage();
+    };
+    
+    var selectLion = function (element) {
+        //console.log(element.value);
+        //console.log(element.selectedIndex);
+        selectedLion = lionSelect.selectedIndex;
+
+        lionInfo = lions[selectedLion];
         updatePage();
     };
     
