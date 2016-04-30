@@ -42,7 +42,7 @@
     </p>
 
     <p id="foodTag">
-        Food:
+        Favourite Food:
     </p>
 
     <p id="personalityTag">
@@ -186,7 +186,10 @@
 
         nametag.textContent = "Lions name is: " + lionInfo.name;
         ageTag.textContent = "Age: " + lionInfo.age;
-        favefood.textContent = "Food: " + lionInfo.food;
+        favefood.textContent = "Favourite Food: " + lionInfo.food;
+        
+        var nameTextbox = document.getElementById("nameTextbox");
+        nameTextbox.value = "";
         
         updateLionSelect();
         updateTraitList();
