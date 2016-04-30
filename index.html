@@ -84,6 +84,27 @@
         "Cheese Burger",
         "Watermelon",
     ];
+    
+    var desires = [
+        {
+            name: "hunger",
+            action: "eat",
+            more: "hungry",
+            less: "light eater",
+        },
+        {
+            name: "sleep",
+            action: "sleep",
+            more: "tired",
+            less: "energetic",
+        },
+        {
+            name: "play",
+            action: "play",
+            more: "playful",
+            less: "serious",
+        },
+    ];
 
     var setup = function () {
         load_from_cookie();
@@ -129,6 +150,33 @@
         console.log("foodIndex:" + foodIndex);
 
         lionInfo.food = foods[foodIndex];
+        
+        
+        //deside traits
+        lionInfo.traits = [];
+        
+        var loopCount = 0;
+        while (lionInfo.traits.length < 3) {
+            
+            var desireIndex = Math.floor(Math.random() * desires.length);
+            
+            var desire = desires[desireIndex];
+            
+            var desireLevel = Math.floor(Math.random() * 2);
+            
+            var trait;
+            if (desireLevel == 0) {
+                trait = desire.less;
+            } else {
+                trait = desire.more;
+            }
+            lionInfo.traits.push(trait);
+    
+            console.log(lionInfo.traits);
+        }
+        
+        
+        
         
         return lionInfo;
     };
