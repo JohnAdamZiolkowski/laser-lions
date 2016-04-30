@@ -47,15 +47,12 @@
 
     <p id="personalityTag">
         Personality:
-        <ul>
+        <ul id="traitsList">
             <li>
-                Proud
             </li>
             <li>
-                Shy
             </li>
             <li>
-                Playful
             </li>
         </ul>
     </p>
@@ -140,7 +137,7 @@
 
     var createLion = function () {
         var lionInfo = {};
-        lionInfo.name = "Sam";
+        lionInfo.name = "unnamed";
         lionInfo.age = "Adult";
         //lionInfo.personalityTag=
 
@@ -158,7 +155,6 @@
         //creates a copy of the array
         var availableDesires = desires.slice(0);
         
-        var loopCount = 0;
         while (lionInfo.traits.length < 3) {
             
             var desireIndex = Math.floor(Math.random() * availableDesires.length);
@@ -176,7 +172,6 @@
                 trait = desire.more;
             }
             lionInfo.traits.push(trait);
-    
         }
         
         console.log(lionInfo.traits);
@@ -194,6 +189,27 @@
         favefood.textContent = "Food: " + lionInfo.food;
         
         updateLionSelect();
+        updateTraitList();
+    };
+    
+    var updateTraitList = function () {
+        var traitsList = document.getElementById("traitsList");
+        
+        //remove old items
+        while (traitsList.getElementsByTagName("li").length > 0) {
+            traitsList.removeChild(traitsList.firstChild);
+        }
+        
+        //add new items
+        var loopCount = 0;
+        while (loopCount < lionInfo.traits.length) {
+            var trait = lionInfo.traits[loopCount];
+            var traitItem = document.createElement("li");
+            traitItem.textContent = trait;
+            traitsList.appendChild(traitItem);
+        
+            loopCount += 1;
+        }
     };
     
     var updateLionSelect = function () {
