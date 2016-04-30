@@ -155,12 +155,17 @@
         //deside traits
         lionInfo.traits = [];
         
+        //creates a copy of the array
+        var availableDesires = desires.slice(0);
+        
         var loopCount = 0;
         while (lionInfo.traits.length < 3) {
             
-            var desireIndex = Math.floor(Math.random() * desires.length);
+            var desireIndex = Math.floor(Math.random() * availableDesires.length);
+            var desire = availableDesires[desireIndex];
             
-            var desire = desires[desireIndex];
+            //remove the chosen one from list of available options
+            availableDesires.splice(desireIndex, 1);
             
             var desireLevel = Math.floor(Math.random() * 2);
             
@@ -172,11 +177,9 @@
             }
             lionInfo.traits.push(trait);
     
-            console.log(lionInfo.traits);
         }
         
-        
-        
+        console.log(lionInfo.traits);
         
         return lionInfo;
     };
