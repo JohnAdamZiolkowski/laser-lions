@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <title>
+        Lion Sessions
+    </title>
+</head>
+
+<body onload=setup()>
+    <h1>
+		Laser Lions Programming Sessions
+	</h1>
+
+    <table id="sessionsTable" border=1>
+        <tr>
+            <th>Session</th>
+            <th>Goal</th>
+            <th>Date</th>
+            <th>Length</th>
+            <th>Notes</th>
+        </tr>
+    </table>
+    
+</body>
+
+<script>
+    var sessions = [
+        {
+            name: "01",
+            desc: "Create first web page that shows picture and name of a lion",
+            date: "Mon, April 18, 2016",
+            length: "2 hours",
+            notes: "https://docs.google.com/document/d/15wCUSZ0vz6402iIzo5WOtKH1UtLZNqb2tC3wIiETrjU/edit?usp=sharing",
+        },
+        {
+            name: "02",
+            desc: "Build out the placeholder UI for the lion details page",
+            date: "Mon, April 25, 2016",
+            length: "3 hours",
+            notes: "https://docs.google.com/document/d/1J3yy5WyOnAPUJxfS0AApYreGFH6oZODBcPFyeADf_Ag/edit?usp=sharing",
+        },
+        {
+            name: "03",
+            desc: "Assign random personality traits to the lions",
+        },
+        {
+            name: "04",
+            desc: "Spawn multiple lions for the user and let them select which one is being looked at",
+        },
+    ];
+
+    var setup = function () {
+        var sessionsTable = document.getElementById("sessionsTable")
+        
+        var session, s;
+        for (s = 0; s < sessions.length; s++) {
+            session = sessions[s];
+            
+            var row = sessionsTable.insertRow(-1);
+            
+            var cell = row.insertCell(-1);
+            
+            if (session.date) {
+                var link = document.createElement("a");
+                link.href = "session" + session.name + "/index.html";
+                link.textContent = "session " + session.name;
+                cell.appendChild(link);
+            } else {
+                cell.textContent = "session " + session.name;
+            }
+            
+            
+            var cell = row.insertCell(-1);
+            cell.textContent = session.desc;
+            
+            var cell = row.insertCell(-1);
+            if (session.date)
+                cell.textContent = session.date;
+            
+            var cell = row.insertCell(-1);
+            if (session.date)
+                cell.textContent = session.length;
+            
+            var cell = row.insertCell(-1);
+            if (session.date) {
+                var link = document.createElement("a");
+                link.href = session.notes;
+                link.textContent = "notes";
+                cell.appendChild(link);
+            }
+        }
+    };
+</script>
+
+</html>

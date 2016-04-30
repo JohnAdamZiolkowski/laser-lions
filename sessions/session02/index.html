@@ -1,0 +1,145 @@
+<html>
+
+<head>
+    <title>
+        Lions are the best
+    </title>
+    
+    <style>
+        img {
+          image-rendering: pixelated;
+        }
+    </style>
+</head>
+
+<body onload=setup()>
+    <h1>
+		Project Lazer Lions
+	</h1>
+
+    <img src="images/Sprite2biggermane.png" width=100>
+    </img>
+
+    <a href="http://reddit.com/r/lions">
+		Roar
+	</a>
+
+    <p id="nameTag">
+        Lions name is:
+    </p>
+
+    <p id="ageTag">
+        Age:
+    </p>
+
+    <p id="foodTag">
+        Food:
+    </p>
+
+    <p id="personalityTag">
+        Personality:
+        <ul>
+            <li>
+                Proud
+            </li>
+            <li>
+                Shy
+            </li>
+            <li>
+                Playful
+            </li>
+        </ul>
+    </p>
+
+
+    <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
+    </input>
+
+    <input type=button value="enter" onclick=nameTheLion()>
+    </input>
+
+    <input type=button value="restart" onclick=restart()>
+    </input>
+
+</body>
+
+<script>
+    var lionInfo;
+
+    var foods = [
+        "Cookies",
+        "Waffles",
+        "Muffins",
+        "Sour Gummy Bears",
+        "Spaghetti",
+        "Cheese Burger",
+        "Watermelon",
+    ];
+
+    var setup = function () {
+        load_from_cookie();
+        lionInfo = game_data.lionInfo;
+        if (!lionInfo) {
+            restart();
+        }
+        
+        updatePage();
+    };
+    
+    var restart = function () {
+        createLion();
+        updateSaveData();
+        updatePage();
+    };
+
+    var createLion = function () {
+        lionInfo = {};
+        lionInfo.name = "Sam";
+        lionInfo.age = "Adult";
+        //lionInfo.personalityTag=
+
+        var foodIndex = Math.random();
+        foodIndex = foodIndex * foods.length;
+        foodIndex = Math.floor(foodIndex);
+        console.log("foodIndex:" + foodIndex);
+
+        lionInfo.food = foods[foodIndex];
+    };
+
+    var updatePage = function () {
+        var nametag = document.getElementById("nameTag");
+        var ageTag = document.getElementById("ageTag");
+        var favefood = document.getElementById("foodTag");
+
+        nametag.textContent = "Lions name is: " + lionInfo.name;
+        ageTag.textContent = "Age: " + lionInfo.age;
+        favefood.textContent = "Food: " + lionInfo.food;
+    };
+
+    var textBoxKeyPress = function (event) {
+        console.log(event.charCode);
+        if (event.charCode == 13) {
+            nameTheLion();
+        }
+    };
+    
+    var nameTheLion = function () {
+        var nameTextbox = document.getElementById("nameTextbox");
+
+        lionInfo.name = nameTextbox.value;
+        
+        updateSaveData();
+        updatePage();
+    };
+    
+    var updateSaveData = function () {
+        var saveData = {};
+        saveData.lionInfo = lionInfo;
+        
+        update_game_from_object(saveData);
+        save_game_into_cookie();
+    };
+</script>
+<script src=save.js></script>
+
+</html>
