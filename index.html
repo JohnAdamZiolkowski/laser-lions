@@ -65,10 +65,11 @@
     <input type=button value="restart" onclick=restart()>
     </input>
 
-    <input type="range" min="0" max="23" value="0" onchange="changeColor(this)">
+    <input type="range" min="0" max="23" value="0" onchange="changeColorSlider(this)">
 
-    <p id="colorLabel"></p>
-    <p id="colorHue"></p>
+    <p id="maneColorLabel"></p>
+    <p id="eyeColorLabel"></p>
+    <p id="furColorLabel"></p>
 
 </body>
 
@@ -383,41 +384,67 @@
         lionInfo = lions[selectedLion];
         updatePage();
     };
-
-    var changeColor = function (element) {
-
-        var hueTag = document.getElementById("colorHue");
-        var colorTag = document.getElementById("colorLabel");
-
-        var hue = element.value;
-        var huePortion = hue / 24.0;
-        var colorIndex = Math.floor(hue / 3.0);
-
+    
+    var changeColorSlider = function (element) {
+        
+        var imageTag = document.getElementById("lionImage");
+        var imageSrc = "images/Sprite2biggermane.png";
+        var srcWidth = 32;
+        var modifiers = [];
+        
+        var colorIndex = Math.floor(Math.random() * 8);
         var color = colors[colorIndex];
         
-        var colorMod = Math.floor(hue % 3);
-        var colorName = color.name;
+        var colorTag = document.getElementById("maneColorLabel");
+        colorTag.textContent = "Mane: " + color.name;
         
-        if (colorMod == 0) {
-            huePortion = color.low;
-            colorName = "low " + colorName;
-        }
-        else if (colorMod == 1) {
-            huePortion = color.base;
-        }
-        else if (colorMod == 2) {
-            huePortion = color.high;
-            colorName = "high " + colorName;
-        }
+        var huePortion = color.base / 360.0;
+        modifiers.push({
+            low: 0.0,
+            high: 0.05,
+            add: huePortion,
+        });
         
-        hueTag.textContent = "Hue: " + huePortion;
-        huePortion = huePortion / 360.0;
+        var colorIndex = Math.floor(Math.random() * 8);
+        var color = colors[colorIndex];
         
-        colorTag.textContent = "Color: " + colorName;
+        var colorTag = document.getElementById("eyeColorLabel");
+        colorTag.textContent = "Eyes: " + color.name;
+        
+        var huePortion = color.base / 360.0;
+        modifiers.push({
+            low: 0.12,
+            high: 0.14,
+            add: huePortion,
+        });
+        
+        var colorIndex = Math.floor(Math.random() * 8);
+        var color = colors[colorIndex];
+        
+        var colorTag = document.getElementById("furColorLabel");
+        colorTag.textContent = "Fur: " + color.name;
+        
+        var huePortion = color.base / 360.0;
+        modifiers.push({
+            low: 0.10,
+            high: 0.12,
+            add: huePortion,
+        });
+        
+        changeColor(element, imageTag, imageSrc, srcWidth, modifiers);
+        
+        //var hueTag = document.getElementById("colorHue");
+        //var colorTag = document.getElementById("colorLabel");
+    };
+    
+    //var changeColor = function (element) {
 
-        var img = document.getElementById("lionImage");
-        img.src = "images/Sprite2biggermane.png";
-        img.width = "32";
+    var changeColor = function (element, imageTag, imageSrc, srcWidth, modifiers) {
+
+        var img = imageTag;
+        img.src = imageSrc;
+        var tagWidth = img.width;
+        img.width = srcWidth;
 
         var canvas = document.createElement('canvas');
         canvas.width = img.width;
@@ -444,10 +471,20 @@
             l = hsl[2];
 
             //alter the hue of only the red pixels
-            if (h < 0.05) {
-                h = (h + huePortion) % 1;
+            var mod, m;
+            var found = false;
+            for (m = 0; m < modifiers.length; m++) {
+                mod = modifiers[m];
+                if (h >= mod.low && h <= mod.high) {
+                    //console.log(true);
+                    found = true;
+                    break;
+                }
             }
-
+            if (found) {
+                h = (h + mod.add - mod.low) % 1;
+            }
+            
             var rgb = hslToRgb(h, s, l);
 
             imageData[p] = rgb[0];
@@ -457,7 +494,7 @@
 
         context.putImageData(imageMap, 0, 0);
         img.src = canvas.toDataURL();
-        img.width = "100";
+        img.width = tagWidth;
     };
 
 
