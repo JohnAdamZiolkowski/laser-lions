@@ -57,6 +57,13 @@
         </ul>
     </p>
 
+    <p>Color:</p>
+    <ul>
+        <li id="maneColorLabel">Mane: </li>
+        <li id="eyeColorLabel">Eyes: </li>
+        <li id="furColorLabel">Fur: </li>
+    </ul>
+
     <p>Your Lions:
         <select id="lionSelect" onchange="selectLion(this)">
         </select>
@@ -64,12 +71,6 @@
 
     <input type=button value="restart" onclick=restart()>
     </input>
-
-    <input type="range" min="0" max="23" value="0" onchange="changeColorSlider(this)">
-
-    <p id="maneColorLabel"></p>
-    <p id="eyeColorLabel"></p>
-    <p id="furColorLabel"></p>
 
 </body>
 
@@ -164,17 +165,6 @@
     ];
 
     var colors = [
-        "red",
-        "orange",
-        "yellow",
-        "green",
-        "miku",
-        "blue",
-        "purple",
-        "magenta",
-    ];
-    
-    var colors = [
         {
             name: "red",
             low: 340,
@@ -227,6 +217,7 @@
 
     var setup = function () {
         load_from_cookie();
+
         lions = game_data.lions;
         if (lions) {
             selectedLion = 0;
@@ -266,7 +257,6 @@
         var foodIndex = Math.random();
         foodIndex = foodIndex * foods.length;
         foodIndex = Math.floor(foodIndex);
-        console.log("foodIndex:" + foodIndex);
 
         lionInfo.food = foods[foodIndex];
 
@@ -296,7 +286,14 @@
             lionInfo.traits.push(trait);
         }
 
-        console.log(lionInfo.traits);
+        var colorIndex = Math.floor(Math.random() * 8);
+        lionInfo.maneColor = colors[colorIndex];
+
+        colorIndex = Math.floor(Math.random() * 8);
+        lionInfo.eyeColor = colors[colorIndex];
+
+        colorIndex = Math.floor(Math.random() * 8);
+        lionInfo.furColor = colors[colorIndex];
 
         return lionInfo;
     };
@@ -315,6 +312,7 @@
 
         updateLionSelect();
         updateTraitList();
+        updateLionColors();
     };
 
     var updateTraitList = function () {
@@ -361,7 +359,6 @@
     };
 
     var textBoxKeyPress = function (event) {
-        console.log(event.charCode);
         if (event.charCode == 13) {
             nameTheLion();
         }
@@ -377,69 +374,58 @@
     };
 
     var selectLion = function (element) {
-        //console.log(element.value);
-        //console.log(element.selectedIndex);
         selectedLion = lionSelect.selectedIndex;
 
         lionInfo = lions[selectedLion];
         updatePage();
     };
-    
-    var changeColorSlider = function (element) {
-        
+
+    var updateLionColors = function () {
+
         var imageTag = document.getElementById("lionImage");
         var imageSrc = "images/Sprite2biggermane.png";
         var srcWidth = 32;
+
+        var color, colorTag, huePortion;
         var modifiers = [];
-        
-        var colorIndex = Math.floor(Math.random() * 8);
-        var color = colors[colorIndex];
-        
-        var colorTag = document.getElementById("maneColorLabel");
+
+        //mane color
+        color = lionInfo.maneColor;
+        colorTag = document.getElementById("maneColorLabel");
         colorTag.textContent = "Mane: " + color.name;
-        
-        var huePortion = color.base / 360.0;
+        huePortion = color.base / 360.0;
         modifiers.push({
             low: 0.0,
             high: 0.05,
             add: huePortion,
         });
-        
-        var colorIndex = Math.floor(Math.random() * 8);
-        var color = colors[colorIndex];
-        
-        var colorTag = document.getElementById("eyeColorLabel");
+
+        //eyes color
+        color = lionInfo.eyeColor;
+        colorTag = document.getElementById("eyeColorLabel");
         colorTag.textContent = "Eyes: " + color.name;
-        
-        var huePortion = color.base / 360.0;
+        huePortion = color.base / 360.0;
         modifiers.push({
             low: 0.12,
             high: 0.14,
             add: huePortion,
         });
-        
-        var colorIndex = Math.floor(Math.random() * 8);
-        var color = colors[colorIndex];
-        
-        var colorTag = document.getElementById("furColorLabel");
+
+        //fur color
+        color = lionInfo.furColor;
+        colorTag = document.getElementById("furColorLabel");
         colorTag.textContent = "Fur: " + color.name;
-        
-        var huePortion = color.base / 360.0;
+        huePortion = color.base / 360.0;
         modifiers.push({
             low: 0.10,
             high: 0.12,
             add: huePortion,
         });
-        
-        changeColor(element, imageTag, imageSrc, srcWidth, modifiers);
-        
-        //var hueTag = document.getElementById("colorHue");
-        //var colorTag = document.getElementById("colorLabel");
-    };
-    
-    //var changeColor = function (element) {
 
-    var changeColor = function (element, imageTag, imageSrc, srcWidth, modifiers) {
+        changeColor(imageTag, imageSrc, srcWidth, modifiers);
+    };
+
+    var changeColor = function (imageTag, imageSrc, srcWidth, modifiers) {
 
         var img = imageTag;
         img.src = imageSrc;
@@ -476,7 +462,6 @@
             for (m = 0; m < modifiers.length; m++) {
                 mod = modifiers[m];
                 if (h >= mod.low && h <= mod.high) {
-                    //console.log(true);
                     found = true;
                     break;
                 }
@@ -484,7 +469,7 @@
             if (found) {
                 h = (h + mod.add - mod.low) % 1;
             }
-            
+
             var rgb = hslToRgb(h, s, l);
 
             imageData[p] = rgb[0];
