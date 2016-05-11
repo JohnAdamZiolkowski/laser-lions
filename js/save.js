@@ -1,10 +1,5 @@
 var game_data = {};
-var cookie_name = "game";
-
-//max cookie size is 4kB
-//allow 96 bytes for name, date, other padding
-var cookie_size = 4096 - 96; // 4000;
-
+var save_name = "game";
 //
 //var click_progress = function () {
 //    progress();
@@ -19,7 +14,7 @@ var cookie_size = 4096 - 96; // 4000;
 //};
 //
 //var click_save_cookie = function () {
-//    save_game_into_cookie();
+//    save_game_into_storage();
 //};
 //
 //var click_save_file = function () {
@@ -46,7 +41,7 @@ var cookie_size = 4096 - 96; // 4000;
 //var progress = function () {
 //    game_data.progress += 1;
 //    
-//    auto_save_game_into_cookie();
+//    auto_save_game_into_storage();
 //    
 //    update_ui();   
 //};
@@ -55,7 +50,7 @@ var cookie_size = 4096 - 96; // 4000;
 //    game_data = {};
 //    game_data.progress = 0;
 //    
-//    auto_save_game_into_cookie();
+//    auto_save_game_into_storage();
 //    
 //    update_ui();    
 //};
@@ -65,22 +60,9 @@ var cookie_size = 4096 - 96; // 4000;
 //    header.textContent = "Progress: " + game_data.progress;
 //};
 
-var load_from_cookie = function () {
-    //get the cookie
-
-    var encoded = "";
-
-    var cookie;
-    var c = 0;
-    while (true) {
-        cookie = get_cookie(cookie_name + c);
-        //console.log("cookie " + cookie_name + c + " length " + cookie.length + ": " + cookie);
-        if (cookie == "") {
-            break;
-        }
-        encoded += cookie;
-        c++;
-    }
+var load_from_storage = function () {
+    //get the data
+    var encoded = localStorage.getItem(save_name);
     //console.log(encoded);
 
     //decode into json
@@ -96,7 +78,7 @@ var load_from_cookie = function () {
 //
 //    load_from_json(json);
 //
-//    auto_save_game_into_cookie();
+//    auto_save_game_into_storage();
 //
 //    update_ui();
 //};
@@ -120,14 +102,14 @@ var update_game_from_object = function (object) {
     game_data = object;
 };
 
-//var auto_save_game_into_cookie = function () {
+//var auto_save_game_into_storage = function () {
 //    var auto_save_checkbox = document.getElementById("auto-save_checkbox");
 //    if (auto_save_checkbox.checked) {
-//        save_game_into_cookie();
+//        save_game_into_storage();
 //    }
 //};
 
-var save_game_into_cookie = function () {
+var save_game_into_storage = function () {
     var object = save_game_as_object();
     //console.log(object);
 
@@ -137,25 +119,7 @@ var save_game_into_cookie = function () {
     var encoded = encodeURI(json);
     //console.log(encoded);
 
-    var cookie;
-    var c = 0;
-    while (encoded.length > cookie_size * c) {
-        cookie = encoded.substr(cookie_size * c, cookie_size);
-        set_cookie(cookie_name + c, cookie);
-        //        console.log("cookie " + cookie_name + c + " length " + cookie.length + ": " + cookie);
-        c++;
-    }
-
-    //clear out remaining cookies from earlier
-    while (true) {
-        cookie = get_cookie(cookie_name + c);
-        //console.log("cookie " + cookie_name + c + " length " + cookie.length + ": " + cookie);
-        if (cookie == "") {
-            break;
-        }
-        set_cookie(cookie_name + c, "");
-        c++;
-    }
+    localStorage.setItem(save_name, encoded);
 };
 
 var save_game_as_object = function () {
@@ -185,29 +149,29 @@ var save_game_as_object = function () {
 //    
 //    return date_string;
 //};
-
-var set_cookie = function (cname, cvalue) {
-    var d = new Date();
-    var exdays = 365;
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; Path=/; " + expires;
-};
-
-var get_cookie = function (cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-};
+//
+//var set_cookie = function (cname, cvalue) {
+//    var d = new Date();
+//    var exdays = 365;
+//    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+//    var expires = "expires=" + d.toUTCString();
+//    document.cookie = cname + "=" + cvalue + "; Path=/; " + expires;
+//};
+//
+//var get_cookie = function (cname) {
+//    var name = cname + "=";
+//    var ca = document.cookie.split(';');
+//    for (var i = 0; i < ca.length; i++) {
+//        var c = ca[i];
+//        while (c.charAt(0) == ' ') {
+//            c = c.substring(1);
+//        }
+//        if (c.indexOf(name) == 0) {
+//            return c.substring(name.length, c.length);
+//        }
+//    }
+//    return "";
+//};
 //
 //var download = function (filename, text) {
 //    var element = document.createElement('a');

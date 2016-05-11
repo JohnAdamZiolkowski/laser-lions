@@ -3,10 +3,10 @@ var lionInfo;
 var selectedLion;
 
 var setup = function () {
-    load_from_cookie();
+    load_from_storage();
 
-    lions = game_data.lions;
-    if (lions) {
+    if (game_data) {
+        lions = game_data.lions;
         selectedLion = game_data.selectedLion;
         lionInfo = lions[selectedLion];
     } else {
@@ -90,5 +90,5 @@ var updateSaveData = function () {
     saveData.selectedLion = selectedLion;
 
     update_game_from_object(saveData);
-    save_game_into_cookie();
+    save_game_into_storage();
 };
