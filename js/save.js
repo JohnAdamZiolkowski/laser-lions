@@ -102,12 +102,12 @@ var update_game_from_object = function (object) {
     game_data = object;
 };
 
-var auto_save_game_into_cookie = function () {
-    var auto_save_checkbox = document.getElementById("auto-save_checkbox");
-    if (auto_save_checkbox.checked) {
-        save_game_into_cookie();
-    }
-};
+//var auto_save_game_into_cookie = function () {
+//    var auto_save_checkbox = document.getElementById("auto-save_checkbox");
+//    if (auto_save_checkbox.checked) {
+//        save_game_into_cookie();
+//    }
+//};
 
 var save_game_into_cookie = function () {
     var object = save_game_as_object();

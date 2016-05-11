@@ -79,6 +79,7 @@ var selectLion = function (element) {
 
     lionInfo = lions[selectedLion];
 
+    updateSaveData();
     updatePage();
 };
 
@@ -87,6 +88,7 @@ var updateLionColors = function () {
     var imageTag = document.getElementById("lionImage");
     var imageSrc = "images/Sprite2biggermane.png";
     var srcWidth = 32;
+    var srcHeight = 32;
 
     var color, colorTag, huePortion;
     var modifiers = [];
@@ -124,5 +126,5 @@ var updateLionColors = function () {
         add: huePortion,
     });
 
-    changeColor(imageTag, imageSrc, srcWidth, modifiers);
+    changeColor(imageTag, imageSrc, srcWidth, srcHeight, modifiers);
 };

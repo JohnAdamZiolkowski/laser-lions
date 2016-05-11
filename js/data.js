@@ -18,6 +18,9 @@ var foods = [
     "Bread",
 ];
 
+//action is what the lion might want to do
+//more and less are names of personality traits
+//traits will affect how often the action is desired
 var desires = [
     {
         action: "eat",
@@ -86,6 +89,9 @@ var desires = [
     }
 ];
 
+//hues are out of 360
+//base is the standard hue
+//high and low are the colors limits
 var colors = [
     {
         name: "red",

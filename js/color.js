@@ -1,9 +1,11 @@
-var changeColor = function (imageTag, imageSrc, srcWidth, modifiers) {
+var changeColor = function (imageTag, imageSrc, srcWidth, srcHeight, modifiers) {
 
     var img = imageTag;
     img.src = imageSrc;
     var tagWidth = img.width;
+    var tagHeight = img.height;
     img.width = srcWidth;
+    img.height = srcHeight;
 
     var canvas = document.createElement('canvas');
     canvas.width = img.width;
@@ -53,6 +55,8 @@ var changeColor = function (imageTag, imageSrc, srcWidth, modifiers) {
     context.putImageData(imageMap, 0, 0);
     img.src = canvas.toDataURL();
     img.width = tagWidth;
+    img.height = tagHeight;
+    img.style.visibility = "";
 };
 
 

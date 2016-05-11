@@ -7,7 +7,7 @@ var setup = function () {
 
     lions = game_data.lions;
     if (lions) {
-        selectedLion = 0;
+        selectedLion = game_data.selectedLion;
         lionInfo = lions[selectedLion];
     } else {
         restart();
@@ -87,6 +87,7 @@ var createLion = function () {
 var updateSaveData = function () {
     var saveData = {};
     saveData.lions = lions;
+    saveData.selectedLion = selectedLion;
 
     update_game_from_object(saveData);
     save_game_into_cookie();
