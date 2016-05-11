@@ -63,15 +63,15 @@ var cookie_name = "game";
 var load_from_cookie = function () {
     //get the cookie
     var encoded = get_cookie(cookie_name);
-    console.log(encoded);
+    //console.log(encoded);
 
     //decode into json
     var json = decodeURI(encoded);
-    console.log(json);
+    //console.log(json);
 
     load_from_json(json);
-    
-//    update_ui();
+
+    //update_ui();
 };
 //
 //var load_from_save_file = function (json) {
@@ -85,13 +85,13 @@ var load_from_cookie = function () {
 
 var load_from_json = function (json) {
     if (json == "") {
-//        restart();
+        //        restart();
         return;
     }
 
     //parse json into object
     var object = JSON.parse(json);
-    console.log(object);
+    //console.log(object);
 
     //update game from object
     update_game_from_object(object);
@@ -111,13 +111,19 @@ var update_game_from_object = function (object) {
 
 var save_game_into_cookie = function () {
     var object = save_game_as_object();
-    console.log(object);
+    //console.log(object);
 
     var json = JSON.stringify(object);
-    console.log(json);
+    //console.log(json);
 
     var encoded = encodeURI(json);
-    console.log(encoded);
+    //console.log(encoded);
+
+    if (encoded.length > 4096) {
+        alert("Error: cookie size " + encoded.length + " is too long!");
+    } else if (encoded.length > 3584) {
+        console.log("Warning: cookie size " + encoded.length + " is very large!");
+    }
 
     set_cookie(cookie_name, encoded);
 };
