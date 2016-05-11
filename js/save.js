@@ -1,5 +1,10 @@
 var game_data = {};
 var cookie_name = "game";
+
+//max cookie size is 4kB
+//allow 96 bytes for name, date, other padding
+var cookie_size = 4096 - 96; // 4000;
+
 //
 //var click_progress = function () {
 //    progress();
@@ -62,7 +67,20 @@ var cookie_name = "game";
 
 var load_from_cookie = function () {
     //get the cookie
-    var encoded = get_cookie(cookie_name);
+
+    var encoded = "";
+
+    var cookie;
+    var c = 0;
+    while (true) {
+        cookie = get_cookie(cookie_name + c);
+        //console.log("cookie " + cookie_name + c + " length " + cookie.length + ": " + cookie);
+        if (cookie == "") {
+            break;
+        }
+        encoded += cookie;
+        c++;
+    }
     //console.log(encoded);
 
     //decode into json
@@ -119,13 +137,25 @@ var save_game_into_cookie = function () {
     var encoded = encodeURI(json);
     //console.log(encoded);
 
-    if (encoded.length > 4096) {
-        alert("Error: cookie size " + encoded.length + " is too long!");
-    } else if (encoded.length > 3584) {
-        console.log("Warning: cookie size " + encoded.length + " is very large!");
+    var cookie;
+    var c = 0;
+    while (encoded.length > cookie_size * c) {
+        cookie = encoded.substr(cookie_size * c, cookie_size);
+        set_cookie(cookie_name + c, cookie);
+        //        console.log("cookie " + cookie_name + c + " length " + cookie.length + ": " + cookie);
+        c++;
     }
 
-    set_cookie(cookie_name, encoded);
+    //clear out remaining cookies from earlier
+    while (true) {
+        cookie = get_cookie(cookie_name + c);
+        //console.log("cookie " + cookie_name + c + " length " + cookie.length + ": " + cookie);
+        if (cookie == "") {
+            break;
+        }
+        set_cookie(cookie_name + c, "");
+        c++;
+    }
 };
 
 var save_game_as_object = function () {

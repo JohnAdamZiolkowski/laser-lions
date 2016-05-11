@@ -1,4 +1,3 @@
-//with current set up, cookie save limit is 15
 var lionsToCreate = 10;
 
 //must be less than the number of desires
