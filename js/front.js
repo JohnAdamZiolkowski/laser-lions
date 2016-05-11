@@ -94,7 +94,7 @@ var updateLionColors = function () {
     var modifiers = [];
 
     //mane color
-    color = lionInfo.maneColor;
+    color = getColorByName(lionInfo.maneColor);
     colorTag = document.getElementById("maneColorLabel");
     colorTag.textContent = "Mane: " + color.name;
     huePortion = color.base / 360.0;
@@ -105,7 +105,7 @@ var updateLionColors = function () {
     });
 
     //eyes color
-    color = lionInfo.eyeColor;
+    color = getColorByName(lionInfo.eyeColor);
     colorTag = document.getElementById("eyeColorLabel");
     colorTag.textContent = "Eyes: " + color.name;
     huePortion = color.base / 360.0;
@@ -116,7 +116,7 @@ var updateLionColors = function () {
     });
 
     //fur color
-    color = lionInfo.furColor;
+    color = getColorByName(lionInfo.furColor);
     colorTag = document.getElementById("furColorLabel");
     colorTag.textContent = "Fur: " + color.name;
     huePortion = color.base / 360.0;

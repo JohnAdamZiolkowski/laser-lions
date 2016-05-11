@@ -73,13 +73,13 @@ var createLion = function () {
     }
 
     var colorIndex = Math.floor(Math.random() * colors.length);
-    lionInfo.maneColor = colors[colorIndex];
+    lionInfo.maneColor = colors[colorIndex].name;
 
     colorIndex = Math.floor(Math.random() * colors.length);
-    lionInfo.eyeColor = colors[colorIndex];
+    lionInfo.eyeColor = colors[colorIndex].name;
 
     colorIndex = Math.floor(Math.random() * colors.length);
-    lionInfo.furColor = colors[colorIndex];
+    lionInfo.furColor = colors[colorIndex].name;
 
     return lionInfo;
 };

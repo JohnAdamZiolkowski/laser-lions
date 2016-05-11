@@ -142,3 +142,20 @@ var colors = [
         high: 320,
     },
 ];
+
+var getColorByName = function (name) {
+
+    var color;
+
+    var colorIndex = 0;
+    while (colorIndex < colors.length) {
+
+        color = colors[colorIndex];
+
+        if (color.name == name) {
+            return color;
+        }
+
+        colorIndex += 1;
+    }
+};
