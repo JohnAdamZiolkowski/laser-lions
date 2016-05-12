@@ -81,6 +81,7 @@ var createLion = function () {
     colorIndex = Math.floor(Math.random() * colors.length);
     lionInfo.furColor = colors[colorIndex].name;
 
+    lionInfo.desires = [];
     assignDesires(lionInfo, desiresToCreate);
 
     return lionInfo;
@@ -145,14 +146,62 @@ var assignDesires = function (lionInfo, desireCount) {
         //todo: handle duplicates?
         var desireIndex = Math.floor(Math.random() * desireChoices.length);
         var desireName = desireChoices[desireIndex];
-        lionDesires.push(desireName);
+        lionInfo.desires.unshift(desireName);
 
         choiceIndex += 1;
     }
 
-    lionInfo.desires = lionDesires;
+    //limit the number of desires to max
+    lionInfo.desires = lionInfo.desires.slice(0, desiresToCreate);
 };
 
+var timePassed = function () {
+    //get time of last check
+    //get current time
+    //get the time passed
+    var time_passed = 1;
+
+    //figure out how many desires to spread around based on time
+    //modify this by the number of lions?
+    //for every 2 lions, add another desire?
+    //1 hour with
+    //1-2 lion: 1 desire
+    //3-4 lions: 2 desires
+    //5-6 lions: 3 desires
+    //7-8 lions: 4 desires
+    //9-10 lions: 5 desires
+    //this way all lions want 4 things by the end of 8 hours
+    var desiresToAssign = Math.ceil(time_passed * lions.length / 2);
+
+    //use that number to randomly make a list of that many lions
+    var lionsWhoDesire = [];
+    var desireIndex = 0;
+    while (desireIndex < desiresToAssign) {
+
+        var lionIndex = Math.floor(Math.random() * lions.length);
+        var lion = lions[lionIndex];
+
+        lionsWhoDesire.push(lion);
+
+        desireIndex += 1;
+    }
+
+    //assign desires to each of the lions
+    var lion;
+    var lionIndex = 0;
+    while (lionIndex < lionsWhoDesire.length) {
+
+        lion = lionsWhoDesire[lionIndex];
+
+        assignDesires(lion, 1);
+        console.log(lion.name + " now wants to " + lion.desires[0]);
+
+        lionIndex += 1;
+    }
+
+    updateSaveData();
+    updatePage();
+}
 
 var updateSaveData = function () {
     var saveData = {};

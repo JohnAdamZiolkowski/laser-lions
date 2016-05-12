@@ -17,6 +17,10 @@
         p {
             margin-bottom: 0.5em;
         }
+        
+        #restartButton {
+            float: right;
+        }
     </style>
 </head>
 
@@ -91,12 +95,12 @@
         </ul>
         <input type=button value="satisfy" onclick=clickSatisfyDesire()>
         </input>
-        <input type=button value="wait" onclick=clickAssignDesires()>
+        <input type=button value="wait" onclick=timePassed()>
         </input>
     </p>
 
     <p>
-        <input type=button value="restart" onclick=restart()>
+        <input type=button value="restart" id="restartButton" onclick=restart()>
         </input>
     </p>
 
