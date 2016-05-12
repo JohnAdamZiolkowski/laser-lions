@@ -84,6 +84,76 @@ var createLion = function () {
     return lionInfo;
 };
 
+var assignDesires = function (lionInfo, desireCount) {
+
+    //create a list of actions based the desires the lion has
+    var desireChoices = [];
+
+    var found, chanceAmount;
+    var desire;
+    var desireIndex = 0;
+    while (desireIndex < desires.length) {
+        desire = desires[desireIndex];
+
+        chanceAmount = 0;
+        found = false;
+
+        //search the lion's traits for one that modifies the desire
+        var trait;
+        var traitIndex = 0;
+        while (traitIndex < lionInfo.traits.length) {
+            trait = lionInfo.traits[traitIndex];
+
+            if (desire.less == trait) {
+                chanceAmount = 1;
+            } else if (desire.more == trait) {
+                chanceAmount = 4;
+            }
+
+            //if more or less
+            if (chanceAmount) {
+                found = true;
+                break;
+            }
+
+            traitIndex += 1;
+        }
+
+        //if the lion had no trait that affected this desire
+        if (!chanceAmount) {
+            chanceAmount = 2;
+        }
+
+        //make a weighted list of actions to take
+        var chanceIndex = 0;
+        while (chanceIndex < chanceAmount) {
+            desireChoices.push(desire.action);
+            chanceIndex += 1;
+        }
+
+        desireIndex += 1;
+    }
+
+    console.log(desireChoices);
+
+    //choose a set from the actions
+    var lionDesires = [];
+    var choiceIndex = 0;
+    var choice;
+    while (choiceIndex < desireCount) {
+
+        //todo: handle duplicates?
+        var desireIndex = Math.floor(Math.random() * desireChoices.length);
+        var desireName = desireChoices[desireIndex];
+        lionDesires.push(desireName);
+
+        choiceIndex += 1;
+    }
+
+    console.log(lionDesires);
+};
+
+
 var updateSaveData = function () {
     var saveData = {};
     saveData.lions = lions;

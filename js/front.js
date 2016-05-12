@@ -83,6 +83,11 @@ var selectLion = function (element) {
     updatePage();
 };
 
+var clickAssignDesires = function () {
+
+    assignDesires(lionInfo, 4);
+};
+
 var updateLionColors = function () {
 
     var imageTag = document.getElementById("lionImage");
