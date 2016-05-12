@@ -81,6 +81,8 @@ var createLion = function () {
     colorIndex = Math.floor(Math.random() * colors.length);
     lionInfo.furColor = colors[colorIndex].name;
 
+    assignDesires(lionInfo, desiresToCreate);
+
     return lionInfo;
 };
 
@@ -134,8 +136,6 @@ var assignDesires = function (lionInfo, desireCount) {
         desireIndex += 1;
     }
 
-    console.log(desireChoices);
-
     //choose a set from the actions
     var lionDesires = [];
     var choiceIndex = 0;
@@ -150,7 +150,7 @@ var assignDesires = function (lionInfo, desireCount) {
         choiceIndex += 1;
     }
 
-    console.log(lionDesires);
+    lionInfo.desires = lionDesires;
 };
 
 

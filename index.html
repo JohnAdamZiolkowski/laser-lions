@@ -9,6 +9,14 @@
         img {
             image-rendering: pixelated;
         }
+        
+        ul {
+            margin-top: 0.5em;
+        }
+        
+        p {
+            margin-bottom: 0.5em;
+        }
     </style>
 </head>
 
@@ -20,32 +28,46 @@
     <img src="images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage">
     </img>
 
-    <a href="http://reddit.com/r/lions">
-		Roar
-	</a>
-
     <p id="nameTag">
-        Lions name is:
-    </p>
+        <!--        Name:-->
+        <p>Lion:
+            <select id="lionSelect" onchange="selectLion(this)">
+            </select>
+        </p>
+        <ul>
+            <li> Rename:
+                <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
+                </input>
 
-    <p>
-        Rename:
-        <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
-        </input>
-
-        <input type=button value="enter" onclick=nameTheLion()>
-        </input>
+                <input type=button value="enter" onclick=nameTheLion()>
+                </input>
+            </li>
+        </ul>
     </p>
 
     <p id="ageTag">
         Age:
     </p>
 
+    <p>Color:
+        <ul>
+            <li id="maneColorLabel">
+                Mane:
+            </li>
+            <li id="eyeColorLabel">
+                Eyes:
+            </li>
+            <li id="furColorLabel">
+                Fur:
+            </li>
+        </ul>
+    </p>
+
     <p id="foodTag">
         Favourite Food:
     </p>
 
-    <p id="personalityTag">
+    <p>
         Personality:
         <ul id="traitsList">
             <li>
@@ -57,28 +79,26 @@
         </ul>
     </p>
 
-    <p>Color:</p>
-    <ul>
-        <li id="maneColorLabel">
-            Mane:
-        </li>
-        <li id="eyeColorLabel">
-            Eyes:
-        </li>
-        <li id="furColorLabel">
-            Fur:
-        </li>
-    </ul>
-
-    <p>Your Lions:
-        <select id="lionSelect" onchange="selectLion(this)">
-        </select>
+    <p>
+        Desires:
+        <ul id="desiresList">
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+        </ul>
+        <input type=button value="satisfy" onclick=clickSatisfyDesire()>
+        </input>
+        <input type=button value="wait" onclick=clickAssignDesires()>
+        </input>
     </p>
 
-    <input type=button value="restart" onclick=restart()>
-    </input>
-    <input type=button value="desires" onclick=clickAssignDesires()>
-    </input>
+    <p>
+        <input type=button value="restart" onclick=restart()>
+        </input>
+    </p>
 
 </body>
 

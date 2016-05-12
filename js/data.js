@@ -4,6 +4,9 @@ var lionsToCreate = 10;
 //must be less than the number of desires
 var traitsToCreate = 3;
 
+//must be less than the number of desires
+var desiresToCreate = 4;
+
 var foods = [
     "Cookies",
     "Waffles",

@@ -1,9 +1,9 @@
 var updatePage = function () {
-    var nametag = document.getElementById("nameTag");
+    //    var nametag = document.getElementById("nameTag");
     var ageTag = document.getElementById("ageTag");
     var favefood = document.getElementById("foodTag");
 
-    nametag.textContent = "Lions name is: " + lionInfo.name;
+    //    nametag.textContent = "Name: " + lionInfo.name;
     ageTag.textContent = "Age: " + lionInfo.age;
     favefood.textContent = "Favourite Food: " + lionInfo.food;
 
@@ -12,6 +12,7 @@ var updatePage = function () {
 
     updateLionColors();
     updateTraitList();
+    updateDesiresList();
     updateLionSelect();
 };
 
@@ -30,6 +31,26 @@ var updateTraitList = function () {
         var traitItem = document.createElement("li");
         traitItem.textContent = trait;
         traitsList.appendChild(traitItem);
+
+        loopCount += 1;
+    }
+};
+
+var updateDesiresList = function () {
+    var desiresList = document.getElementById("desiresList");
+
+    //remove old items
+    while (desiresList.getElementsByTagName("li").length > 0) {
+        desiresList.removeChild(desiresList.firstChild);
+    }
+
+    //add new items
+    var loopCount = 0;
+    while (loopCount < lionInfo.desires.length) {
+        var desire = lionInfo.desires[loopCount];
+        var desireItem = document.createElement("li");
+        desireItem.textContent = desire;
+        desiresList.appendChild(desireItem);
 
         loopCount += 1;
     }
@@ -85,7 +106,25 @@ var selectLion = function (element) {
 
 var clickAssignDesires = function () {
 
-    assignDesires(lionInfo, 4);
+    //give all the lions new desires
+    var lion
+    var lionIndex = 0;
+    while (lionIndex < lions.length) {
+        lion = lions[lionIndex];
+        assignDesires(lion, desiresToCreate);
+        lionIndex += 1;
+    }
+
+    updateSaveData();
+    updatePage();
+};
+
+var clickSatisfyDesire = function () {
+
+    lionInfo.desires.splice(0, 1);
+
+    updateSaveData();
+    updatePage();
 };
 
 var updateLionColors = function () {
