@@ -18,8 +18,10 @@
             margin-bottom: 0.5em;
         }
         
-        #restartButton {
-            float: right;
+        .controls {
+            position: absolute;
+            bottom: 0;
+            right: 0;
         }
     </style>
 </head>
@@ -33,7 +35,6 @@
     </img>
 
     <p id="nameTag">
-        <!--        Name:-->
         <p>Lion:
             <select id="lionSelect" onchange="selectLion(this)">
             </select>
@@ -85,6 +86,8 @@
 
     <p>
         Desires:
+        <input type=button value="satisfy" onclick=clickSatisfyDesire()>
+        </input>
         <ul id="desiresList">
             <li>
             </li>
@@ -93,16 +96,25 @@
             <li>
             </li>
         </ul>
-        <input type=button value="satisfy" onclick=clickSatisfyDesire()>
-        </input>
-        <input type=button value="wait" onclick=timePassed()>
-        </input>
     </p>
 
-    <p>
-        <input type=button value="restart" id="restartButton" onclick=restart()>
-        </input>
-    </p>
+    <div class="controls">
+        <p id="timerTag">Timer:</p>
+        <p>
+            <input type=button value="stop" onclick=toggleTimer(false)>
+            </input>
+            <input type=button value="start" onclick=toggleTimer(true)>
+            </input>
+        </p>
+
+        <p>
+            Create lions:
+        </p>
+        <p>
+            <input type=button value="restart" id="restartButton" onclick=restart()>
+            </input>
+        </p>
+    </div>
 
 </body>
 

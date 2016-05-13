@@ -2,6 +2,10 @@ var lions;
 var lionInfo;
 var selectedLion;
 
+var dateLastUpdated;
+
+var timer;
+
 var setup = function () {
     var loadData = load_from_storage();
 
@@ -13,6 +17,7 @@ var setup = function () {
         restart();
     }
 
+    toggleTimer(true);
     updatePage();
 };
 
@@ -155,11 +160,32 @@ var assignDesires = function (lionInfo, desireCount) {
     lionInfo.desires = lionInfo.desires.slice(0, desiresToCreate);
 };
 
-var timePassed = function () {
-    //get time of last check
-    //get current time
-    //get the time passed
-    var time_passed = 1;
+var checkTime = function () {
+
+    if (!dateLastUpdated) {
+        dateLastUpdated = new Date();
+    }
+
+    var date = new Date();
+    var difference = date - dateLastUpdated;
+    //console.log("difference: " + difference);
+    var timePassed = Math.floor(difference / updatePeriod);
+    //console.log("time passed: " + timePassed);
+
+    if (timePassed < 1) {
+        return;
+    }
+
+    if (timePassed > updateLimit) {
+        timePassed = updateLimit;
+    }
+
+    dateLastUpdated = date;
+
+    updateDesires(timePassed);
+};
+
+var updateDesires = function (timePassed) {
 
     //figure out how many desires to spread around based on time
     //modify this by the number of lions?
@@ -171,7 +197,7 @@ var timePassed = function () {
     //7-8 lions: 4 desires
     //9-10 lions: 5 desires
     //this way all lions want 4 things by the end of 8 hours
-    var desiresToAssign = Math.ceil(time_passed * lions.length / 2);
+    var desiresToAssign = Math.ceil(timePassed * lions.length / 2);
 
     //use that number to randomly make a list of that many lions
     var lionsWhoDesire = [];
@@ -209,4 +235,17 @@ var updateSaveData = function () {
     saveData.selectedLion = selectedLion;
 
     save_into_storage(saveData);
+};
+
+var toggleTimer = function (turnOn) {
+    var timerTag = document.getElementById("timerTag");
+
+    clearInterval(timer);
+    var text = "Timer: Off";
+
+    if (turnOn) {
+        timer = setInterval(checkTime, updateCheck);
+        text = "Timer: On";
+    }
+    timerTag.textContent = text;
 };
