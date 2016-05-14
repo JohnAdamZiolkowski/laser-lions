@@ -18,6 +18,61 @@ var updateCheck = 1000 * 10; // every 10 seconds
 //how many updates to stack at maximum
 var updateLimit = 8; // enough to let all lions have max desire
 
+var ages = [
+    {
+        name: "egg",
+        image: "images/egg.png",
+    },
+    {
+        name: "cub",
+        image: "images/cub.png",
+    },
+    {
+        name: "teen",
+        image: "images/teen.png",
+    },
+    {
+        name: "adult",
+        image: "images/adult.png",
+    },
+    {
+        name: "senior",
+        image: "images/senior.png",
+    },
+];
+
+var gameStates = [
+    "startup",
+    "area",
+    "lionCloseup",
+    "lionInfo",
+    "optionPicker",
+    //    "lionPicker",
+    //    "foodPicker",
+    //    "toyPicker",
+    //    "clothingPicker",
+    "photo",
+    "play",
+    "petting",
+    "fight",
+    "giveHappiness",
+    "animation",
+    //give present
+    //evolve
+    //befriend
+    //love
+    //into the cave
+    //raising cub
+    //lion pile
+    //eat
+    //level up
+    "menu",
+    "lionList",
+    "areaList",
+    "itemList",
+    "restart",
+];
+
 var foods = [
     "Cookies",
     "Waffles",
@@ -149,12 +204,12 @@ var desires = [
         //cub lion will get a trait or skill from raiser?
     },
     {
-        action: "grow up", //hatch, grow up, develop, retire
+        action: "grow up", // also hatch, develop, retire?
         more: "mature",
         less: "youthful",
         type: "passive",
         //list of lions - that are adults and want to raise?
-        //restricted to cub lions
+        //restricted to cub lions, (also eggs, teens, adults?)
         //selected lions will hang out together with up arrows
         //cub lion will get a trait or skill from raiser?
     },

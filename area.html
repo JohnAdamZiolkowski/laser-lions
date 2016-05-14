@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>
+        Lions are the best
+    </title>
+
+    <style>
+        img {
+            image-rendering: pixelated;
+            cursor: pointer;
+            width: 64px;
+            height: 64px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+        </tr>
+        <tr>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+        </tr>
+        <tr>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+        </tr>
+        <tr>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+        </tr>
+        <tr>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
+        </tr>
+
+    </table>
+</body>
+
+<script>
+    var clickLionIcon = function (element) {
+        var col = element.parentElement.cellIndex;
+        var row = element.parentElement.parentElement.rowIndex;
+
+        alert("clicked on a lion " + col + "," + row + "!");
+    }
+</script>
+
+</html>
