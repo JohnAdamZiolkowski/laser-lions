@@ -43,66 +43,129 @@ var desires = [
         action: "eat",
         more: "insatiable",
         less: "nibbler",
+        type: "player",
+        //list of food in inventory
+        //lion may like food for 2 happiness
+        //lion may dislike food for 0 happiness
     },
     {
         action: "sleep",
         more: "lazy",
         less: "energetic",
+        type: "blocking",
+        //list of places to sleep?
+        //list of lions that also want to sleep?
+        //pile of lions?
+        //lion will sleep for some time
     },
     {
         action: "play",
         more: "playful",
         less: "serious",
+        type: "player",
+        //list of toys in inventory
+        //switch to toy play mode
+        //toss a ball to make it fetch
+        //swing fish on a string to make it paw
+        //move laser pointer around to make it chase
     },
     {
         action: "give present",
         more: "generous",
         less: "hoarder",
+        type: "player",
+        //accept a present - surprise!
+        //switch to accept present mode
+        //get a random new item for the inventory
     },
     {
         action: "be pet",
         more: "affectionate",
         less: "reserved",
+        type: "player",
+        //rub a dub
+        //switch to petting mode
+        //head petting
+        //back petting
+        //belly petting, but the lion may bite
     },
     {
         action: "fight",
         more: "brave",
         less: "nervous",
+        type: "player",
+        //pew pew
+        //switch to laser game mode
+        //your lions team up against random lions?
+        //selected lion plays against other lions?
     },
     {
         action: "be photographed",
         more: "proud",
         less: "shy",
+        type: "player",
+        //dress up, pose, action
+        //switch to photo mode
+        //option to save photo to device
+        //list of accessories in inventory
     },
     {
         action: "love",
         more: "charming",
         less: "reserved",
+        type: "passive",
+        //list of lions - that also want love?
+        //restricted to teen and adult lions
+        //selected lions will hang out together with hearts
+        //chance of adding eachother to love list?
     },
     {
         action: "befriend",
         more: "friendly",
         less: "loner",
+        type: "passive",
+        //list of lions - that also want friendship?
+        //selected lions will hang out together with smiles
+        //chance of adding eachother to friend list?
     },
     {
         action: "have an egg",
         more: "impulsive",
         less: "cautious",
+        type: "blocking",
+        //list of lions - that also want do have an egg?
+        //restricted to adult lions, maybe teens?
+        //selected lions will go off into a cave together
+        //later, an egg will be presented
     },
     {
         action: "raise a cub",
         more: "nuturing",
         less: "free",
+        type: "passive",
+        //list of lions - that are cubs and want to grow up?
+        //restricted to adult lions
+        //selected lions will hang out together with up arrows
+        //cub lion will get a trait or skill from raiser?
     },
     {
-        action: "grow up",
+        action: "grow up", //hatch, grow up, develop, retire
         more: "mature",
         less: "youthful",
+        type: "passive",
+        //list of lions - that are adults and want to raise?
+        //restricted to cub lions
+        //selected lions will hang out together with up arrows
+        //cub lion will get a trait or skill from raiser?
     },
     {
         action: "take medicine",
         more: "delicate",
         less: "hearty",
+        type: "blocking",
+        //give medicine
+        //must be feeling under the weather
+        //might have to choose the right medicine for the illness?
     }
 ];
 
