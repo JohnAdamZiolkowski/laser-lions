@@ -20,13 +20,19 @@
             border-collapse: collapse;
             background-image: url("../images/sand.jpg");
         }
+        
+        input#menuButton {
+            float: right;
+        }
     </style>
 </head>
 
 <body onload="setupArea()">
+    <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
     <h1>
 		Project Lazer Lions
 	</h1>
+    <div id="menuDiv"></div>
     <table id="areaTable"> </table>
 </body>
 

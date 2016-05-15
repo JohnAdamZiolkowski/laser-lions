@@ -250,14 +250,14 @@ var getLionIndexByName = function (lionName) {
 };
 
 var toggleTimer = function (turnOn) {
-    var timerTag = document.getElementById("timerTag");
+    //    var timerTag = document.getElementById("timerTag");
 
     clearInterval(timer);
-    var text = "Timer: Off";
+    //    var text = "Timer: Off";
 
     if (turnOn) {
         timer = setInterval(checkTime, updateCheck);
-        text = "Timer: On";
+        //        text = "Timer: On";
     }
-    timerTag.textContent = text;
+    //    timerTag.textContent = text;
 };

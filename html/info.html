@@ -24,10 +24,15 @@
             bottom: 0;
             right: 0;
         }
+        
+        input#menuButton {
+            float: right;
+        }
     </style>
 </head>
 
 <body onload=setup()>
+    <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
     <h1>
 		Project Lazer Lions
 	</h1>
@@ -84,29 +89,6 @@
             </li>
         </ul>
     </p>
-
-    <div class="controls">
-        <input type=button value="Area" onclick=backToArea()>
-        </input>
-        <input type=button value="Lion" onclick=backToCloseup()>
-        </input>
-        <p id="timerTag">Timer:</p>
-        <p>
-            <input type=button value="stop" onclick=toggleTimer(false)>
-            </input>
-            <input type=button value="start" onclick=toggleTimer(true)>
-            </input>
-        </p>
-
-        <p>
-            Create lions:
-        </p>
-        <p>
-            <input type=button value="restart" id="restartButton" onclick=restart()>
-            </input>
-        </p>
-    </div>
-
 </body>
 
 <script src="../js/data.js"></script>

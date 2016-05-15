@@ -196,3 +196,6 @@ var backToArea = function () {
 var backToCloseup = function () {
     window.location.replace("closeup.html");
 };
+var toMenu = function () {
+    window.location.replace("menu.html");
+};
