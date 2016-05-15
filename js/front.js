@@ -223,3 +223,7 @@ var clickSetTimer = function (turnOn) {
     updateSaveData();
     updatePage();
 };
+
+var clickForceUpdate = function () {
+    updateDesires(1);
+};
