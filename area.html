@@ -12,8 +12,12 @@
         }
         
         td {
-            width: 32px;
-            height: 32px;
+            width: 64px;
+            height: 64px;
+        }
+        
+        table {
+            border-collapse: collapse;
         }
     </style>
 </head>
@@ -78,6 +82,7 @@
 
                 var img = document.createElement("img");
                 img.src = "images/Sprite2biggermane.png";
+                img.style.visibility = "hidden";
                 img.width = 64;
                 img.height = 64;
                 img.dataset.lionIndex = getLionIndexByName(lionInfo.name);
