@@ -1,4 +1,21 @@
 var updatePage = function () {
+    switch (currentPage) {
+    case "area":
+        updateAreaPage();
+        break;
+    case "closeup":
+        updateCloseupPage();
+        break;
+    case "info":
+        updateInfoPage();
+        break;
+    case "menu":
+        updateMenuPage();
+        break;
+    }
+};
+
+var updateInfoPage = function () {
     //    var nametag = document.getElementById("nameTag");
     var ageTag = document.getElementById("ageTag");
     var favefood = document.getElementById("foodTag");
@@ -11,13 +28,18 @@ var updatePage = function () {
     nameTextbox.value = "";
 
     var imageTag = document.getElementById("lionImage");
-    var imageSrc = "images/Sprite2biggermane.png";
+    var imageSrc = "../images/Sprite2biggermane.png";
     updateLionColors(imageTag, imageSrc, lionInfo);
     updateLionColorLabels();
 
     updateTraitList();
-    updateDesiresList();
+    //    updateDesiresList();
     updateLionSelect();
+};
+
+var updateNameTag = function () {
+    var nametag = document.getElementById("nameTag");
+    nametag.textContent = "Name: " + lionInfo.name;
 };
 
 var updateTraitList = function () {
@@ -187,4 +209,10 @@ var updateLionColors = function (imageTag, imageSrc, lionInfo) {
 
 var backToArea = function () {
     window.location.replace("area.html");
+};
+var backToCloseup = function () {
+    window.location.replace("closeup.html");
+};
+var toMenu = function () {
+    window.location.replace("menu.html");
 };

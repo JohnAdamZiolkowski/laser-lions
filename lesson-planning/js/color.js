@@ -1,7 +1,5 @@
 var changeColor = function (imageTag, imageSrc, modifiers) {
 
-    imageTag.style.visibility = "hidden";
-
     getDataUriRecolored(imageSrc, modifiers, function (dataUri) {
         imageTag.src = dataUri;
 
@@ -102,34 +100,30 @@ function getDataUriRecolored(url, modifiers, callback) {
         var imageMap = context.getImageData(0, 0, this.naturalWidth, this.naturalHeight);
         var imageData = imageMap.data;
 
-        var p, r, g, b, h, s, l;
+        var p, r, g, b, hsl, h, s, l, mod, m, rgb;
         for (p = 0; p < imageData.length; p += 4) {
             r = imageData[p];
             g = imageData[p + 1];
             b = imageData[p + 2];
             //a = imageData[p + 2];
 
-            var hsl = rgbToHsl(r, g, b);
+            hsl = rgbToHsl(r, g, b);
 
             h = hsl[0];
             s = hsl[1];
             l = hsl[2];
 
-            //alter the hue of only the red pixels
-            var mod, m;
-            var found = false;
+            //alter the hue of only the right pixels
             for (m = 0; m < modifiers.length; m++) {
                 mod = modifiers[m];
                 if (h >= mod.low && h <= mod.high) {
-                    found = true;
+                    h = (h - mod.low + mod.add) % 1;
+                    //only apply one mod per pixel
                     break;
                 }
             }
-            if (found) {
-                h = (h + mod.add - mod.low) % 1;
-            }
 
-            var rgb = hslToRgb(h, s, l);
+            rgb = hslToRgb(h, s, l);
 
             imageData[p] = rgb[0];
             imageData[p + 1] = rgb[1];

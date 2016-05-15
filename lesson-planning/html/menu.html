@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>
+        Laser Lions
+    </title>
+    <link rel="icon" href="../images/icon.ico" />
+</head>
+
+<body onload="setupPage('menu')">
+    <h1>
+		Laser Lions
+	</h1>
+
+
+    <input type=button value="Area" onclick=backToArea()>
+    </input>
+    <p id="timerTag">Timer:</p>
+    <p>
+        <input type=button value="stop" onclick=toggleTimer(false)>
+        </input>
+        <input type=button value="start" onclick=toggleTimer(true)>
+        </input>
+    </p>
+
+    <p>
+        Create lions:
+    </p>
+    <p>
+        <input type=button value="restart" id="restartButton" onclick=restart()>
+        </input>
+    </p>
+
+</body>
+
+<script>
+    var updateMenuPage = function () {
+        var timerTag = document.getElementById("timerTag");
+        var text = "Timer: Off";
+
+        if (timer) {
+            text = "Timer: On";
+        }
+        timerTag.textContent = text;
+    };
+</script>
+
+<script src="../js/save.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/front.js"></script>
+<script src="../js/color.js"></script>
+<script src="../js/data.js"></script>
+
+</html>

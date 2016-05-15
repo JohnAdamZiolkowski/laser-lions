@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <title>
+        Laser Lions
+    </title>
+    <link rel="icon" href="../images/icon.ico" />
+
+    <style>
+        img {
+            image-rendering: pixelated;
+            background-image: url("../images/sand.jpg");
+        }
+        
+        ul {
+            margin-top: 0.5em;
+        }
+        
+        p {
+            margin-bottom: 0.5em;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        
+        input#menuButton {
+            float: right;
+        }
+    </style>
+</head>
+
+<body onload="setupPage('info')">
+    <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
+    <h1>
+		Laser Lions
+	</h1>
+
+    <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage">
+    </img>
+
+    <p id="nameTag">
+        <p>Lion:
+            <select id="lionSelect" onchange="selectLion(this)">
+            </select>
+        </p>
+        <ul>
+            <li> Rename:
+                <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
+                </input>
+
+                <input type=button value="enter" onclick=nameTheLion()>
+                </input>
+            </li>
+        </ul>
+    </p>
+
+    <p id="ageTag">
+        Age:
+    </p>
+
+    <p>Color:
+        <ul>
+            <li id="maneColorLabel">
+                Mane:
+            </li>
+            <li id="eyeColorLabel">
+                Eyes:
+            </li>
+            <li id="furColorLabel">
+                Fur:
+            </li>
+        </ul>
+    </p>
+
+    <p id="foodTag">
+        Favourite Food:
+    </p>
+
+    <p>
+        Personality:
+        <ul id="traitsList">
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </p>
+
+    <input type="button" value="Area" onclick="backToArea()" />
+    <input type="button" value="Lion" onclick="backToCloseup()" />
+</body>
+
+<script src="../js/data.js"></script>
+<script src="../js/front.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/save.js"></script>
+<script src="../js/color.js"></script>
+
+</html>

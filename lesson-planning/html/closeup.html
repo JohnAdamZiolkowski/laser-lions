@@ -1,0 +1,158 @@
+<html>
+
+<head>
+    <title>
+        Laser Lions
+    </title>
+    <link rel="icon" href="../images/icon.ico" />
+
+    <style>
+        img {
+            image-rendering: pixelated;
+        }
+        
+        td {
+            width: 96px;
+            height: 96px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            background-image: url("../images/sand.jpg");
+        }
+        
+        input#menuButton {
+            float: right;
+        }
+    </style>
+</head>
+
+<body onload="setupPage('closeup')">
+    <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
+    <h1>
+		Laser Lions
+	</h1>
+
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td id="desire0">
+            </td>
+            <td id="desire1">
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td id="desire2">
+            </td>
+            <td id="lionCell" rowspan="2" colspan="2">
+                <img src="../images/Sprite2biggermane.png" width="192px" height="192px" id="lionImage"></img>
+            </td>
+            <td id="desire3">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <p id="nameTag">
+        </p>
+
+        <input type="button" onclick="clickInfo()" value="Info"></input>
+    </p>
+
+    <p>
+        Desires:
+        <ul id="desiresList">
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </p>
+
+    <input type="button" onclick="clickArea()" value="Area"></input>
+</body>
+
+<script>
+    var clickArea = function () {
+        window.location.replace("area.html");
+    };
+
+    var clickInfo = function () {
+        window.location.replace("info.html");
+    };
+
+    var clickDesireBubble = function (element) {
+        var desireIndex = element.dataset.desireIndex;
+        var desire = lionInfo.desires[desireIndex];
+        //        alert("You clicked desire " + desireIndex + ": " + desire);
+
+        lionInfo.desires.splice(desireIndex, 1);
+        updateSaveData();
+        updateCloseupPage();
+    };
+
+    var updateCloseupPage = function () {
+
+        var imageTag = document.getElementById("lionImage");
+        var imageSrc = "../images/Sprite2biggermane.png";
+
+        updateLionColors(imageTag, imageSrc, lionInfo, true);
+
+        //clear out old bubbles
+        var desireIndex = 0;
+        while (desireIndex < desiresToCreate) {
+            var cell = document.getElementById("desire" + desireIndex);
+
+            while (cell.children.length > 0) {
+                cell.removeChild(cell.firstChild);
+            }
+            desireIndex += 1;
+        }
+
+        var desireIndex = 0;
+        while (desireIndex < lionInfo.desires.length) {
+
+            var cell = document.getElementById("desire" + desireIndex);
+
+            var imageTag = document.createElement("img");
+            imageTag.src = "../images/bubble.png";
+            imageTag.width = 96;
+            imageTag.height = 96;
+            imageTag.style.cursor = "pointer";
+
+            //flip bubbles on left side
+            if (desireIndex % 2 == 0) {
+                imageTag.style.transform = "scaleX(-1)";
+            }
+            imageTag.onclick = function () {
+                clickDesireBubble(this);
+            };
+            imageTag.dataset.desireIndex = desireIndex;
+
+            cell.appendChild(imageTag);
+
+            desireIndex += 1;
+        }
+        updateNameTag();
+        updateDesiresList();
+    };
+</script>
+
+<script src="../js/save.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/front.js"></script>
+<script src="../js/color.js"></script>
+<script src="../js/data.js"></script>
+
+</html>

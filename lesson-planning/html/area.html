@@ -2,8 +2,9 @@
 
 <head>
     <title>
-        Lions are the best
+        Laser Lions
     </title>
+    <link rel="icon" href="../images/icon.ico" />
 
     <style>
         img {
@@ -12,16 +13,28 @@
         }
         
         td {
-            width: 32px;
-            height: 32px;
+            width: 64px;
+            height: 64px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            background-image: url("../images/sand.jpg");
+        }
+        
+        input#menuButton {
+            float: right;
         }
     </style>
+
 </head>
 
-<body onload="setupArea()">
+<body onload="setupPage('area')">
+    <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
     <h1>
-		Project Lazer Lions
+		Laser Lions
 	</h1>
+    <div id="menuDiv"></div>
     <table id="areaTable"> </table>
 </body>
 
@@ -29,18 +42,13 @@
     var rowsToCreate = 5;
     var colsToCreate = 5;
 
-    var setupArea = function () {
-        var loadData = load_from_storage();
-
-        if (loadData) {
-            lions = loadData.lions;
-            selectedLion = loadData.selectedLion;
-            lionInfo = lions[selectedLion];
-        } else {
-            restart();
-        }
-
+    var updateAreaPage = function () {
         var areaTable = document.getElementById("areaTable");
+
+        //clear table
+        while (areaTable.rows.length > 0) {
+            areaTable.deleteRow(0);
+        }
 
         var rowIndex = 0;
         while (rowIndex < rowsToCreate) {
@@ -77,7 +85,8 @@
                 unplacedLions.splice(lionIndex, 1);
 
                 var img = document.createElement("img");
-                img.src = "images/Sprite2biggermane.png";
+                img.src = "../images/Sprite2biggermane.png";
+                img.style.visibility = "hidden";
                 img.width = 64;
                 img.height = 64;
                 img.dataset.lionIndex = getLionIndexByName(lionInfo.name);
@@ -86,7 +95,7 @@
                 };
                 col.appendChild(img);
 
-                var imageSrc = "images/Sprite2biggermane.png";
+                var imageSrc = "../images/Sprite2biggermane.png";
 
                 updateLionColors(img, imageSrc, lionInfo, true);
             }
@@ -102,14 +111,14 @@
         //alert("Clicked on " + lionInfo.name + "!");
         selectedLion = lionIndex;
         updateSaveData();
-        window.location.replace("index.html");
+        window.location.replace("closeup.html");
     };
 </script>
 
-<script src="js/save.js"></script>
-<script src="js/back.js"></script>
-<script src="js/front.js"></script>
-<script src="js/color.js"></script>
-<script src="js/data.js"></script>
+<script src="../js/save.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/front.js"></script>
+<script src="../js/color.js"></script>
+<script src="../js/data.js"></script>
 
 </html>
