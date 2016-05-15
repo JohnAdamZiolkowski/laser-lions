@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>
+        Lions are the best
+    </title>
+
+    <style>
+        img {
+            image-rendering: pixelated;
+        }
+        
+        td {
+            width: 96px;
+            height: 96px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            background-image: url("../images/sand.jpg");
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+		Project Lazer Lions
+	</h1>
+
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td id="desire0">
+
+                <img src="../images/Sprite2biggermane.png" width="96px" height="96px"></img>
+            </td>
+            <td id="desire1">
+
+                <img src="../images/Sprite2biggermane.png" width="96px" height="96px"></img>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td id="desire2">
+
+                <img src="../images/Sprite2biggermane.png" width="96px" height="96px"></img>
+            </td>
+            <td id="lionCell" rowspan="2" colspan="2">
+                <img src="../images/Sprite2biggermane.png" width="192px" height="192px"></img>
+            </td>
+            <td id="desire3">
+
+                <img src="../images/Sprite2biggermane.png" width="96px" height="96px"></img>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+
+    <!--
+    <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="256px" height="256px" id="lionImage">
+    </img>
+-->
+
+    <input type="button" onclick="clickArea()" value="Area"></input>
+    <input type="button" onclick="clickInfo()" value="Info"></input>
+</body>
+
+<script>
+    var clickArea = function () {
+        window.location.replace("area.html");
+    };
+    var clickInfo = function () {
+        window.location.replace("info.html");
+    };
+</script>
+
+<!--
+_ 1 2 _
+3 L L 4
+_ L L _
+-->
+
+
+
+</html>

@@ -11,7 +11,7 @@ var updatePage = function () {
     nameTextbox.value = "";
 
     var imageTag = document.getElementById("lionImage");
-    var imageSrc = "images/Sprite2biggermane.png";
+    var imageSrc = "../images/Sprite2biggermane.png";
     updateLionColors(imageTag, imageSrc, lionInfo);
     updateLionColorLabels();
 
@@ -187,4 +187,7 @@ var updateLionColors = function (imageTag, imageSrc, lionInfo) {
 
 var backToArea = function () {
     window.location.replace("area.html");
+};
+var backToCloseup = function () {
+    window.location.replace("closeup.html");
 };

@@ -1,0 +1,132 @@
+<html>
+
+<head>
+    <title>
+        Lions are the best
+    </title>
+
+    <style>
+        img {
+            image-rendering: pixelated;
+            background-image: url("../images/sand.jpg");
+        }
+        
+        ul {
+            margin-top: 0.5em;
+        }
+        
+        p {
+            margin-bottom: 0.5em;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body onload=setup()>
+    <h1>
+		Project Lazer Lions
+	</h1>
+
+    <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage">
+    </img>
+
+    <p id="nameTag">
+        <p>Lion:
+            <select id="lionSelect" onchange="selectLion(this)">
+            </select>
+        </p>
+        <ul>
+            <li> Rename:
+                <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
+                </input>
+
+                <input type=button value="enter" onclick=nameTheLion()>
+                </input>
+            </li>
+        </ul>
+    </p>
+
+    <p id="ageTag">
+        Age:
+    </p>
+
+    <p>Color:
+        <ul>
+            <li id="maneColorLabel">
+                Mane:
+            </li>
+            <li id="eyeColorLabel">
+                Eyes:
+            </li>
+            <li id="furColorLabel">
+                Fur:
+            </li>
+        </ul>
+    </p>
+
+    <p id="foodTag">
+        Favourite Food:
+    </p>
+
+    <p>
+        Personality:
+        <ul id="traitsList">
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </p>
+
+    <p>
+        Desires:
+        <input type=button value="satisfy" onclick=clickSatisfyDesire()>
+        </input>
+        <ul id="desiresList">
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </p>
+
+    <div class="controls">
+        <input type=button value="Area" onclick=backToArea()>
+        </input>
+        <input type=button value="Lion" onclick=backToCloseup()>
+        </input>
+        <p id="timerTag">Timer:</p>
+        <p>
+            <input type=button value="stop" onclick=toggleTimer(false)>
+            </input>
+            <input type=button value="start" onclick=toggleTimer(true)>
+            </input>
+        </p>
+
+        <p>
+            Create lions:
+        </p>
+        <p>
+            <input type=button value="restart" id="restartButton" onclick=restart()>
+            </input>
+        </p>
+    </div>
+
+</body>
+
+<script src="../js/data.js"></script>
+<script src="../js/front.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/save.js"></script>
+<script src="../js/color.js"></script>
+
+</html>

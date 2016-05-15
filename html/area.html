@@ -18,6 +18,7 @@
         
         table {
             border-collapse: collapse;
+            background-image: url("../images/sand.jpg");
         }
     </style>
 </head>
@@ -81,7 +82,7 @@
                 unplacedLions.splice(lionIndex, 1);
 
                 var img = document.createElement("img");
-                img.src = "images/Sprite2biggermane.png";
+                img.src = "../images/Sprite2biggermane.png";
                 img.style.visibility = "hidden";
                 img.width = 64;
                 img.height = 64;
@@ -91,7 +92,7 @@
                 };
                 col.appendChild(img);
 
-                var imageSrc = "images/Sprite2biggermane.png";
+                var imageSrc = "../images/Sprite2biggermane.png";
 
                 updateLionColors(img, imageSrc, lionInfo, true);
             }
@@ -107,14 +108,14 @@
         //alert("Clicked on " + lionInfo.name + "!");
         selectedLion = lionIndex;
         updateSaveData();
-        window.location.replace("index.html");
+        window.location.replace("closeup.html");
     };
 </script>
 
-<script src="js/save.js"></script>
-<script src="js/back.js"></script>
-<script src="js/front.js"></script>
-<script src="js/color.js"></script>
-<script src="js/data.js"></script>
+<script src="../js/save.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/front.js"></script>
+<script src="../js/color.js"></script>
+<script src="../js/data.js"></script>
 
 </html>
