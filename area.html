@@ -9,61 +9,105 @@
         img {
             image-rendering: pixelated;
             cursor: pointer;
-            width: 64px;
-            height: 64px;
+        }
+        
+        td {
+            width: 32px;
+            height: 32px;
         }
     </style>
 </head>
 
-<body>
-
-    <table>
-        <tr>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-        </tr>
-        <tr>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-        </tr>
-        <tr>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-        </tr>
-        <tr>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-        </tr>
-        <tr>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-            <td><img src="images/Sprite2biggermane.png" onclick=clickLionIcon(this) /></td>
-        </tr>
-
-    </table>
+<body onload="setupArea()">
+    <h1>
+		Project Lazer Lions
+	</h1>
+    <table id="areaTable"> </table>
+    <input type="button" onclick="recolorLions2()"></input>
 </body>
 
 <script>
-    var clickLionIcon = function (element) {
-        var col = element.parentElement.cellIndex;
-        var row = element.parentElement.parentElement.rowIndex;
+    var rowsToCreate = 5;
+    var colsToCreate = 5;
 
-        alert("clicked on a lion " + col + "," + row + "!");
-    }
+    var setupArea = function () {
+        var loadData = load_from_storage();
+
+        if (loadData) {
+            lions = loadData.lions;
+            selectedLion = loadData.selectedLion;
+            lionInfo = lions[selectedLion];
+        } else {
+            restart();
+        }
+
+        var areaTable = document.getElementById("areaTable");
+
+        var rowIndex = 0;
+        while (rowIndex < rowsToCreate) {
+            var row = areaTable.insertRow(-1);
+
+            var colIndex = 0;
+            while (colIndex < colsToCreate) {
+                var col = row.insertCell(-1);
+
+                colIndex += 1;
+            }
+            rowIndex += 1;
+        }
+        distributeLions();
+    };
+
+    var distributeLions = function () {
+        var areaTable = document.getElementById("areaTable");
+
+        var unplacedLions = lions.slice(0);
+
+        while (unplacedLions.length > 0) {
+
+            var rowIndex = Math.floor(Math.random() * rowsToCreate);
+            var colIndex = Math.floor(Math.random() * colsToCreate);
+
+            var row = areaTable.rows[rowIndex];
+            var col = row.cells[colIndex];
+
+            if (col.children.length == 0) {
+
+                var lionIndex = Math.floor(Math.random() * unplacedLions.length);
+                var lionInfo = unplacedLions[lionIndex];
+                unplacedLions.splice(lionIndex, 1);
+
+                var img = document.createElement("img");
+                img.src = "images/Sprite2biggermane.png";
+                img.width = 64;
+                img.height = 64;
+                img.dataset.lionIndex = getLionIndexByName(lionInfo.name);
+                img.onclick = function () {
+                    clickLionIcon(this);
+                };
+                col.appendChild(img);
+
+                var imageSrc = "images/Sprite2biggermane.png";
+
+                updateLionColors(img, imageSrc, lionInfo, true);
+            }
+        }
+
+    };
+
+    var clickLionIcon = function (element) {
+
+        var lionIndex = element.dataset.lionIndex;
+        var lionInfo = lions[lionIndex];
+
+        alert("Clicked on " + lionInfo.name + "!");
+    };
 </script>
+
+<script src="js/save.js"></script>
+<script src="js/back.js"></script>
+<script src="js/front.js"></script>
+<script src="js/color.js"></script>
+<script src="js/data.js"></script>
 
 </html>

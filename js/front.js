@@ -10,7 +10,11 @@ var updatePage = function () {
     var nameTextbox = document.getElementById("nameTextbox");
     nameTextbox.value = "";
 
-    updateLionColors();
+    var imageTag = document.getElementById("lionImage");
+    var imageSrc = "images/Sprite2biggermane.png";
+    updateLionColors(imageTag, imageSrc, lionInfo);
+    updateLionColorLabels();
+
     updateTraitList();
     updateDesiresList();
     updateLionSelect();
@@ -127,20 +131,32 @@ var clickSatisfyDesire = function () {
     updatePage();
 };
 
-var updateLionColors = function () {
+var updateLionColorLabels = function () {
+    var color, colorTag, huePortion;
 
-    var imageTag = document.getElementById("lionImage");
-    var imageSrc = "images/Sprite2biggermane.png";
-    var srcWidth = 32;
-    var srcHeight = 32;
+    //mane color
+    color = getColorByName(lionInfo.maneColor);
+    colorTag = document.getElementById("maneColorLabel");
+    colorTag.textContent = "Mane: " + color.name;
+
+    //eyes color
+    color = getColorByName(lionInfo.eyeColor);
+    colorTag = document.getElementById("eyeColorLabel");
+    colorTag.textContent = "Eyes: " + color.name;
+
+    //fur color
+    color = getColorByName(lionInfo.furColor);
+    colorTag = document.getElementById("furColorLabel");
+    colorTag.textContent = "Fur: " + color.name;
+};
+
+var updateLionColors = function (imageTag, imageSrc, lionInfo) {
 
     var color, colorTag, huePortion;
     var modifiers = [];
 
     //mane color
     color = getColorByName(lionInfo.maneColor);
-    colorTag = document.getElementById("maneColorLabel");
-    colorTag.textContent = "Mane: " + color.name;
     huePortion = color.base / 360.0;
     modifiers.push({
         low: 0.0,
@@ -150,8 +166,6 @@ var updateLionColors = function () {
 
     //eyes color
     color = getColorByName(lionInfo.eyeColor);
-    colorTag = document.getElementById("eyeColorLabel");
-    colorTag.textContent = "Eyes: " + color.name;
     huePortion = color.base / 360.0;
     modifiers.push({
         low: 0.12,
@@ -161,8 +175,6 @@ var updateLionColors = function () {
 
     //fur color
     color = getColorByName(lionInfo.furColor);
-    colorTag = document.getElementById("furColorLabel");
-    colorTag.textContent = "Fur: " + color.name;
     huePortion = color.base / 360.0;
     modifiers.push({
         low: 0.10,
@@ -170,5 +182,5 @@ var updateLionColors = function () {
         add: huePortion,
     });
 
-    changeColor(imageTag, imageSrc, srcWidth, srcHeight, modifiers);
+    changeColor(imageTag, imageSrc, modifiers);
 };
