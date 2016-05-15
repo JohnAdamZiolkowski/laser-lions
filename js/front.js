@@ -1,4 +1,21 @@
 var updatePage = function () {
+    switch (currentPage) {
+    case "area":
+        updateAreaPage();
+        break;
+    case "closeup":
+        updateCloseupPage();
+        break;
+    case "info":
+        updateInfoPage();
+        break;
+    case "menu":
+        updateMenuPage();
+        break;
+    }
+};
+
+var updateInfoPage = function () {
     //    var nametag = document.getElementById("nameTag");
     var ageTag = document.getElementById("ageTag");
     var favefood = document.getElementById("foodTag");

@@ -31,7 +31,7 @@
     </style>
 </head>
 
-<body onload=setup()>
+<body onload="setupPage('info')">
     <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
     <h1>
 		Project Lazer Lions
@@ -89,6 +89,9 @@
             </li>
         </ul>
     </p>
+
+    <input type="button" value="Area" onclick="backToArea()" />
+    <input type="button" value="Lion" onclick="backToCloseup()" />
 </body>
 
 <script src="../js/data.js"></script>

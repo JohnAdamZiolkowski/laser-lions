@@ -6,25 +6,33 @@ var dateLastUpdated;
 
 var timer;
 
-var setup = function () {
+var setupGlobal = function () {
     var loadData = load_from_storage();
 
     if (loadData) {
         lions = loadData.lions;
         selectedLion = loadData.selectedLion;
         lionInfo = lions[selectedLion];
+        dateLastUpdated = Date.parse(loadData.dateLastUpdated);
     } else {
         restart();
     }
 
     toggleTimer(true);
+};
+
+var setupPage = function (page) {
+    setupGlobal();
+    currentPage = page;
     updatePage();
 };
+
 
 var restart = function () {
     createLions();
     updateSaveData();
-    updatePage();
+    backToArea();
+    //updatePage();
 };
 
 
@@ -173,6 +181,7 @@ var checkTime = function () {
     //console.log("time passed: " + timePassed);
 
     if (timePassed < 1) {
+        updateSaveData();
         return;
     }
 
@@ -181,7 +190,6 @@ var checkTime = function () {
     }
 
     dateLastUpdated = date;
-
     updateDesires(timePassed);
 };
 
@@ -233,6 +241,7 @@ var updateSaveData = function () {
     var saveData = {};
     saveData.lions = lions;
     saveData.selectedLion = selectedLion;
+    saveData.dateLastUpdated = new Date(dateLastUpdated).toUTCString();
 
     save_into_storage(saveData);
 };
@@ -251,7 +260,6 @@ var getLionIndexByName = function (lionName) {
 
 var toggleTimer = function (turnOn) {
     //    var timerTag = document.getElementById("timerTag");
-
     clearInterval(timer);
     //    var text = "Timer: Off";
 

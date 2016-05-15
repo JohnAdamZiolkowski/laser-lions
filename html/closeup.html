@@ -26,7 +26,7 @@
     </style>
 </head>
 
-<body onload="setupCloseup()">
+<body onload="setupPage('closeup')">
     <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
     <h1>
 		Project Lazer Lions
@@ -94,24 +94,10 @@
     var clickDesireBubble = function (element) {
         var desireIndex = element.dataset.desireIndex;
         var desire = lionInfo.desires[desireIndex];
-        alert("You clicked desire " + desireIndex + ": " + desire);
+        //        alert("You clicked desire " + desireIndex + ": " + desire);
 
         lionInfo.desires.splice(desireIndex, 1);
         updateSaveData();
-        updateCloseupPage();
-    };
-
-    var setupCloseup = function () {
-        var loadData = load_from_storage();
-
-        if (loadData) {
-            lions = loadData.lions;
-            selectedLion = loadData.selectedLion;
-            lionInfo = lions[selectedLion];
-        } else {
-            restart();
-        }
-
         updateCloseupPage();
     };
 

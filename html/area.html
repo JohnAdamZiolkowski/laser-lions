@@ -27,7 +27,7 @@
     </style>
 </head>
 
-<body onload="setupArea()">
+<body onload="setupPage('area')">
     <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
     <h1>
 		Project Lazer Lions
@@ -40,17 +40,7 @@
     var rowsToCreate = 5;
     var colsToCreate = 5;
 
-    var setupArea = function () {
-        var loadData = load_from_storage();
-
-        if (loadData) {
-            lions = loadData.lions;
-            selectedLion = loadData.selectedLion;
-            lionInfo = lions[selectedLion];
-        } else {
-            restart();
-        }
-
+    var updateAreaPage = function () {
         var areaTable = document.getElementById("areaTable");
 
         var rowIndex = 0;
