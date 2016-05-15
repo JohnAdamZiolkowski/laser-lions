@@ -23,7 +23,6 @@
 		Project Lazer Lions
 	</h1>
     <table id="areaTable"> </table>
-    <input type="button" onclick="recolorLions2()"></input>
 </body>
 
 <script>
@@ -100,7 +99,10 @@
         var lionIndex = element.dataset.lionIndex;
         var lionInfo = lions[lionIndex];
 
-        alert("Clicked on " + lionInfo.name + "!");
+        //alert("Clicked on " + lionInfo.name + "!");
+        selectedLion = lionIndex;
+        updateSaveData();
+        window.location.replace("index.html");
     };
 </script>
 

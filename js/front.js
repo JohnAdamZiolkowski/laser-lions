@@ -184,3 +184,7 @@ var updateLionColors = function (imageTag, imageSrc, lionInfo) {
 
     changeColor(imageTag, imageSrc, modifiers);
 };
+
+var backToArea = function () {
+    window.location.replace("area.html");
+};
