@@ -1,64 +1,13 @@
-var changeColor = function (imageTag, imageSrc, srcWidth, srcHeight, modifiers) {
+var changeColor = function (imageTag, imageSrc, modifiers) {
 
-    var img = imageTag;
-    img.src = imageSrc;
-    var tagWidth = img.width;
-    var tagHeight = img.height;
-    img.width = srcWidth;
-    img.height = srcHeight;
+    imageTag.style.visibility = "hidden";
 
-    var canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
+    getDataUriRecolored(imageSrc, modifiers, function (dataUri) {
+        imageTag.src = dataUri;
 
-    var context = canvas.getContext('2d');
-    context.drawImage(img, 0, 0, img.width, img.height);
-
-    var imageMap = context.getImageData(0, 0, img.width, img.height);
-    var imageData = imageMap.data;
-
-
-    var p, r, g, b, h, s, l;
-    for (p = 0; p < imageData.length; p += 4) {
-        r = imageData[p];
-        g = imageData[p + 1];
-        b = imageData[p + 2];
-        //a = imageData[p + 2];
-
-        var hsl = rgbToHsl(r, g, b);
-
-        h = hsl[0];
-        s = hsl[1];
-        l = hsl[2];
-
-        //alter the hue of only the red pixels
-        var mod, m;
-        var found = false;
-        for (m = 0; m < modifiers.length; m++) {
-            mod = modifiers[m];
-            if (h >= mod.low && h <= mod.high) {
-                found = true;
-                break;
-            }
-        }
-        if (found) {
-            h = (h + mod.add - mod.low) % 1;
-        }
-
-        var rgb = hslToRgb(h, s, l);
-
-        imageData[p] = rgb[0];
-        imageData[p + 1] = rgb[1];
-        imageData[p + 2] = rgb[2];
-    }
-
-    context.putImageData(imageMap, 0, 0);
-    img.src = canvas.toDataURL();
-    img.width = tagWidth;
-    img.height = tagHeight;
-    img.style.visibility = "";
+        imageTag.style.visibility = "";
+    });
 };
-
 
 /**
  * Converts an RGB color value to HSL. Conversion formula
@@ -137,3 +86,59 @@ var hslToRgb = function (h, s, l) {
 
     return [r, g, b];
 };
+
+//https://davidwalsh.name/convert-image-data-uri-javascript
+function getDataUriRecolored(url, modifiers, callback) {
+    var image = new Image();
+
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        var context = canvas.getContext('2d');
+        context.drawImage(this, 0, 0);
+
+        var imageMap = context.getImageData(0, 0, this.naturalWidth, this.naturalHeight);
+        var imageData = imageMap.data;
+
+        var p, r, g, b, h, s, l;
+        for (p = 0; p < imageData.length; p += 4) {
+            r = imageData[p];
+            g = imageData[p + 1];
+            b = imageData[p + 2];
+            //a = imageData[p + 2];
+
+            var hsl = rgbToHsl(r, g, b);
+
+            h = hsl[0];
+            s = hsl[1];
+            l = hsl[2];
+
+            //alter the hue of only the red pixels
+            var mod, m;
+            var found = false;
+            for (m = 0; m < modifiers.length; m++) {
+                mod = modifiers[m];
+                if (h >= mod.low && h <= mod.high) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                h = (h + mod.add - mod.low) % 1;
+            }
+
+            var rgb = hslToRgb(h, s, l);
+
+            imageData[p] = rgb[0];
+            imageData[p + 1] = rgb[1];
+            imageData[p + 2] = rgb[2];
+        }
+        context.putImageData(imageMap, 0, 0);
+
+        callback(canvas.toDataURL('image/png'));
+    };
+
+    image.src = url;
+}

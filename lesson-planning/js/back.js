@@ -237,6 +237,18 @@ var updateSaveData = function () {
     save_into_storage(saveData);
 };
 
+var getLionIndexByName = function (lionName) {
+
+    var lionIndex = 0;
+    while (lionIndex < lions.length) {
+        var lion = lions[lionIndex];
+        if (lionName == lion.name) {
+            return lionIndex;
+        }
+        lionIndex += 1;
+    }
+};
+
 var toggleTimer = function (turnOn) {
     var timerTag = document.getElementById("timerTag");
 

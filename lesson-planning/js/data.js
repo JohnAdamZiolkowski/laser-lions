@@ -18,6 +18,61 @@ var updateCheck = 1000 * 10; // every 10 seconds
 //how many updates to stack at maximum
 var updateLimit = 8; // enough to let all lions have max desire
 
+var ages = [
+    {
+        name: "egg",
+        image: "images/egg.png",
+    },
+    {
+        name: "cub",
+        image: "images/cub.png",
+    },
+    {
+        name: "teen",
+        image: "images/teen.png",
+    },
+    {
+        name: "adult",
+        image: "images/adult.png",
+    },
+    {
+        name: "senior",
+        image: "images/senior.png",
+    },
+];
+
+var gameStates = [
+    "startup",
+    "area",
+    "lionCloseup",
+    "lionInfo",
+    "optionPicker",
+    //    "lionPicker",
+    //    "foodPicker",
+    //    "toyPicker",
+    //    "clothingPicker",
+    "photo",
+    "play",
+    "petting",
+    "fight",
+    "giveHappiness",
+    "animation",
+    //give present
+    //evolve
+    //befriend
+    //love
+    //into the cave
+    //raising cub
+    //lion pile
+    //eat
+    //level up
+    "menu",
+    "lionList",
+    "areaList",
+    "itemList",
+    "restart",
+];
+
 var foods = [
     "Cookies",
     "Waffles",
@@ -43,66 +98,129 @@ var desires = [
         action: "eat",
         more: "insatiable",
         less: "nibbler",
+        type: "player",
+        //list of food in inventory
+        //lion may like food for 2 happiness
+        //lion may dislike food for 0 happiness
     },
     {
         action: "sleep",
         more: "lazy",
         less: "energetic",
+        type: "blocking",
+        //list of places to sleep?
+        //list of lions that also want to sleep?
+        //pile of lions?
+        //lion will sleep for some time
     },
     {
         action: "play",
         more: "playful",
         less: "serious",
+        type: "player",
+        //list of toys in inventory
+        //switch to toy play mode
+        //toss a ball to make it fetch
+        //swing fish on a string to make it paw
+        //move laser pointer around to make it chase
     },
     {
         action: "give present",
         more: "generous",
         less: "hoarder",
+        type: "player",
+        //accept a present - surprise!
+        //switch to accept present mode
+        //get a random new item for the inventory
     },
     {
         action: "be pet",
         more: "affectionate",
         less: "reserved",
+        type: "player",
+        //rub a dub
+        //switch to petting mode
+        //head petting
+        //back petting
+        //belly petting, but the lion may bite
     },
     {
         action: "fight",
         more: "brave",
         less: "nervous",
+        type: "player",
+        //pew pew
+        //switch to laser game mode
+        //your lions team up against random lions?
+        //selected lion plays against other lions?
     },
     {
         action: "be photographed",
         more: "proud",
         less: "shy",
+        type: "player",
+        //dress up, pose, action
+        //switch to photo mode
+        //option to save photo to device
+        //list of accessories in inventory
     },
     {
         action: "love",
         more: "charming",
         less: "reserved",
+        type: "passive",
+        //list of lions - that also want love?
+        //restricted to teen and adult lions
+        //selected lions will hang out together with hearts
+        //chance of adding eachother to love list?
     },
     {
         action: "befriend",
         more: "friendly",
         less: "loner",
+        type: "passive",
+        //list of lions - that also want friendship?
+        //selected lions will hang out together with smiles
+        //chance of adding eachother to friend list?
     },
     {
         action: "have an egg",
         more: "impulsive",
         less: "cautious",
+        type: "blocking",
+        //list of lions - that also want do have an egg?
+        //restricted to adult lions, maybe teens?
+        //selected lions will go off into a cave together
+        //later, an egg will be presented
     },
     {
         action: "raise a cub",
         more: "nuturing",
         less: "free",
+        type: "passive",
+        //list of lions - that are cubs and want to grow up?
+        //restricted to adult lions
+        //selected lions will hang out together with up arrows
+        //cub lion will get a trait or skill from raiser?
     },
     {
-        action: "grow up",
+        action: "grow up", // also hatch, develop, retire?
         more: "mature",
         less: "youthful",
+        type: "passive",
+        //list of lions - that are adults and want to raise?
+        //restricted to cub lions, (also eggs, teens, adults?)
+        //selected lions will hang out together with up arrows
+        //cub lion will get a trait or skill from raiser?
     },
     {
         action: "take medicine",
         more: "delicate",
         less: "hearty",
+        type: "blocking",
+        //give medicine
+        //must be feeling under the weather
+        //might have to choose the right medicine for the illness?
     }
 ];
 
@@ -174,70 +292,5 @@ var getColorByName = function (name) {
         }
 
         colorIndex += 1;
-    }
-};
-
-var getDesireByTraitName = function (traitName) {
-
-    var desire;
-
-    var desireIndex = 0;
-    while (desireIndex < desires.length) {
-
-        desire = desires[desireIndex];
-
-        if (desire.less == traitName) {
-            return desire;
-        } else if (desire.more == traitName) {
-            return desire;
-        }
-
-        desireIndex += 1;
-    }
-};
-
-var getDesireLevelByTraitName = function (traitName) {
-
-    var desire;
-
-    var desireIndex = 0;
-    while (desireIndex < desires.length) {
-
-        desire = desires[desireIndex];
-
-        if (desire.less == traitName) {
-            return "less";
-        } else if (desire.more == traitName) {
-            return "more";
-        }
-
-        desireIndex += 1;
-    }
-};
-
-var getDesireAndLevelByTraitName = function (traitName) {
-
-    var desire;
-
-    var desireIndex = 0;
-    while (desireIndex < desires.length) {
-
-        desire = desires[desireIndex];
-
-        if (desire.less == traitName) {
-            return {
-                desire: desire.action,
-                level: "less",
-            };
-        } else if (desire.more == traitName) {
-            return {
-                desire: desire.action,
-                level: "more",
-            };
-        } else {
-            console.log("Unknown trait name");
-        }
-
-        desireIndex += 1;
     }
 };
