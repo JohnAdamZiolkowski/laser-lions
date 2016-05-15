@@ -12,6 +12,8 @@ var setupGlobal = function () {
 
     if (loadData) {
         lions = loadData.lions;
+        validateLions();
+
         selectedLion = loadData.selectedLion;
         lionInfo = lions[selectedLion];
 
@@ -29,6 +31,22 @@ var setupGlobal = function () {
     }
 
     toggleTimer();
+};
+
+var validateLions = function () {
+
+    var lionIndex = 0;
+    while (lionIndex < lions.length) {
+        var lionInfo = lions[lionIndex];
+
+        if (lionInfo.level == undefined) {
+            assignLevel(lionInfo);
+        }
+
+        lionIndex += 1;
+    }
+
+    console.log(lions);
 };
 
 var setupPage = function (page) {
@@ -110,7 +128,15 @@ var createLion = function () {
     lionInfo.desires = [];
     assignDesires(lionInfo, desiresToCreate);
 
+    assignLevel(lionInfo);
+
     return lionInfo;
+};
+
+var assignLevel = function (lionInfo) {
+    lionInfo.level = Math.floor(Math.random() * 4) + 1;
+    lionInfo.next = Math.floor(lionInfo.level / 2) + 8;
+    lionInfo.experience = Math.floor(Math.random() * lionInfo.next);
 };
 
 var assignDesires = function (lionInfo, desireCount) {
@@ -270,6 +296,29 @@ var getLionIndexByName = function (lionName) {
         }
         lionIndex += 1;
     }
+};
+
+var increaseHappiness = function (lionInfo) {
+
+    var amount = 3;
+
+    while (amount > 0) {
+        lionInfo.experience += 1;
+
+        if (lionInfo.experience >= lionInfo.next) {
+            increaseLevel(lionInfo);
+        }
+
+        amount -= 1;
+    }
+    lionInfo.experience;
+};
+
+var increaseLevel = function (lionInfo) {
+
+    lionInfo.level += 1;
+    lionInfo.next = Math.floor(lionInfo.level / 2) + 8;
+    lionInfo.experience = 0;
 };
 
 var toggleTimer = function (turnOn) {

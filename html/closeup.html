@@ -99,10 +99,16 @@
         var desireIndex = element.dataset.desireIndex;
         var desire = lionInfo.desires[desireIndex];
         //        alert("You clicked desire " + desireIndex + ": " + desire);
-
-        lionInfo.desires.splice(desireIndex, 1);
+        satisfyDesire(lionInfo, desireIndex)
         updateSaveData();
         updateCloseupPage();
+    };
+
+    var satisfyDesire = function (lionInfo, desireIndex) {
+
+        lionInfo.desires.splice(desireIndex, 1);
+        increaseHappiness(lionInfo);
+        alert(lionInfo.name + " is now " + (lionInfo.next - lionInfo.experience) + " away from level " + (lionInfo.level + 1) + "!")
     };
 
     var updateCloseupPage = function () {

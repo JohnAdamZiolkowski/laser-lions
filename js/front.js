@@ -35,6 +35,7 @@ var updateInfoPage = function () {
     updateTraitList();
     //    updateDesiresList();
     updateLionSelect();
+    updateHappiness();
 };
 
 var updateNameTag = function () {
@@ -103,6 +104,17 @@ var updateLionSelect = function () {
     }
 
     lionSelect.selectedIndex = selectedLion;
+};
+
+var updateHappiness = function () {
+    var nextProgress = document.getElementById("nextProgress");
+    var nextLabel = document.getElementById("nextLabel");
+    var levelLabel = document.getElementById("levelLabel");
+
+    levelLabel.textContent = "Happiness: Level " + lionInfo.level;
+    nextProgress.max = lionInfo.next;
+    nextProgress.value = lionInfo.experience;
+    nextLabel.textContent = lionInfo.experience + " / " + lionInfo.next;
 };
 
 var textBoxKeyPress = function (event) {
