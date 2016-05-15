@@ -216,3 +216,10 @@ var backToCloseup = function () {
 var toMenu = function () {
     window.location.replace("menu.html");
 };
+
+var clickSetTimer = function (turnOn) {
+
+    toggleTimer(turnOn);
+    updateSaveData();
+    updatePage();
+};

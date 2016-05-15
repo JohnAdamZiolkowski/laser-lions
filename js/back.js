@@ -5,6 +5,7 @@ var selectedLion;
 var dateLastUpdated;
 
 var timer;
+var timerOn;
 
 var setupGlobal = function () {
     var loadData = load_from_storage();
@@ -13,12 +14,21 @@ var setupGlobal = function () {
         lions = loadData.lions;
         selectedLion = loadData.selectedLion;
         lionInfo = lions[selectedLion];
+
         dateLastUpdated = Date.parse(loadData.dateLastUpdated);
+        if (dateLastUpdated == undefined) {
+            dateLastUpdated = new Date();
+        }
+
+        timerOn = loadData.timerOn;
+        if (timerOn == undefined) {
+            timerOn = true;
+        }
     } else {
         restart();
     }
 
-    toggleTimer(true);
+    toggleTimer();
 };
 
 var setupPage = function (page) {
@@ -30,9 +40,12 @@ var setupPage = function (page) {
 
 var restart = function () {
     createLions();
+
+    dateLastUpdated = new Date();
+    timerOn = true;
+
     updateSaveData();
     backToArea();
-    //updatePage();
 };
 
 
@@ -242,6 +255,7 @@ var updateSaveData = function () {
     saveData.lions = lions;
     saveData.selectedLion = selectedLion;
     saveData.dateLastUpdated = new Date(dateLastUpdated).toUTCString();
+    saveData.timerOn = timerOn;
 
     save_into_storage(saveData);
 };
@@ -259,13 +273,15 @@ var getLionIndexByName = function (lionName) {
 };
 
 var toggleTimer = function (turnOn) {
-    //    var timerTag = document.getElementById("timerTag");
     clearInterval(timer);
-    //    var text = "Timer: Off";
+    timer = undefined;
 
-    if (turnOn) {
-        timer = setInterval(checkTime, updateCheck);
-        //        text = "Timer: On";
+    if (turnOn != undefined) {
+        timerOn = turnOn;
+        dateLastUpdated = new Date();
     }
-    //    timerTag.textContent = text;
+
+    if (timerOn) {
+        timer = setInterval(checkTime, updateCheck);
+    }
 };
