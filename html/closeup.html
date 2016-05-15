@@ -55,8 +55,26 @@
         </tr>
     </table>
 
+    <p>
+        <p id="nameTag">
+        </p>
+
+        <input type="button" onclick="clickInfo()" value="Info"></input>
+    </p>
+
+    <p>
+        Desires:
+        <ul id="desiresList">
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </p>
+
     <input type="button" onclick="clickArea()" value="Area"></input>
-    <input type="button" onclick="clickInfo()" value="Info"></input>
 </body>
 
 <script>
@@ -134,7 +152,8 @@
 
             desireIndex += 1;
         }
-
+        updateNameTag();
+        updateDesiresList();
     };
 </script>
 

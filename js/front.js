@@ -16,8 +16,13 @@ var updatePage = function () {
     updateLionColorLabels();
 
     updateTraitList();
-    updateDesiresList();
+    //    updateDesiresList();
     updateLionSelect();
+};
+
+var updateNameTag = function () {
+    var nametag = document.getElementById("nameTag");
+    nametag.textContent = "Name: " + lionInfo.name;
 };
 
 var updateTraitList = function () {
