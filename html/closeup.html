@@ -22,7 +22,7 @@
     </style>
 </head>
 
-<body>
+<body onload="setupCloseup()">
     <h1>
 		Project Lazer Lions
 	</h1>
@@ -32,27 +32,19 @@
             <td>
             </td>
             <td id="desire0">
-
-                <img src="../images/bubble.png" width="96px" height="96px"></img>
             </td>
             <td id="desire1">
-
-                <img src="../images/bubble.png" width="96px" height="96px"></img>
             </td>
             <td>
             </td>
         </tr>
         <tr>
             <td id="desire2">
-
-                <img src="../images/bubble.png" width="96px" height="96px"></img>
             </td>
             <td id="lionCell" rowspan="2" colspan="2">
-                <img src="../images/Sprite2biggermane.png" width="192px" height="192px"></img>
+                <img src="../images/Sprite2biggermane.png" width="192px" height="192px" id="lionImage"></img>
             </td>
             <td id="desire3">
-
-                <img src="../images/bubble.png" width="96px" height="96px"></img>
             </td>
         </tr>
         <tr>
@@ -63,11 +55,6 @@
         </tr>
     </table>
 
-    <!--
-    <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="256px" height="256px" id="lionImage">
-    </img>
--->
-
     <input type="button" onclick="clickArea()" value="Area"></input>
     <input type="button" onclick="clickInfo()" value="Info"></input>
 </body>
@@ -76,17 +63,85 @@
     var clickArea = function () {
         window.location.replace("area.html");
     };
+
     var clickInfo = function () {
         window.location.replace("info.html");
     };
+
+    var clickDesireBubble = function (element) {
+        var desireIndex = element.dataset.desireIndex;
+        var desire = lionInfo.desires[desireIndex];
+        alert("You clicked desire " + desireIndex + ": " + desire);
+
+        lionInfo.desires.splice(desireIndex, 1);
+        updateSaveData();
+        updateCloseupPage();
+    };
+
+    var setupCloseup = function () {
+        var loadData = load_from_storage();
+
+        if (loadData) {
+            lions = loadData.lions;
+            selectedLion = loadData.selectedLion;
+            lionInfo = lions[selectedLion];
+        } else {
+            restart();
+        }
+
+        updateCloseupPage();
+    };
+
+    var updateCloseupPage = function () {
+
+        var imageTag = document.getElementById("lionImage");
+        var imageSrc = "../images/Sprite2biggermane.png";
+
+        updateLionColors(imageTag, imageSrc, lionInfo, true);
+
+        //clear out old bubbles
+        var desireIndex = 0;
+        while (desireIndex < desiresToCreate) {
+            var cell = document.getElementById("desire" + desireIndex);
+
+            while (cell.children.length > 0) {
+                cell.removeChild(cell.firstChild);
+            }
+            desireIndex += 1;
+        }
+
+        var desireIndex = 0;
+        while (desireIndex < lionInfo.desires.length) {
+
+            var cell = document.getElementById("desire" + desireIndex);
+
+            var imageTag = document.createElement("img");
+            imageTag.src = "../images/bubble.png";
+            imageTag.width = 96;
+            imageTag.height = 96;
+            imageTag.style.cursor = "pointer";
+
+            //flip bubbles on left side
+            if (desireIndex % 2 == 0) {
+                imageTag.style.transform = "scaleX(-1)";
+            }
+            imageTag.onclick = function () {
+                clickDesireBubble(this);
+            };
+            imageTag.dataset.desireIndex = desireIndex;
+
+            cell.appendChild(imageTag);
+
+            desireIndex += 1;
+        }
+
+    };
 </script>
 
-<!--
-_ 1 2 _
-3 L L 4
-_ L L _
--->
-
-
+<script src="../js/save.js"></script>
+<script src="../js/back.js"></script>
+<script src="../js/front.js"></script>
+<script src="../js/color.js"></script>
+<script src="../js/data.js"></script>
 
 </html>
