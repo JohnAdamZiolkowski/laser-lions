@@ -30,6 +30,13 @@ var updateInfoPage = function () {
     var imageTag = document.getElementById("lionImage");
     var imageSrc = "../images/Sprite2biggermane.png";
     updateLionColors(imageTag, imageSrc, lionInfo);
+
+    var location = findLionLocationByName(lionInfo.name);
+    if (location.direction == "left") {
+        imageTag.style.transform = "scaleX(-1)";
+    } else {
+        imageTag.style.transform = "";
+    }
     updateLionColorLabels();
 
     updateTraitList();
@@ -237,5 +244,6 @@ var clickSetTimer = function (turnOn) {
 };
 
 var clickForceUpdate = function () {
-    updateDesires(1);
+    //force one unit of time to pass
+    updateGame(1);
 };

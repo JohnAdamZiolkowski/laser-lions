@@ -18,6 +18,10 @@ var updateCheck = 1000 * 10; // every 10 seconds
 //how many updates to stack at maximum
 var updateLimit = 8; // enough to let all lions have max desire
 
+//size of the area
+var rowsToCreate = 5;
+var colsToCreate = 5;
+
 var ages = [
     {
         name: "egg",

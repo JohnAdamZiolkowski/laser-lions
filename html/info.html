@@ -27,14 +27,15 @@
             right: 0;
         }
         
-        input#menuButton {
+        input.menuButton {
             float: right;
         }
     </style>
 </head>
 
 <body onload="setupPage('info')">
-    <input type="button" value="menu" onclick="toMenu()" id="menuButton" />
+    <input type="button" value="menu" onclick="toMenu()" class="menuButton" />
+    <input type="button" value="update" onclick="clickForceUpdate()" class="menuButton" />
     <h1>
 		Laser Lions
 	</h1>

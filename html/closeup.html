@@ -190,6 +190,13 @@
 
         updateLionColors(imageTag, imageSrc, lionInfo, true);
 
+        var location = findLionLocationByName(lionInfo.name);
+        if (location.direction == "left") {
+            imageTag.style.transform = "scaleX(-1)";
+        } else {
+            imageTag.style.transform = "";
+        }
+
         //clear out old bubbles
         var desireIndex = 0;
         while (desireIndex < desiresToCreate) {
