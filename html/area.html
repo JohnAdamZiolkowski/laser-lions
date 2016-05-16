@@ -81,6 +81,10 @@
             var col = row.cells[colIndex];
 
             if (col.children.length == 0) {
+                var div = document.createElement("div");
+                div.style.position = "relative";
+                div.style.width = "64px";
+                div.style.height = "64px";
 
                 var lionIndex = Math.floor(Math.random() * unplacedLions.length);
                 var lionInfo = unplacedLions[lionIndex];
@@ -91,15 +95,33 @@
                 img.style.visibility = "hidden";
                 img.width = 64;
                 img.height = 64;
+                img.style.position = "absolute";
+                img.style.top = 0;
+                img.style.left = 0;
+                img.style.zIndex = 1;
                 img.dataset.lionIndex = getLionIndexByName(lionInfo.name);
                 img.onclick = function () {
                     clickLionIcon(this);
                 };
-                col.appendChild(img);
+                col.appendChild(div);
+                div.appendChild(img);
 
                 var imageSrc = "../images/Sprite2biggermane.png";
 
                 updateLionColors(img, imageSrc, lionInfo, true);
+
+
+                if (lionInfo.desires.length > 0) {
+                    var img = document.createElement("img");
+                    img.src = "../images/bubble.png";
+                    img.style.position = "absolute";
+                    img.style.top = 0;
+                    img.style.left = 0;
+                    img.style.zIndex = 2;
+                    img.style.transform = "scaleX(-1)";
+                    div.appendChild(img);
+
+                }
             }
         }
 
