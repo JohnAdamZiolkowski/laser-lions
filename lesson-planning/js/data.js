@@ -8,12 +8,12 @@ var traitsToCreate = 3;
 var desiresToCreate = 4;
 
 //time between updates
-var updatePeriod = 1000 * 60; // every minute
-//var updatePeriod = 1000 * 60 * 60; //every hour
+//var updatePeriod = 1000 * 60; // every minute
+var updatePeriod = 1000 * 60 * 60; //every hour
 
 //how often to check to see if an hour has passed
-var updateCheck = 1000 * 10; // every 10 seconds
-//var updateCheck = 1000 * 5 * 60; //every 5 minutes
+//var updateCheck = 1000 * 10; // every 10 seconds
+var updateCheck = 1000 * 5 * 60; //every 5 minutes
 
 //how many updates to stack at maximum
 var updateLimit = 8; // enough to let all lions have max desire

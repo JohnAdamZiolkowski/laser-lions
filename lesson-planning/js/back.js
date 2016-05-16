@@ -5,20 +5,48 @@ var selectedLion;
 var dateLastUpdated;
 
 var timer;
+var timerOn;
 
 var setupGlobal = function () {
     var loadData = load_from_storage();
 
     if (loadData) {
         lions = loadData.lions;
+        validateLions();
+
         selectedLion = loadData.selectedLion;
         lionInfo = lions[selectedLion];
+
         dateLastUpdated = Date.parse(loadData.dateLastUpdated);
+        if (dateLastUpdated == undefined) {
+            dateLastUpdated = new Date();
+        }
+
+        timerOn = loadData.timerOn;
+        if (timerOn == undefined) {
+            timerOn = true;
+        }
     } else {
         restart();
     }
 
-    toggleTimer(true);
+    toggleTimer();
+};
+
+var validateLions = function () {
+
+    var lionIndex = 0;
+    while (lionIndex < lions.length) {
+        var lionInfo = lions[lionIndex];
+
+        if (lionInfo.level == undefined) {
+            assignLevel(lionInfo);
+        }
+
+        lionIndex += 1;
+    }
+
+    //console.log(lions);
 };
 
 var setupPage = function (page) {
@@ -30,9 +58,12 @@ var setupPage = function (page) {
 
 var restart = function () {
     createLions();
+
+    dateLastUpdated = new Date();
+    timerOn = true;
+
     updateSaveData();
     backToArea();
-    //updatePage();
 };
 
 
@@ -97,7 +128,15 @@ var createLion = function () {
     lionInfo.desires = [];
     assignDesires(lionInfo, desiresToCreate);
 
+    assignLevel(lionInfo);
+
     return lionInfo;
+};
+
+var assignLevel = function (lionInfo) {
+    lionInfo.level = Math.floor(Math.random() * 4) + 1;
+    lionInfo.next = Math.floor(lionInfo.level / 2) + 8;
+    lionInfo.experience = Math.floor(Math.random() * lionInfo.next);
 };
 
 var assignDesires = function (lionInfo, desireCount) {
@@ -242,6 +281,7 @@ var updateSaveData = function () {
     saveData.lions = lions;
     saveData.selectedLion = selectedLion;
     saveData.dateLastUpdated = new Date(dateLastUpdated).toUTCString();
+    saveData.timerOn = timerOn;
 
     save_into_storage(saveData);
 };
@@ -258,14 +298,39 @@ var getLionIndexByName = function (lionName) {
     }
 };
 
-var toggleTimer = function (turnOn) {
-    //    var timerTag = document.getElementById("timerTag");
-    clearInterval(timer);
-    //    var text = "Timer: Off";
+var increaseHappiness = function (lionInfo) {
 
-    if (turnOn) {
-        timer = setInterval(checkTime, updateCheck);
-        //        text = "Timer: On";
+    var amount = 3;
+
+    while (amount > 0) {
+        lionInfo.experience += 1;
+
+        if (lionInfo.experience >= lionInfo.next) {
+            increaseLevel(lionInfo);
+        }
+
+        amount -= 1;
     }
-    //    timerTag.textContent = text;
+    lionInfo.experience;
+};
+
+var increaseLevel = function (lionInfo) {
+
+    lionInfo.level += 1;
+    lionInfo.next = Math.floor(lionInfo.level / 2) + 8;
+    lionInfo.experience = 0;
+};
+
+var toggleTimer = function (turnOn) {
+    clearInterval(timer);
+    timer = undefined;
+
+    if (turnOn != undefined) {
+        timerOn = turnOn;
+        dateLastUpdated = new Date();
+    }
+
+    if (timerOn) {
+        timer = setInterval(checkTime, updateCheck);
+    }
 };
