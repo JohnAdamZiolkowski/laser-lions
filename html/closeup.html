@@ -54,15 +54,21 @@
         .close {
             color: #AAA;
             float: right;
-            font-size: 28px;
+            font-size: 14px;
             font-weight: bold;
             padding: 5px;
             background-color: #DDD;
+            text-decoration: none;
+            cursor: pointer;
         }
         
-        .close:hover,
-        .close:focus {
-            /*            color: #000;*/
+        .accept {
+            color: #7C7;
+            background-color: #BFB;
+            float: right;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px;
             text-decoration: none;
             cursor: pointer;
         }
@@ -127,13 +133,22 @@
 
     <div class="popup" id="happinessPopup">
         <div class="popupContent">
-            <span class="close" onclick="hideHappiness()">✓</span>
+            <span class="accept" onclick="hideHappiness()">✓</span>
             <p>
                 <label id=levelLabel>Happiness: Level 3</label>
             </p>
             <p>Next:
                 <progress min="0" max="64" value="4" id="nextProgress"></progress>
                 <label id=nextLabel>3/64</label>
+            </p>
+        </div>
+    </div>
+    <div class="popup" id="desirePopup">
+        <div class="popupContent">
+            <span class="close" onclick="hideDesirePopup()">Not now</span>
+            <span class="accept" id="satisfyButton">Do it</span>
+            <p id="desirePopupQuestion">
+                Fred wants to have an egg.
             </p>
         </div>
     </div>
@@ -152,15 +167,16 @@
         var desireIndex = element.dataset.desireIndex;
         var desire = lionInfo.desires[desireIndex];
         //        alert("You clicked desire " + desireIndex + ": " + desire);
-        satisfyDesire(lionInfo, desireIndex)
-        updateSaveData();
-        updateCloseupPage();
+        showDesirePopup(lionInfo, desireIndex);
+        //satisfyDesire(lionInfo, desireIndex);
     };
 
     var satisfyDesire = function (lionInfo, desireIndex) {
 
         lionInfo.desires.splice(desireIndex, 1);
         increaseHappiness(lionInfo);
+        updateSaveData();
+        updateCloseupPage();
         updateHappiness();
         showHappiness();
         //alert(lionInfo.name + " is now " + (lionInfo.next - lionInfo.experience) + " away from level " + (lionInfo.level + 1) + "!")
@@ -212,15 +228,43 @@
         updateDesiresList();
     };
 
+    var acceptDesire = function (lionInfo, desireIndex) {
+
+        hideDesirePopup();
+
+        satisfyDesire(lionInfo, desireIndex);
+
+    };
+
     var showHappiness = function () {
         var popup = document.getElementById("happinessPopup");
         popup.style.display = "block";
-        //wait 30 seconds
-        //popup.style.display = "none";
     };
 
     var hideHappiness = function () {
         var popup = document.getElementById("happinessPopup");
+        popup.style.display = "none";
+    };
+
+    var showDesirePopup = function (lionInfo, desireIndex) {
+
+        var desire = lionInfo.desires[desireIndex];
+
+        var popup = document.getElementById("desirePopup");
+        var question = document.getElementById("desirePopupQuestion");
+        question.textContent = lionInfo.name + " wants to " + desire + ".";
+
+
+        var satisfyButton = document.getElementById("satisfyButton");
+        satisfyButton.onclick = function () {
+            acceptDesire(lionInfo, desireIndex);
+        };
+
+        popup.style.display = "block";
+    };
+
+    var hideDesirePopup = function () {
+        var popup = document.getElementById("desirePopup");
         popup.style.display = "none";
     };
 </script>
