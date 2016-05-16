@@ -254,10 +254,12 @@
         var question = document.getElementById("desirePopupQuestion");
         question.textContent = lionInfo.name + " wants to " + desire + ".";
 
+        toggleTimer(false);
 
         var satisfyButton = document.getElementById("satisfyButton");
         satisfyButton.onclick = function () {
             acceptDesire(lionInfo, desireIndex);
+            toggleTimer(true);
         };
 
         popup.style.display = "block";
@@ -266,6 +268,7 @@
     var hideDesirePopup = function () {
         var popup = document.getElementById("desirePopup");
         popup.style.display = "none";
+        toggleTimer(true);
     };
 </script>
 

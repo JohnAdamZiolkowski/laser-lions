@@ -46,7 +46,7 @@ var validateLions = function () {
         lionIndex += 1;
     }
 
-    console.log(lions);
+    //console.log(lions);
 };
 
 var setupPage = function (page) {
