@@ -1,9 +1,37 @@
 var updateMenuPage = function () {
-    var timerTag = document.getElementById("timerTag");
-    var text = "Timer: Off";
+    updateTimerTag();
+    updateNextUpdateLabel();
+};
+
+var updateTimerTag = function () {
+    var label = document.getElementById("timerTag");
+    var stopButton = document.getElementById("stopButton");
+    var startButton = document.getElementById("startButton");
 
     if (timer) {
-        text = "Timer: On";
+        timerTag.textContent = "Timer: On";
+        stopButton.style.display = "";
+        startButton.style.display = "none";
+
+    } else {
+        timerTag.textContent = "Timer: Off";
+        stopButton.style.display = "none";
+        startButton.style.display = "";
     }
-    timerTag.textContent = text;
+};
+
+var updateNextUpdateLabel = function () {
+    var label = document.getElementById("nextUpdateTag");
+    var dateOfNextUpdate = dateLastUpdated - 0 + updatePeriod;
+
+    dateOfNextUpdate = new Date(dateOfNextUpdate);
+    var timeString = dateOfNextUpdate.getHours() + ":" + dateOfNextUpdate.getMinutes();
+    label.textContent = "Next update at " + timeString;
+};
+
+var clickRestart = function () {
+
+    if (confirm("Are you sure you want to restart?  Your lions will be permenantly lost.  Click OK to begin with a new set of lions.")) {
+        restart();
+    }
 };

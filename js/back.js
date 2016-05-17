@@ -78,16 +78,16 @@ var createLions = function () {
 
     var l;
     for (l = 0; l < lionsToCreate; l++) {
-        var newLion = createLion();
+        var newLion = createLion(l);
         lions.push(newLion);
     }
     selectedLion = 0;
     lionInfo = lions[selectedLion];
 };
 
-var createLion = function () {
+var createLion = function (lionIndex) {
     var lionInfo = {};
-    lionInfo.name = "unnamed";
+    lionInfo.name = "unnamed" + lionIndex;
     lionInfo.age = "Adult";
 
     var foodIndex = Math.random();
