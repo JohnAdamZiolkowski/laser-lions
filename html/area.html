@@ -124,6 +124,10 @@
                         img.style.position = "absolute";
                         img.style.top = 0;
                         img.style.zIndex = 2;
+                        img.dataset.lionIndex = lionIndex;
+                        img.onclick = function () {
+                            clickLionIcon(this);
+                        };
                         if (contents.direction != "left") {
                             img.style.transform = "scaleX(-1)";
                             img.style.left = 0;
@@ -206,7 +210,6 @@
         var lionIndex = element.dataset.lionIndex;
         var lionInfo = lions[lionIndex];
 
-        //alert("Clicked on " + lionInfo.name + "!");
         selectedLion = lionIndex;
         updateSaveData();
         window.location.replace("closeup.html");
