@@ -88,6 +88,70 @@
         .buttonCell {
             text-align: center;
         }
+        
+        .closeupDiv {
+            position: relative;
+            background-color: blueviolet;
+            width: 320;
+            height: 320;
+            background-image: url("../images/sand.jpg");
+        }
+        
+        #closeupLion {
+            left: 64;
+            top: 96;
+            width: 192;
+            height: 192;
+            position: absolute;
+        }
+        
+        .closeupBubble {
+            width: 96;
+            height: 96;
+            position: absolute;
+            visibility: hidden;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .closeupBubble#desire0 {
+            left: 64;
+            top: 0;
+            transform: scaleX(-1);
+        }
+        
+        .closeupBubble#desire1 {
+            left: 160;
+            top: 0;
+        }
+        
+        .closeupBubble#desire2 {
+            left: 0;
+            top: 96;
+            transform: scaleX(-1);
+        }
+        
+        .closeupBubble#desire3 {
+            left: 224;
+            top: 96;
+        }
+        
+        .closeupButton {
+            width: 96;
+            height: 64;
+            position: absolute;
+            text-align: center;
+        }
+        
+        #areaSpan {
+            left: 0;
+            top: 256;
+        }
+        
+        #infoSpan {
+            left: 224;
+            top: 256;
+        }
     </style>
 </head>
 
@@ -98,44 +162,20 @@
 		Laser Lions
 	</h1>
 
-    <table>
-        <tr>
-            <td>
-            </td>
-            <td id="desire0">
-            </td>
-            <td id="desire1">
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td id="desire2">
-            </td>
-            <td id="lionCell" rowspan="2" colspan="2">
-                <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="192px" height="192px" id="lionImage" pagespeed_no_transform></img>
-            </td>
-            <td id="desire3">
-            </td>
-        </tr>
-        <tr>
-            <td class="buttonCell">
-                <input class="navButton" type="button" value="area" onclick="backToArea()" />
-            </td>
-            <td class="buttonCell">
-                <input class="navButton" type="button" value="info" onclick="clickInfo()" />
-            </td>
-        </tr>
-    </table>
+    <div class="closeupDiv">
+        <img id="closeupLion" src="../images/Sprite2biggermane.png">
 
-    <p>
-        <!--
-        <p id="nameTag">
-        </p>
--->
-
-        <!--        <input type="button" onclick="clickInfo()" value="Info"></input>-->
-    </p>
+        <img class="closeupBubble" id="desire0" src="../images/bubble.png" onclick="clickDesireBubble(this)">
+        <img class="closeupBubble" id="desire1" src="../images/bubble.png" onclick="clickDesireBubble(this)">
+        <img class="closeupBubble" id="desire2" src="../images/bubble.png" onclick="clickDesireBubble(this)">
+        <img class="closeupBubble" id="desire3" src="../images/bubble.png" onclick="clickDesireBubble(this)">
+        <span class="closeupButton" id="areaSpan">
+            <input type="button" class="navButton" value="area" onclick="backToArea()"/>
+        </span>
+        <span class="closeupButton" id="infoSpan">
+            <input type="button" class="navButton" value="info" onclick="clickInfo()"/>
+        </span>
+    </div>
 
     <p>
         Desires:
@@ -148,8 +188,6 @@
             </li>
         </ul>
     </p>
-
-    <!--    <input type="button" onclick="clickArea()" value="Area"></input>-->
 
     <div class="popup" id="happinessPopup" onclick="hideHappiness()">
         <div class="popupContent">
@@ -204,7 +242,7 @@
 
     var updateCloseupPage = function () {
 
-        var imageTag = document.getElementById("lionImage");
+        var imageTag = document.getElementById("closeupLion");
         var imageSrc = "../images/Sprite2biggermane.png";
 
         updateLionColors(imageTag, imageSrc, lionInfo, true);
@@ -216,41 +254,30 @@
             imageTag.style.transform = "";
         }
 
+        var closeupDiv = document.getElementById("closeupDiv");
+
         //clear out old bubbles
         var desireIndex = 0;
         while (desireIndex < desiresToCreate) {
-            var cell = document.getElementById("desire" + desireIndex);
+            var bubble = document.getElementById("desire" + desireIndex);
 
-            while (cell.children.length > 0) {
-                cell.removeChild(cell.firstChild);
-            }
+            bubble.dataset.desireIndex = "";
+            bubble.style.visibility = "hidden";
+
             desireIndex += 1;
         }
 
         var desireIndex = 0;
         while (desireIndex < lionInfo.desires.length) {
 
-            var cell = document.getElementById("desire" + desireIndex);
+            var bubble = document.getElementById("desire" + desireIndex);
 
-            var imageTag = document.createElement("img");
-            imageTag.src = "../images/bubble.png";
-            imageTag.width = 96;
-            imageTag.height = 96;
-            imageTag.style.cursor = "pointer";
-
-            //flip bubbles on left side
-            if (desireIndex % 2 == 0) {
-                imageTag.style.transform = "scaleX(-1)";
-            }
-            imageTag.onclick = function () {
-                clickDesireBubble(this);
-            };
-            imageTag.dataset.desireIndex = desireIndex;
-
-            cell.appendChild(imageTag);
+            bubble.dataset.desireIndex = desireIndex;
+            bubble.style.visibility = "visible";
 
             desireIndex += 1;
         }
+
         updateNameTag();
         updateDesiresList();
     };
