@@ -52,6 +52,14 @@
         .buttonCell {
             text-align: center;
         }
+        
+        div.infoDiv {
+            display: none;
+        }
+        
+        div.infoDiv#profileDiv {
+            display: block;
+        }
     </style>
 </head>
 
@@ -90,53 +98,13 @@
     </div>
 
     <div id="profileDiv" class="infoDiv">
-        <p>Profile</p>
+        <h3>Profile</h3>
         <!--name, edit button-->
         <!--image-->
-        <!--age-->
         <!--colors-->
         <!--favorite food, list-->
         <!--favorite toy, list-->
         <!--personality, list-->
-    </div>
-    <div id="statusDiv" class="infoDiv">
-        <p>Status</p>
-        <!--happiness level-->
-        <!--happiness exp, next, bar-->
-        <!--current desires, list-->
-        <!--current activity-->
-        <!--current activity-->
-    </div>
-    <div id="familyDiv" class="infoDiv">
-        <p>Family</p>
-        <!--parents, list-->
-        <!--raised by-->
-        <!--cubs raised, list-->
-        <!--eggs laid, list-->
-        <!--friends with, list-->
-        <!--loved, list-->
-    </div>
-    <div id="photosDiv" class="infoDiv">
-        <p>Photos</p>
-        <!--list of photos taken-->
-    </div>
-    <div id="historyDiv" class="infoDiv">
-        <p>History</p>
-        <!--times reborn-->
-        <!--friends made-->
-        <!--lovers had-->
-        <!--eggs laid-->
-        <!--cubs raised-->
-        <!--times fought-->
-        <!--times pet-->
-        <!--times been sick-->
-        <!--times ate-->
-        <!--times slept-->
-        <!--times given present-->
-        <!--photos taken-->
-    </div>
-
-    <div style="display:none">
         <p id="nameTag">
             <p>Lion:
                 <select id="lionSelect" onchange="selectLion(this)">
@@ -151,22 +119,6 @@
                     </input>
                 </li>
             </ul>
-        </p>
-
-        <p>
-            <label id=levelLabel>Happiness: Level 3</label>
-        </p>
-        <ul>
-            <li>
-                <p>Next:
-                    <progress min="0" max="64" value="4" id="nextProgress"></progress>
-                    <label id=nextLabel>3/64</label>
-                </p>
-            </li>
-        </ul>
-
-        <p id="ageTag">
-            Age:
         </p>
 
         <p>Color:
@@ -198,6 +150,164 @@
                 </li>
             </ul>
         </p>
+    </div>
+    <div id="statusDiv" class="infoDiv">
+        <h3>Status</h3>
+        <!--age-->
+        <!--happiness level-->
+        <!--happiness exp, next, bar-->
+        <!--current desires, list-->
+        <!--current activity-->
+        <!--current activity-->
+        <p id="ageTag">
+            Age:
+        </p>
+
+        <p>
+            <label id=levelLabel>Happiness: Level 3</label>
+        </p>
+        <ul>
+            <li>
+                <p>Next:
+                    <progress min="0" max="64" value="4" id="nextProgress"></progress>
+                    <label id=nextLabel>3/64</label>
+                </p>
+            </li>
+        </ul>
+        <p>Currently doing nothing</p>
+        <p>
+            Desires:
+            <ul id="desiresList">
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </p>
+    </div>
+    <div id="familyDiv" class="infoDiv">
+        <h3>Family</h3>
+        <!--parents, list-->
+        <!--raised by-->
+        <!--cubs raised, list-->
+        <!--eggs laid, list-->
+        <!--friends with, list-->
+        <!--loved, list-->
+        <p>Parents:
+            <ul>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </p>
+        <p>Raised by:</p>
+        <p>Eggs laid:
+            <ul>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </p>
+        <p>Cubs raised:
+            <ul>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </p>
+        <p>Friends with:
+            <ul>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </p>
+        <p>Loved ones:
+            <ul>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </p>
+    </div>
+    <div id="photosDiv" class="infoDiv">
+        <h3>Photos</h3>
+        <!--list of photos taken-->
+    </div>
+    <div id="historyDiv" class="infoDiv">
+        <h3>History</h3>
+        <table>
+            <tr>
+                <td>times reborn:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>friends made:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>lovers had:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>eggs laid:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>cubs raised:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>times fought:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>times pet:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>times been sick:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>meals eaten:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>times slept:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>presents given:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>photos taken:</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="display:none">
+
+
+
+
 
     </div>
 

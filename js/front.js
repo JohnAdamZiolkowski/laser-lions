@@ -65,7 +65,7 @@ var updateInfoPage = function () {
     updateLionColorLabels();
 
     updateTraitList();
-    //    updateDesiresList();
+    updateDesiresList();
     updateLionSelect();
     updateHappiness();
 };
