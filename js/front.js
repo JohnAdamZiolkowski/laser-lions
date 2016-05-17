@@ -16,11 +16,11 @@ var updatePage = function () {
 };
 
 var updateInfoPage = function () {
-    //    var nametag = document.getElementById("nameTag");
+    updateNameTag();
+
     var ageTag = document.getElementById("ageTag");
     var favefood = document.getElementById("foodTag");
 
-    //    nametag.textContent = "Name: " + lionInfo.name;
     ageTag.textContent = "Age: " + lionInfo.age;
     favefood.textContent = "Favourite Food: " + lionInfo.food;
 
@@ -72,7 +72,7 @@ var updateInfoPage = function () {
 
 var updateNameTag = function () {
     var nametag = document.getElementById("nameTag");
-    nametag.textContent = "Name: " + lionInfo.name;
+    nametag.textContent = lionInfo.name;
 };
 
 var updateTraitList = function () {
@@ -271,4 +271,26 @@ var clickSetTimer = function (turnOn) {
 var clickForceUpdate = function () {
     //force one unit of time to pass
     updateGame(1);
+};
+
+var clickDivButton = function (element) {
+    var row = element.parentElement.parentElement;
+
+    var cellIndex = 0;
+    while (cellIndex < row.cells.length) {
+
+        var cell = row.cells[cellIndex];
+        var button = cell.children[0];
+
+        var divId = button.value + "Div";
+        var div = document.getElementById(divId);
+        div.style.display = "none";
+
+        cellIndex += 1;
+    };
+
+    var divId = element.value + "Div";
+    var div = document.getElementById(divId);
+    div.style.display = "block";
+
 };

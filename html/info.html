@@ -12,7 +12,7 @@
             image-rendering: pixelated;
         }
         
-        div {
+        div#lionImageDiv {
             background-image: url("../images/sand.jpg");
             cursor: pointer;
             width: 128;
@@ -37,13 +37,28 @@
         input.menuButton {
             float: right;
         }
+        
+        .divButton {
+            color: #A86;
+            background-color: #EDC;
+            border: 2px solid #A86;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .buttonCell {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body onload="setupPage('info')">
     <input type="button" value="menu" onclick="toMenu()" class="menuButton" />
     <input type="button" value="update" onclick="clickForceUpdate()" class="menuButton" />
-    <h1>
+    <h1 id="nameTag">
 		Laser Lions
 	</h1>
 
@@ -52,67 +67,139 @@
         </img>
     </div>
 
-    <p id="nameTag">
-        <p>Lion:
-            <select id="lionSelect" onchange="selectLion(this)">
-            </select>
+    <div>
+        <table>
+            <tr>
+                <td class="buttonCell">
+                    <input class="divButton" type="button" value="profile" onclick="clickDivButton(this)" />
+                </td>
+                <td class="buttonCell">
+                    <input class="divButton" type="button" value="status" onclick="clickDivButton(this)" />
+                </td>
+                <td class="buttonCell">
+                    <input class="divButton" type="button" value="family" onclick="clickDivButton(this)" />
+                </td>
+                <td class="buttonCell">
+                    <input class="divButton" type="button" value="photos" onclick="clickDivButton(this)" />
+                </td>
+                <td class="buttonCell">
+                    <input class="divButton" type="button" value="history" onclick="clickDivButton(this)" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="profileDiv" class="infoDiv">
+        <p>Profile</p>
+        <!--name, edit button-->
+        <!--image-->
+        <!--age-->
+        <!--colors-->
+        <!--favorite food, list-->
+        <!--favorite toy, list-->
+        <!--personality, list-->
+    </div>
+    <div id="statusDiv" class="infoDiv">
+        <p>Status</p>
+        <!--happiness level-->
+        <!--happiness exp, next, bar-->
+        <!--current desires, list-->
+        <!--current activity-->
+        <!--current activity-->
+    </div>
+    <div id="familyDiv" class="infoDiv">
+        <p>Family</p>
+        <!--parents, list-->
+        <!--raised by-->
+        <!--cubs raised, list-->
+        <!--eggs laid, list-->
+        <!--friends with, list-->
+        <!--loved, list-->
+    </div>
+    <div id="photosDiv" class="infoDiv">
+        <p>Photos</p>
+        <!--list of photos taken-->
+    </div>
+    <div id="historyDiv" class="infoDiv">
+        <p>History</p>
+        <!--times reborn-->
+        <!--friends made-->
+        <!--lovers had-->
+        <!--eggs laid-->
+        <!--cubs raised-->
+        <!--times fought-->
+        <!--times pet-->
+        <!--times been sick-->
+        <!--times ate-->
+        <!--times slept-->
+        <!--times given present-->
+        <!--photos taken-->
+    </div>
+
+    <div style="display:none">
+        <p id="nameTag">
+            <p>Lion:
+                <select id="lionSelect" onchange="selectLion(this)">
+                </select>
+            </p>
+            <ul>
+                <li> Rename:
+                    <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
+                    </input>
+
+                    <input type=button value="enter" onclick=nameTheLion()>
+                    </input>
+                </li>
+            </ul>
+        </p>
+
+        <p>
+            <label id=levelLabel>Happiness: Level 3</label>
         </p>
         <ul>
-            <li> Rename:
-                <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
-                </input>
-
-                <input type=button value="enter" onclick=nameTheLion()>
-                </input>
+            <li>
+                <p>Next:
+                    <progress min="0" max="64" value="4" id="nextProgress"></progress>
+                    <label id=nextLabel>3/64</label>
+                </p>
             </li>
         </ul>
-    </p>
 
-    <p>
-        <label id=levelLabel>Happiness: Level 3</label>
-    </p>
-    <ul>
-        <li>
-            <p>Next:
-                <progress min="0" max="64" value="4" id="nextProgress"></progress>
-                <label id=nextLabel>3/64</label>
-            </p>
-        </li>
-    </ul>
+        <p id="ageTag">
+            Age:
+        </p>
 
-    <p id="ageTag">
-        Age:
-    </p>
+        <p>Color:
+            <ul>
+                <li id="maneColorLabel">
+                    Mane:
+                </li>
+                <li id="eyeColorLabel">
+                    Eyes:
+                </li>
+                <li id="furColorLabel">
+                    Fur:
+                </li>
+            </ul>
+        </p>
 
-    <p>Color:
-        <ul>
-            <li id="maneColorLabel">
-                Mane:
-            </li>
-            <li id="eyeColorLabel">
-                Eyes:
-            </li>
-            <li id="furColorLabel">
-                Fur:
-            </li>
-        </ul>
-    </p>
+        <p id="foodTag">
+            Favourite Food:
+        </p>
 
-    <p id="foodTag">
-        Favourite Food:
-    </p>
+        <p>
+            Personality:
+            <ul id="traitsList">
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </p>
 
-    <p>
-        Personality:
-        <ul id="traitsList">
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-            </li>
-        </ul>
-    </p>
+    </div>
 
     <input type="button" value="Area" onclick="backToArea()" />
     <input type="button" value="Lion" onclick="backToCloseup()" />
