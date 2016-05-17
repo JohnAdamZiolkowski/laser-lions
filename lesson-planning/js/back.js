@@ -17,6 +17,11 @@ var setupGlobal = function () {
         selectedLion = loadData.selectedLion;
         lionInfo = lions[selectedLion];
 
+        areas = loadData.areas;
+        if (!areas) {
+            createAreas();
+        }
+
         dateLastUpdated = Date.parse(loadData.dateLastUpdated);
         if (dateLastUpdated == undefined) {
             dateLastUpdated = new Date();
@@ -58,6 +63,7 @@ var setupPage = function (page) {
 
 var restart = function () {
     createLions();
+    createAreas();
 
     dateLastUpdated = new Date();
     timerOn = true;
@@ -207,6 +213,69 @@ var assignDesires = function (lionInfo, desireCount) {
     lionInfo.desires = lionInfo.desires.slice(0, desiresToCreate);
 };
 
+var areas;
+
+var createAreas = function () {
+    areas = [];
+
+    var area = {};
+    area.name = "Laser Lions";
+    area.rows = [];
+
+    var rowIndex = 0;
+    while (rowIndex < rowsToCreate) {
+        var row = [];
+
+        var colIndex = 0;
+        while (colIndex < colsToCreate) {
+            var col = undefined;
+
+            row.push(col);
+            colIndex += 1;
+        }
+        area.rows.push(row);
+        rowIndex += 1;
+    }
+    areas.push(area);
+    distributeLionsIntoArea();
+};
+
+var distributeLionsIntoArea = function () {
+
+    var unplacedLions = lions.slice(0);
+
+    var area = areas[0];
+
+    while (unplacedLions.length > 0) {
+
+        var rowIndex = Math.floor(Math.random() * rowsToCreate);
+        var colIndex = Math.floor(Math.random() * colsToCreate);
+
+        var row = area.rows[rowIndex];
+        var contents = row[colIndex];
+
+        if (!contents) {
+
+            var lionIndex = Math.floor(Math.random() * unplacedLions.length);
+            var lionInfo = unplacedLions[lionIndex];
+            unplacedLions.splice(lionIndex, 1);
+
+            var contents = {}
+            contents.type = "lion";
+            contents.name = lionInfo.name;
+
+            directionIndex = Math.floor(Math.random() * 2);
+            if (directionIndex == 1) {
+                contents.direction = "left";
+            } else {
+                contents.direction = "right";
+            }
+
+            row[colIndex] = contents;
+        }
+    }
+};
+
 var checkTime = function () {
 
     if (!dateLastUpdated) {
@@ -229,7 +298,16 @@ var checkTime = function () {
     }
 
     dateLastUpdated = date;
+    updateGame(timePassed);
+};
+
+var updateGame = function (timePassed) {
     updateDesires(timePassed);
+    updateAreas(timePassed);
+
+    updateSaveData();
+
+    updatePage();
 };
 
 var updateDesires = function (timePassed) {
@@ -271,15 +349,20 @@ var updateDesires = function (timePassed) {
 
         lionIndex += 1;
     }
+};
 
-    updateSaveData();
-    updatePage();
-}
+var updateAreas = function () {
+    createAreas();
+    //    distributeLionsIntoArea();
+};
 
 var updateSaveData = function () {
     var saveData = {};
     saveData.lions = lions;
     saveData.selectedLion = selectedLion;
+
+    saveData.areas = areas;
+
     saveData.dateLastUpdated = new Date(dateLastUpdated).toUTCString();
     saveData.timerOn = timerOn;
 
@@ -295,6 +378,35 @@ var getLionIndexByName = function (lionName) {
             return lionIndex;
         }
         lionIndex += 1;
+    }
+};
+
+var findLionLocationByName = function (lionName) {
+    var area = areas[0];
+
+    var rowIndex = 0;
+    while (rowIndex < rowsToCreate) {
+        var row = area.rows[rowIndex];
+
+        var colIndex = 0;
+        while (colIndex < colsToCreate) {
+            var contents = row[colIndex];
+
+            if (contents) {
+                if (contents.type == "lion" &&
+                    contents.name == lionName) {
+
+                    var results = {};
+                    results.direction = contents.direction;
+                    results.area = area.name;
+                    results.row = rowIndex;
+                    results.col = colIndex;
+                    return results;
+                }
+            }
+            colIndex += 1;
+        }
+        rowIndex += 1;
     }
 };
 

@@ -55,7 +55,7 @@
         .close {
             color: #AAA;
             float: right;
-            font-size: 14px;
+            font-size: 24px;
             font-weight: bold;
             padding: 5px;
             background-color: #DDD;
@@ -67,11 +67,26 @@
             color: #7C7;
             background-color: #BFB;
             float: right;
-            font-size: 14px;
+            font-size: 24px;
             font-weight: bold;
             padding: 5px;
             text-decoration: none;
             cursor: pointer;
+        }
+        
+        .navButton {
+            color: #A86;
+            background-color: #EDC;
+            border: 2px solid #A86;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .buttonCell {
+            text-align: center;
         }
     </style>
 </head>
@@ -79,7 +94,7 @@
 <body onload="setupPage('closeup')">
     <input type="button" value="menu" onclick="toMenu()" class="menuButton" />
     <input type="button" value="update" onclick="clickForceUpdate()" class="menuButton" />
-    <h1>
+    <h1 id="nameTag">
 		Laser Lions
 	</h1>
 
@@ -98,24 +113,28 @@
             <td id="desire2">
             </td>
             <td id="lionCell" rowspan="2" colspan="2">
-                <img src="../images/Sprite2biggermane.png" width="192px" height="192px" id="lionImage"></img>
+                <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="192px" height="192px" id="lionImage" pagespeed_no_transform></img>
             </td>
             <td id="desire3">
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="buttonCell">
+                <input class="navButton" type="button" value="area" onclick="backToArea()" />
             </td>
-            <td>
+            <td class="buttonCell">
+                <input class="navButton" type="button" value="info" onclick="clickInfo()" />
             </td>
         </tr>
     </table>
 
     <p>
+        <!--
         <p id="nameTag">
         </p>
+-->
 
-        <input type="button" onclick="clickInfo()" value="Info"></input>
+        <!--        <input type="button" onclick="clickInfo()" value="Info"></input>-->
     </p>
 
     <p>
@@ -130,9 +149,9 @@
         </ul>
     </p>
 
-    <input type="button" onclick="clickArea()" value="Area"></input>
+    <!--    <input type="button" onclick="clickArea()" value="Area"></input>-->
 
-    <div class="popup" id="happinessPopup">
+    <div class="popup" id="happinessPopup" onclick="hideHappiness()">
         <div class="popupContent">
             <span class="accept" onclick="hideHappiness()">✓</span>
             <p>
@@ -144,7 +163,7 @@
             </p>
         </div>
     </div>
-    <div class="popup" id="desirePopup">
+    <div class="popup" id="desirePopup" onclick="hideDesirePopup()">
         <div class="popupContent">
             <span class="close" onclick="hideDesirePopup()">Not now</span>
             <span class="accept" id="satisfyButton">Do it</span>
@@ -189,6 +208,13 @@
         var imageSrc = "../images/Sprite2biggermane.png";
 
         updateLionColors(imageTag, imageSrc, lionInfo, true);
+
+        var location = findLionLocationByName(lionInfo.name);
+        if (location.direction == "left") {
+            imageTag.style.transform = "scaleX(-1)";
+        } else {
+            imageTag.style.transform = "";
+        }
 
         //clear out old bubbles
         var desireIndex = 0;
