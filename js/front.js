@@ -37,6 +37,31 @@ var updateInfoPage = function () {
     } else {
         imageTag.style.transform = "";
     }
+
+    var lionImageDiv = document.getElementById("lionImageDiv");
+    var bubbleImage = document.getElementById("bubbleImage");
+    if (bubbleImage) {
+        lionImageDiv.removeChild(bubbleImage);
+    }
+
+    if (lionInfo.desires.length > 0) {
+        var img = document.createElement("img");
+        img.src = "../images/bubble.png";
+        img.style.position = "absolute";
+        img.style.top = 0;
+        img.style.zIndex = 2;
+        img.width = 64;
+        img.height = 64;
+        img.id = "bubbleImage";
+        if (location.direction != "left") {
+            img.style.transform = "scaleX(-1)";
+            img.style.left = 0;
+        } else {
+            img.style.right = 0;
+        }
+        lionImageDiv.appendChild(img);
+    }
+
     updateLionColorLabels();
 
     updateTraitList();

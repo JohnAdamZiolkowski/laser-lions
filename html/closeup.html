@@ -55,7 +55,7 @@
         .close {
             color: #AAA;
             float: right;
-            font-size: 14px;
+            font-size: 24px;
             font-weight: bold;
             padding: 5px;
             background-color: #DDD;
@@ -67,11 +67,26 @@
             color: #7C7;
             background-color: #BFB;
             float: right;
-            font-size: 14px;
+            font-size: 24px;
             font-weight: bold;
             padding: 5px;
             text-decoration: none;
             cursor: pointer;
+        }
+        
+        .back {
+            color: #A86;
+            background-color: #EDC;
+            border: 2px solid #A86;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .buttonCell {
+            text-align: center;
         }
     </style>
 </head>
@@ -79,7 +94,7 @@
 <body onload="setupPage('closeup')">
     <input type="button" value="menu" onclick="toMenu()" class="menuButton" />
     <input type="button" value="update" onclick="clickForceUpdate()" class="menuButton" />
-    <h1>
+    <h1 id="nameTag">
 		Laser Lions
 	</h1>
 
@@ -104,18 +119,22 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="buttonCell">
+                <input class="back" type="button" value="area" onclick="backToArea()" />
             </td>
-            <td>
+            <td class="buttonCell">
+                <input class="back" type="button" value="info" onclick="clickInfo()" />
             </td>
         </tr>
     </table>
 
     <p>
+        <!--
         <p id="nameTag">
         </p>
+-->
 
-        <input type="button" onclick="clickInfo()" value="Info"></input>
+        <!--        <input type="button" onclick="clickInfo()" value="Info"></input>-->
     </p>
 
     <p>
@@ -130,9 +149,9 @@
         </ul>
     </p>
 
-    <input type="button" onclick="clickArea()" value="Area"></input>
+    <!--    <input type="button" onclick="clickArea()" value="Area"></input>-->
 
-    <div class="popup" id="happinessPopup">
+    <div class="popup" id="happinessPopup" onclick="hideHappiness()">
         <div class="popupContent">
             <span class="accept" onclick="hideHappiness()">✓</span>
             <p>
@@ -144,7 +163,7 @@
             </p>
         </div>
     </div>
-    <div class="popup" id="desirePopup">
+    <div class="popup" id="desirePopup" onclick="hideDesirePopup()">
         <div class="popupContent">
             <span class="close" onclick="hideDesirePopup()">Not now</span>
             <span class="accept" id="satisfyButton">Do it</span>
