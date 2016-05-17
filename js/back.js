@@ -2,6 +2,8 @@ var lions;
 var lionInfo;
 var selectedLion;
 
+var areas;
+
 var dateLastUpdated;
 
 var timer;
@@ -60,7 +62,6 @@ var setupPage = function (page) {
     updatePage();
 };
 
-
 var restart = function () {
     createLions();
     createAreas();
@@ -71,7 +72,6 @@ var restart = function () {
     updateSaveData();
     backToArea();
 };
-
 
 var createLions = function () {
     lions = [];
@@ -212,8 +212,6 @@ var assignDesires = function (lionInfo, desireCount) {
     //limit the number of desires to max
     lionInfo.desires = lionInfo.desires.slice(0, desiresToCreate);
 };
-
-var areas;
 
 var createAreas = function () {
     areas = [];
