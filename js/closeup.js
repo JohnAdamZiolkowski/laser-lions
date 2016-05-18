@@ -48,6 +48,7 @@ var updateCloseupPage = function () {
 
         bubble.dataset.desireIndex = "";
         bubble.style.visibility = "hidden";
+        bubble.src = "";
 
         desireIndex += 1;
     }
@@ -59,6 +60,10 @@ var updateCloseupPage = function () {
 
         bubble.dataset.desireIndex = desireIndex;
         bubble.style.visibility = "visible";
+
+        var desireName = lionInfo.desires[desireIndex]
+        var desire = getDesireByActionName(desireName);
+        bubble.src = "../images/desires/" + desire.icon + ".png";
 
         desireIndex += 1;
     }

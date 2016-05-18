@@ -112,6 +112,9 @@
             visibility: hidden;
             cursor: pointer;
             text-decoration: none;
+            background-image: url(../images/bubble.png);
+            background-size: 96px 96px;
+            border: 0;
         }
         
         .closeupBubble#desire0 {
@@ -165,10 +168,10 @@
     <div class="closeupDiv">
         <img id="closeupLion" src="../images/Sprite2biggermane.png">
 
-        <img class="closeupBubble" id="desire0" src="../images/bubble.png" onclick="clickDesireBubble(this)">
-        <img class="closeupBubble" id="desire1" src="../images/bubble.png" onclick="clickDesireBubble(this)">
-        <img class="closeupBubble" id="desire2" src="../images/bubble.png" onclick="clickDesireBubble(this)">
-        <img class="closeupBubble" id="desire3" src="../images/bubble.png" onclick="clickDesireBubble(this)">
+        <img class="closeupBubble" id="desire0" onclick="clickDesireBubble(this)">
+        <img class="closeupBubble" id="desire1" onclick="clickDesireBubble(this)">
+        <img class="closeupBubble" id="desire2" onclick="clickDesireBubble(this)">
+        <img class="closeupBubble" id="desire3" onclick="clickDesireBubble(this)">
         <span class="closeupButton" id="areaSpan">
             <input type="button" class="navButton" value="area" onclick="backToArea()"/>
         </span>
