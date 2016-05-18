@@ -69,7 +69,7 @@ var updateCloseupPage = function () {
     }
 
     updateNameTag();
-    updateDesiresList();
+    //    updateDesiresList();
 };
 
 var acceptDesire = function (lionInfo, desireIndex) {

@@ -68,6 +68,18 @@
         div.infoDiv#profileDiv {
             display: block;
         }
+        
+        .navButton {
+            color: #A86;
+            background-color: #EDC;
+            border: 2px solid #A86;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            float: right;
+        }
     </style>
 </head>
 
@@ -77,6 +89,9 @@
     <h1 id="nameTag">
 		Laser Lions
 	</h1>
+    <input type="button" value="area" onclick="backToArea()" class="navButton" />
+    <input type="button" value="closeup" onclick="backToCloseup()" class="navButton" />
+
 
     <div id="lionImageDiv" onclick="backToCloseup()">
         <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage" pagespeed_no_transform>
@@ -205,54 +220,17 @@
         <!--eggs laid, list-->
         <!--friends with, list-->
         <!--loved, list-->
-        <p>Parents:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>
+            Parents: Julie and Mike
         </p>
-        <p>Raised by:</p>
-        <p>Eggs laid:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Raised by: Jessica</p>
+        <p>Eggs laid: Mike, Lisa, unhatached, unhatched, and unhatched
         </p>
-        <p>Cubs raised:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Cubs raised: Sebastian
         </p>
-        <p>Friends with:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Friends with: Alex and Peter
         </p>
-        <p>Loved ones:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Loved ones: Luke, Shulk, Steven
         </p>
     </div>
     <!--
@@ -314,8 +292,6 @@
         </table>
     </div>
 
-    <input type="button" value="Area" onclick="backToArea()" />
-    <input type="button" value="Lion" onclick="backToCloseup()" />
 </body>
 
 <script src="../js/info.js"></script>
