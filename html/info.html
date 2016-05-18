@@ -80,6 +80,32 @@
             cursor: pointer;
             float: right;
         }
+        
+        input[type=checkbox] {
+            display: none;
+        }
+        
+        input[type=checkbox] + button {
+            color: #468;
+            background-color: #9AB;
+            border: 2px solid #468;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        input[type=checkbox]:checked + button {
+            color: #68A;
+            background-color: #CDE;
+            border: 2px solid #68A;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -92,23 +118,29 @@
     <input type="button" value="area" onclick="backToArea()" class="navButton" />
     <input type="button" value="closeup" onclick="backToCloseup()" class="navButton" />
 
-
     <div id="lionImageDiv" onclick="backToCloseup()">
         <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage" pagespeed_no_transform>
         </img>
     </div>
+    <!--
+        <input type="checkbox" id="test1" />
+        <button for="test1">TEST1</button>
+    -->
 
     <div>
         <table>
             <tr>
                 <td class="buttonCell">
-                    <input class="divButton" type="button" value="profile" onclick="clickDivButton(this)" />
+                    <input type="checkbox" id="profileTab" checked=true/>
+                    <button for="profileTab" onclick="clickDivButton(this)">profile</button>
                 </td>
                 <td class="buttonCell">
-                    <input class="divButton" type="button" value="status" onclick="clickDivButton(this)" />
+                    <input type="checkbox" id="statusTab" />
+                    <button for="statusTab" onclick="clickDivButton(this)">status</button>
                 </td>
                 <td class="buttonCell">
-                    <input class="divButton" type="button" value="family" onclick="clickDivButton(this)" />
+                    <input type="checkbox" id="familyTab" />
+                    <button for="familyTab" onclick="clickDivButton(this)">family</button>
                 </td>
                 <!--
 <td class="buttonCell">
@@ -116,14 +148,15 @@
 </td>
 -->
                 <td class="buttonCell">
-                    <input class="divButton" type="button" value="history" onclick="clickDivButton(this)" />
+                    <input type="checkbox" id="historyTab" />
+                    <button for="historyTab" onclick="clickDivButton(this)">history</button>
                 </td>
             </tr>
         </table>
     </div>
 
     <div id="profileDiv" class="infoDiv">
-        <h3>Profile</h3>
+        <!--        <h3>Profile</h3>-->
         <!--name, edit button-->
         <!--image-->
         <!--colors-->
@@ -177,7 +210,7 @@
         </p>
     </div>
     <div id="statusDiv" class="infoDiv">
-        <h3>Status</h3>
+        <!--        <h3>Status</h3>-->
         <!--age-->
         <!--happiness level-->
         <!--happiness exp, next, bar-->
@@ -213,7 +246,7 @@
         </p>
     </div>
     <div id="familyDiv" class="infoDiv">
-        <h3>Family</h3>
+        <!--        <h3>Family</h3>-->
         <!--parents, list-->
         <!--raised by-->
         <!--cubs raised, list-->
@@ -224,13 +257,13 @@
             Parents: Julie and Mike
         </p>
         <p>Raised by: Jessica</p>
-        <p>Eggs laid: Mike, Lisa, unhatached, unhatched, and unhatched
+        <p>Cubs had: Mike, Lisa, unhatached, unhatched, and unhatched
         </p>
         <p>Cubs raised: Sebastian
         </p>
         <p>Friends with: Alex and Peter
         </p>
-        <p>Loved ones: Luke, Shulk, Steven
+        <p>Loved by: Luke, Shulk, Steven
         </p>
     </div>
     <!--
@@ -239,7 +272,7 @@
 </div>
 -->
     <div id="historyDiv" class="infoDiv">
-        <h3>History</h3>
+        <!--        <h3>History</h3>-->
         <table>
             <tr>
                 <td>times reborn:</td>

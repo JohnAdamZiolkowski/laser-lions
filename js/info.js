@@ -152,17 +152,19 @@ var clickDivButton = function (element) {
     while (cellIndex < row.cells.length) {
 
         var cell = row.cells[cellIndex];
-        var button = cell.children[0];
+        var button = cell.children[1];
+        var checkbox = cell.children[0];
 
-        var divId = button.value + "Div";
+        var divId = button.textContent + "Div";
         var div = document.getElementById(divId);
         div.style.display = "none";
-
+        checkbox.checked = false;
         cellIndex += 1;
     };
 
-    var divId = element.value + "Div";
+    var divId = element.textContent + "Div";
     var div = document.getElementById(divId);
+    element.parentElement.children[0].checked = true;
     div.style.display = "block";
 
 };
