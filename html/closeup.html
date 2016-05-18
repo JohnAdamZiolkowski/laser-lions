@@ -61,20 +61,22 @@
         /* The Close Button */
         
         .close {
-            color: #AAA;
             float: right;
+            color: #AAA;
+            background-color: #DDD;
+            border: 2px solid #AAA;
             font-size: 24px;
             font-weight: bold;
             padding: 5px;
-            background-color: #DDD;
             text-decoration: none;
             cursor: pointer;
         }
         
         .accept {
+            float: right;
             color: #7C7;
             background-color: #BFB;
-            float: right;
+            border: 2px solid #7C7;
             font-size: 24px;
             font-weight: bold;
             padding: 5px;
@@ -190,7 +192,7 @@
 
     <div class="popup" id="happinessPopup" onclick="hideHappiness()">
         <div class="popupContent">
-            <span class="accept" onclick="hideHappiness()">✓</span>
+            <button class="accept" onclick="hideHappiness()">✓&nbsp;</button>
             <p>
                 <label id=levelLabel>Happiness: Level 3</label>
             </p>
@@ -202,8 +204,8 @@
     </div>
     <div class="popup" id="desirePopup" onclick="hideDesirePopup()">
         <div class="popupContent">
-            <span class="close" onclick="hideDesirePopup()">Not now</span>
-            <span class="accept" id="satisfyButton">Do it</span>
+            <button class="close" onclick="hideDesirePopup()">Not now</button>
+            <button class="accept" id="satisfyButton">Do it</button>
             <p id="desirePopupQuestion">
                 Fred wants to have an egg.
             </p>
