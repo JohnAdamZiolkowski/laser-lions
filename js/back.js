@@ -303,6 +303,8 @@ var updateGame = function (timePassed) {
     updateDesires(timePassed);
     updateAreas(timePassed);
 
+    dateLastUpdated = new Date();
+
     updateSaveData();
 
     updatePage();
@@ -443,4 +445,79 @@ var toggleTimer = function (turnOn) {
     if (timerOn) {
         timer = setInterval(checkTime, updateCheck);
     }
+};
+
+var renameLion = function (lionInfo, newName) {
+
+    //check if the name is valid
+    if (newName == undefined) {
+        alert("Rename lion error: can not be undefined");
+        return;
+    }
+    if (newName == "") {
+        alert("Rename lion error: can not be blank");
+        return;
+    }
+
+    //check if the name is not changing
+    if (newName == lionInfo.name) {
+        alert("Rename lion error: this lion is already called " + newName);
+        return;
+    }
+
+    //check if the name is not unique
+    var lionIndex = 0;
+    while (lionIndex < lions.length) {
+        var otherLion = lions[lionIndex];
+        if (lionInfo.name == otherLion.name) {
+            //don't bother checking against current lion
+            lionIndex += 1;
+            continue;
+        }
+        if (newName == otherLion.name) {
+            alert("Rename lion error: another lion is already called " + newName);
+            return;
+        }
+
+        lionIndex += 1;
+    }
+
+    var oldName = lionInfo.name;
+
+    //update the lionInfo
+    lionInfo.name = newName;
+
+    //update the areas
+    var areaIndex = 0;
+    while (areaIndex < areas.length) {
+        var area = areas[areaIndex];
+
+        var rowIndex = 0;
+        while (rowIndex < area.rows.length) {
+            var row = area.rows[rowIndex];
+
+            var colIndex = 0;
+            while (colIndex < row.length) {
+                var contents = row[colIndex];
+
+                if (contents) {
+                    if (contents.type == "lion") {
+                        if (contents.name == oldName) {
+                            contents.name = newName;
+                        }
+                    }
+                }
+
+                colIndex += 1;
+            }
+            rowIndex += 1;
+        }
+        areaIndex += 1;
+    }
+
+    //todo: update any relationships the lion had
+
+    //update save data and update the page
+    updateSaveData();
+    updatePage();
 };

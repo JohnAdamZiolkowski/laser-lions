@@ -25,7 +25,7 @@ var updateNextUpdateLabel = function () {
     var dateOfNextUpdate = dateLastUpdated - 0 + updatePeriod;
 
     dateOfNextUpdate = new Date(dateOfNextUpdate);
-    var timeString = dateOfNextUpdate.getHours() + ":" + dateOfNextUpdate.getMinutes();
+    var timeString = dateOfNextUpdate.getHours() + ":" + ("0" + dateOfNextUpdate.getMinutes()).slice(-2);
     label.textContent = "Next update at " + timeString;
 };
 

@@ -15,10 +15,13 @@ var updateInfoPage = function () {
     updateLionColors(imageTag, imageSrc, lionInfo);
 
     var location = findLionLocationByName(lionInfo.name);
-    if (location.direction == "left") {
-        imageTag.style.transform = "scaleX(-1)";
-    } else {
-        imageTag.style.transform = "";
+    //todo: remove
+    if (location) {
+        if (location.direction == "left") {
+            imageTag.style.transform = "scaleX(-1)";
+        } else {
+            imageTag.style.transform = "";
+        }
     }
 
     var lionImageDiv = document.getElementById("lionImageDiv");
@@ -36,11 +39,14 @@ var updateInfoPage = function () {
         img.width = 64;
         img.height = 64;
         img.id = "bubbleImage";
-        if (location.direction != "left") {
-            img.style.transform = "scaleX(-1)";
-            img.style.left = 0;
-        } else {
-            img.style.right = 0;
+        //todo: remove
+        if (location) {
+            if (location.direction != "left") {
+                img.style.transform = "scaleX(-1)";
+                img.style.left = 0;
+            } else {
+                img.style.right = 0;
+            }
         }
         lionImageDiv.appendChild(img);
     }
@@ -106,10 +112,9 @@ var textBoxKeyPress = function (event) {
 var nameTheLion = function () {
     var nameTextbox = document.getElementById("nameTextbox");
 
-    lionInfo.name = nameTextbox.value;
+    var name = nameTextbox.value;
 
-    updateSaveData();
-    updatePage();
+    renameLion(lionInfo, name);
 };
 
 var selectLion = function (element) {
