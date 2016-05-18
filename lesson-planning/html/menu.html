@@ -6,46 +6,65 @@
     </title>
     <link rel="icon" href="../images/icon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .restartButton {
+            background-color: #EAA;
+            color: #C66;
+            border: 2px solid #C66;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .navButton {
+            background-color: #EDC;
+            color: #A86;
+            border: 2px solid #A86;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body onload="setupPage('menu')">
     <h1>
-		Laser Lions
+		Menu
 	</h1>
 
 
-    <input type=button value="Area" onclick=backToArea()>
+    <input type=button class="navButton" value="close menu" onclick=backToArea()>
     </input>
-    <p id="timerTag">Timer:</p>
+
     <p>
-        <input type=button value="stop" onclick=clickSetTimer(false)>
+        <span id="timerTag">Timer:</span>
+        <input type=button class="navButton" value="stop" id="stopButton" onclick=clickSetTimer(false)>
         </input>
-        <input type=button value="start" onclick=clickSetTimer(true)>
+        <input type=button class="navButton" value="start" id="startButton" onclick=clickSetTimer(true) style="display:none">
         </input>
     </p>
 
     <p>
-        Create lions:
+        <span id="nextUpdateTag">Next update at </span>
+        <input type="button" value="update now" onclick="clickForceUpdate()" class="navButton" />
+
     </p>
     <p>
-        <input type=button value="restart" id="restartButton" onclick=restart()>
+        <span>
+            Start new save data:
+        </span>
+        <input type=button class="restartButton" value="restart" id="restartButton" onclick=clickRestart()>
         </input>
     </p>
 
 </body>
 
-<script>
-    var updateMenuPage = function () {
-        var timerTag = document.getElementById("timerTag");
-        var text = "Timer: Off";
-
-        if (timer) {
-            text = "Timer: On";
-        }
-        timerTag.textContent = text;
-    };
-</script>
-
+<script src="../js/menu.js"></script>
 <script src="../js/save.js"></script>
 <script src="../js/back.js"></script>
 <script src="../js/front.js"></script>

@@ -42,7 +42,7 @@
             color: #A86;
             background-color: #EDC;
             border: 2px solid #A86;
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
             padding: 5px;
             text-decoration: none;
@@ -87,9 +87,11 @@
                 <td class="buttonCell">
                     <input class="divButton" type="button" value="family" onclick="clickDivButton(this)" />
                 </td>
-                <td class="buttonCell">
-                    <input class="divButton" type="button" value="photos" onclick="clickDivButton(this)" />
-                </td>
+                <!--
+<td class="buttonCell">
+    <input class="divButton" type="button" value="photos" onclick="clickDivButton(this)" />
+</td>
+-->
                 <td class="buttonCell">
                     <input class="divButton" type="button" value="history" onclick="clickDivButton(this)" />
                 </td>
@@ -245,10 +247,11 @@
             </ul>
         </p>
     </div>
-    <div id="photosDiv" class="infoDiv">
-        <h3>Photos</h3>
-        <!--list of photos taken-->
-    </div>
+    <!--
+<div id="photosDiv" class="infoDiv">
+    <h3>Photos</h3> list of photos taken
+</div>
+-->
     <div id="historyDiv" class="infoDiv">
         <h3>History</h3>
         <table>
@@ -303,18 +306,11 @@
         </table>
     </div>
 
-    <div style="display:none">
-
-
-
-
-
-    </div>
-
     <input type="button" value="Area" onclick="backToArea()" />
     <input type="button" value="Lion" onclick="backToCloseup()" />
 </body>
 
+<script src="../js/info.js"></script>
 <script src="../js/data.js"></script>
 <script src="../js/front.js"></script>
 <script src="../js/back.js"></script>

@@ -103,6 +103,7 @@ var desires = [
         more: "insatiable",
         less: "nibbler",
         type: "player",
+        icon: "food",
         //list of food in inventory
         //lion may like food for 2 happiness
         //lion may dislike food for 0 happiness
@@ -112,6 +113,7 @@ var desires = [
         more: "lazy",
         less: "energetic",
         type: "blocking",
+        icon: "sleep",
         //list of places to sleep?
         //list of lions that also want to sleep?
         //pile of lions?
@@ -122,6 +124,7 @@ var desires = [
         more: "playful",
         less: "serious",
         type: "player",
+        icon: "ball",
         //list of toys in inventory
         //switch to toy play mode
         //toss a ball to make it fetch
@@ -133,6 +136,7 @@ var desires = [
         more: "generous",
         less: "hoarder",
         type: "player",
+        icon: "present",
         //accept a present - surprise!
         //switch to accept present mode
         //get a random new item for the inventory
@@ -142,6 +146,7 @@ var desires = [
         more: "affectionate",
         less: "reserved",
         type: "player",
+        icon: "paw",
         //rub a dub
         //switch to petting mode
         //head petting
@@ -153,6 +158,7 @@ var desires = [
         more: "brave",
         less: "nervous",
         type: "player",
+        icon: "fight",
         //pew pew
         //switch to laser game mode
         //your lions team up against random lions?
@@ -163,6 +169,7 @@ var desires = [
         more: "proud",
         less: "shy",
         type: "player",
+        icon: "photo",
         //dress up, pose, action
         //switch to photo mode
         //option to save photo to device
@@ -173,6 +180,7 @@ var desires = [
         more: "charming",
         less: "reserved",
         type: "passive",
+        icon: "heart",
         //list of lions - that also want love?
         //restricted to teen and adult lions
         //selected lions will hang out together with hearts
@@ -183,6 +191,7 @@ var desires = [
         more: "friendly",
         less: "loner",
         type: "passive",
+        icon: "happy",
         //list of lions - that also want friendship?
         //selected lions will hang out together with smiles
         //chance of adding eachother to friend list?
@@ -192,6 +201,7 @@ var desires = [
         more: "impulsive",
         less: "cautious",
         type: "blocking",
+        icon: "egg",
         //list of lions - that also want do have an egg?
         //restricted to adult lions, maybe teens?
         //selected lions will go off into a cave together
@@ -202,6 +212,7 @@ var desires = [
         more: "nuturing",
         less: "free",
         type: "passive",
+        icon: "cub",
         //list of lions - that are cubs and want to grow up?
         //restricted to adult lions
         //selected lions will hang out together with up arrows
@@ -212,6 +223,7 @@ var desires = [
         more: "mature",
         less: "youthful",
         type: "passive",
+        icon: "adult",
         //list of lions - that are adults and want to raise?
         //restricted to cub lions, (also eggs, teens, adults?)
         //selected lions will hang out together with up arrows
@@ -222,6 +234,7 @@ var desires = [
         more: "delicate",
         less: "hearty",
         type: "blocking",
+        icon: "needle",
         //give medicine
         //must be feeling under the weather
         //might have to choose the right medicine for the illness?
@@ -296,5 +309,22 @@ var getColorByName = function (name) {
         }
 
         colorIndex += 1;
+    }
+};
+
+var getDesireByActionName = function (name) {
+
+    var desire;
+
+    var desireIndex = 0;
+    while (desireIndex < desires.length) {
+
+        desire = desires[desireIndex];
+
+        if (desire.action == name) {
+            return desire;
+        }
+
+        desireIndex += 1;
     }
 };
