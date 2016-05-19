@@ -38,16 +38,8 @@
 
     <p id="personalityTag">
         Personality:
-        <ul>
-            <li>
-                Proud
-            </li>
-            <li>
-                Shy
-            </li>
-            <li>
-                Playful
-            </li>
+        <ul id=Traitlisttag>
+            
         </ul>
     </p>
 
@@ -64,8 +56,10 @@
 </body>
 
 <script>
-    var lionInfo;
 
+    var lionInfo;
+	
+	//array of all food options
     var foods = [
         "Cookies",
         "Waffles",
@@ -75,10 +69,15 @@
         "Cheese Burger",
         "Watermelon",
     ];
-
+	
+	var traitamount = 3
+	
     var setup = function () {
         load_from_cookie();
         lionInfo = game_data.lionInfo;
+		
+		//if there is no lion info in the cookie
+		//or the cookie failed to load
         if (!lionInfo) {
             restart();
         }
@@ -89,35 +88,77 @@
     var restart = function () {
         createLion();
         updateSaveData();
-        updatePage();
     };
 
     var createLion = function () {
         lionInfo = {};
-        lionInfo.name = "Sam";
+        lionInfo.name = "";
         lionInfo.age = "Adult";
-        //lionInfo.personalityTag=
-
+        
+		
+		//gets a random index for assigning a food
         var foodIndex = Math.random();
         foodIndex = foodIndex * foods.length;
         foodIndex = Math.floor(foodIndex);
         console.log("foodIndex:" + foodIndex);
 
+		//actually use the index to find which food
         lionInfo.food = foods[foodIndex];
+		
+		lionInfo.traits = []; 
+		
+		
+		var loopcount = 0
+		
+		
+		while (loopcount <traitamount) {	
+			var traitindex = Math.random() * traits.length
+			traitindex = Math.floor(traitindex)
+		
+			var trait = traits[traitindex]
+			lionInfo.traits.push(trait)
+			
+			loopcount += 1
+		
+		
+		}
+	
+		
     };
 
     var updatePage = function () {
         var nametag = document.getElementById("nameTag");
         var ageTag = document.getElementById("ageTag");
         var favefood = document.getElementById("foodTag");
-
+		var traittag = document.getElementById("Traitlisttag")
+		//equals completely replaces the value
         nametag.textContent = "Lions name is: " + lionInfo.name;
         ageTag.textContent = "Age: " + lionInfo.age;
         favefood.textContent = "Food: " + lionInfo.food;
+		
+		while (traittag.children.length >0) {
+		var listItem = traittag.children[0]
+			traittag.removeChild(listItem)
+		}
+		
+		
+		var traitindex = 0
+		while (traitindex <lionInfo.traits.length) {
+			var listItem = document.createElement("li")
+			listItem.textContent = lionInfo.traits[traitindex] ;
+		
+			traittag.appendChild(listItem);
+		
+			traitindex += 1
+		 }
+		
     };
 
+	//happens EVERY key is pressed
     var textBoxKeyPress = function (event) {
         console.log(event.charCode);
+		
+		//checks to see if the ENTER key was pressed
         if (event.charCode == 13) {
             nameTheLion();
         }
@@ -139,6 +180,15 @@
         update_game_from_object(saveData);
         save_game_into_cookie();
     };
+	
+	var traits = [
+	"Nibbler",
+	"Hungry",
+	"Energetic",
+	"Lazy",
+	"Selfish",
+	"Generous"
+	];
 </script>
 <script src=save.js></script>
 
