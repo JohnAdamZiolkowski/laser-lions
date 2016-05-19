@@ -1,7 +1,80 @@
+* {
+    font-family: sans-serif;
+}
+
 .wrapper {
     text-align: center;
 }
 
 .wrapped {
     display: inline-block;
+}
+
+img {
+    image-rendering: pixelated;
+}
+
+input[type=button] {
+    background-color: #EDC;
+    color: #A86;
+    border: 2px solid #A86;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type=button]:active,
+input[type=button]:hover {
+    background-color: #BA9;
+    color: #642;
+    border: 2px solid #642;
+}
+
+input[type=button]:active {
+    transform: translateY(5px);
+}
+
+.menuButton {
+    float: right;
+}
+
+.restartButton[type=button] {
+    background-color: #EAA;
+    color: #C66;
+    border: 2px solid #C66;
+}
+
+.restartButton[type=button]:active,
+.restartButton[type=button]:hover {
+    background-color: #A66;
+    color: #822;
+    border: 2px solid #822;
+}
+
+.closeButton[type=button] {
+    color: #AAA;
+    background-color: #DDD;
+    border: 2px solid #AAA;
+}
+
+.closeButton[type=button]:active,
+.closeButton[type=button]:hover {
+    color: #666;
+    background-color: #999;
+    border: 2px solid #666;
+}
+
+.acceptButton[type=button] {
+    color: #7C7;
+    background-color: #BFB;
+    border: 2px solid #7C7;
+}
+
+.acceptButton[type=button]:active,
+.acceptButton[type=button]:hover {
+    color: #393;
+    background-color: #7B7;
+    border: 2px solid #393;
 }

@@ -1,29 +1,12 @@
-img {
-    image-rendering: pixelated;
-    vertical-align: middle;
+table {
+    border-collapse: collapse;
+    background-image: url("../images/sand.jpg");
 }
 
 td {
     width: 96px;
     height: 96px;
     padding: 0;
-}
-
-table {
-    border-collapse: collapse;
-    background-image: url("../images/sand.jpg");
-}
-
-input.menuButton {
-    float: right;
-    color: #A86;
-    background-color: #EDC;
-    border: 2px solid #A86;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 5px;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 div.popup {

@@ -1,12 +1,5 @@
 img {
-    image-rendering: pixelated;
     cursor: pointer;
-}
-
-td {
-    width: 64px;
-    height: 64px;
-    padding: 0;
 }
 
 table {
@@ -14,14 +7,8 @@ table {
     background-image: url("../images/sand.jpg");
 }
 
-input.menuButton {
-    float: right;
-    color: #A86;
-    background-color: #EDC;
-    border: 2px solid #A86;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 5px;
-    text-decoration: none;
-    cursor: pointer;
+td {
+    width: 64px;
+    height: 64px;
+    padding: 0;
 }

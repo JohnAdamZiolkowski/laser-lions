@@ -38,7 +38,6 @@
 
     <div class="popup" id="happinessPopup" onclick="hideHappiness()">
         <div class="popupContent">
-            <button class="accept" onclick="hideHappiness()">✓&nbsp;</button>
             <p>
                 <label id=levelLabel>Happiness: Level 3</label>
             </p>
@@ -46,15 +45,16 @@
                 <progress min="0" max="64" value="4" id="nextProgress"></progress>
                 <label id=nextLabel>3/64</label>
             </p>
+            <input type="button" class="acceptButton" onclick="hideHappiness()" value="✓&nbsp;"></input>
         </div>
     </div>
     <div class="popup" id="desirePopup" onclick="hideDesirePopup()">
         <div class="popupContent">
-            <button class="close" onclick="hideDesirePopup()">Not now</button>
-            <button class="accept" id="satisfyButton">Do it</button>
             <p id="desirePopupQuestion">
                 Fred wants to have an egg.
             </p>
+            <input type="button" class="acceptButton" id="satisfyButton" value="do it"></input>
+            <input type="button" class="closeButton" onclick="hideDesirePopup()" value="not now"></input>
         </div>
     </div>
 </body>
