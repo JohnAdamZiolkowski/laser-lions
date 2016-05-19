@@ -20,7 +20,7 @@
             <th>Notes</th>
         </tr>
     </table>
-    
+
 </body>
 
 <script>
@@ -41,25 +41,32 @@
         },
         {
             name: "03",
-            desc: "Assign random personality traits to the lions",
+            desc: "Assign random personality traits to the lion",
+            date: "Wed, May 18, 2016",
+            length: "3 hours",
+            notes: "",
         },
         {
             name: "04",
+            desc: "Fix issues of duplicate and conflicting personality traits",
+        },
+        {
+            name: "05",
             desc: "Spawn multiple lions for the user and let them select which one is being looked at",
         },
     ];
 
     var setup = function () {
         var sessionsTable = document.getElementById("sessionsTable")
-        
+
         var session, s;
         for (s = 0; s < sessions.length; s++) {
             session = sessions[s];
-            
+
             var row = sessionsTable.insertRow(-1);
-            
+
             var cell = row.insertCell(-1);
-            
+
             if (session.date) {
                 var link = document.createElement("a");
                 link.href = "session" + session.name + "/index.html";
@@ -68,21 +75,21 @@
             } else {
                 cell.textContent = "session " + session.name;
             }
-            
-            
+
+
             var cell = row.insertCell(-1);
             cell.textContent = session.desc;
-            
+
             var cell = row.insertCell(-1);
             if (session.date)
                 cell.textContent = session.date;
-            
+
             var cell = row.insertCell(-1);
             if (session.date)
                 cell.textContent = session.length;
-            
+
             var cell = row.insertCell(-1);
-            if (session.date) {
+            if (session.notes) {
                 var link = document.createElement("a");
                 link.href = session.notes;
                 link.textContent = "notes";

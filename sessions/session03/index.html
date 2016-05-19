@@ -1,0 +1,187 @@
+<html>
+
+<head>
+    <title>
+        Lions are the best
+    </title>
+
+    <style>
+        img {
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+
+<body onload=setup()>
+    <h1>
+		Project Lazer Lions
+	</h1>
+
+    <img src="images/Sprite2biggermane.png" width=100>
+    </img>
+
+    <a href="http://reddit.com/r/lions">
+		Roar
+	</a>
+
+    <p id="nameTag">
+        Lions name is:
+    </p>
+
+    <p id="ageTag">
+        Age:
+    </p>
+
+    <p id="foodTag">
+        Food:
+    </p>
+
+    <p id="personalityTag">
+        Personality:
+        <ul id=Traitlisttag>
+        </ul>
+    </p>
+
+
+    <input id="nameTextbox" onkeypress="textBoxKeyPress(event)">
+    </input>
+
+    <input type=button value="enter" onclick=nameTheLion()>
+    </input>
+
+    <input type=button value="restart" onclick=restart()>
+    </input>
+
+</body>
+
+<script>
+    var lionInfo;
+
+    //array of all food options
+    var foods = [
+        "Cookies",
+        "Waffles",
+        "Muffins",
+        "Sour Gummy Bears",
+        "Spaghetti",
+        "Cheese Burger",
+        "Watermelon",
+    ];
+
+    var traitAmount = 3;
+
+    var traits = [
+        "Nibbler",
+        "Hungry",
+        "Energetic",
+        "Lazy",
+        "Selfish",
+        "Generous",
+	];
+
+    var setup = function () {
+        load_from_cookie();
+        lionInfo = game_data.lionInfo;
+
+        //if there is no lion info in the cookie
+        //or the cookie failed to load
+        if (!lionInfo) {
+            restart();
+        } else {
+            updatePage();
+        }
+    };
+
+    var restart = function () {
+        createLion();
+        updateSaveData();
+        updatePage();
+    };
+
+    var createLion = function () {
+        lionInfo = {};
+        lionInfo.name = "";
+        lionInfo.age = "Adult";
+
+
+        //gets a random index for assigning a food
+        var foodIndex = Math.random();
+        foodIndex = foodIndex * foods.length;
+        foodIndex = Math.floor(foodIndex);
+        console.log("foodIndex:" + foodIndex);
+
+        //actually use the index to find which food
+        lionInfo.food = foods[foodIndex];
+
+        lionInfo.traits = [];
+
+        var loopCount = 0;
+
+        while (loopCount < traitAmount) {
+            var traitIndex = Math.random() * traits.length;
+            traitIndex = Math.floor(traitIndex);
+
+            var trait = traits[traitIndex];
+            lionInfo.traits.push(trait);
+
+            loopCount += 1;
+        }
+    };
+
+    var updatePage = function () {
+        var nametag = document.getElementById("nameTag");
+        var ageTag = document.getElementById("ageTag");
+        var favefood = document.getElementById("foodTag");
+        var traitTag = document.getElementById("Traitlisttag")
+
+        //equals completely replaces the value
+        nametag.textContent = "Lions name is: " + lionInfo.name;
+        ageTag.textContent = "Age: " + lionInfo.age;
+        favefood.textContent = "Food: " + lionInfo.food;
+
+        while (traitTag.children.length > 0) {
+            var listItem = traitTag.children[0]
+            traitTag.removeChild(listItem)
+        }
+
+        var traitIndex = 0
+        while (traitIndex < lionInfo.traits.length) {
+            var listItem = document.createElement("li")
+            listItem.textContent = lionInfo.traits[traitIndex];
+
+            traitTag.appendChild(listItem);
+
+            traitIndex += 1;
+        }
+    };
+
+    //happens EVERY key is pressed
+    var textBoxKeyPress = function (event) {
+        console.log(event.charCode);
+
+        //checks to see if the ENTER key was pressed
+        if (event.charCode == 13) {
+            nameTheLion();
+        }
+    };
+
+    var nameTheLion = function () {
+        var nameTextbox = document.getElementById("nameTextbox");
+
+        lionInfo.name = nameTextbox.value;
+
+        updateSaveData();
+        updatePage();
+    };
+
+    var updateSaveData = function () {
+        var saveData = {};
+        saveData.lionInfo = lionInfo;
+
+        update_game_from_object(saveData);
+        save_game_into_cookie();
+    };
+</script>
+<script src=save.js></script>
+
+</html>
