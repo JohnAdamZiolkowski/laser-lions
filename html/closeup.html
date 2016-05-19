@@ -5,6 +5,7 @@
         Laser Lions
     </title>
     <link rel="icon" href="../images/icon.ico" />
+    <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -175,19 +176,23 @@
 		Laser Lions
 	</h1>
 
-    <div class="closeupDiv">
-        <img id="closeupLion" src="../images/Sprite2biggermane.png">
+    <div class="wrapper">
+        <div class="wrapped">
+            <div class="closeupDiv">
+                <img id="closeupLion" src="../images/Sprite2biggermane.png">
 
-        <img class="closeupBubble" id="desire0" onclick="clickDesireBubble(this)">
-        <img class="closeupBubble" id="desire1" onclick="clickDesireBubble(this)">
-        <img class="closeupBubble" id="desire2" onclick="clickDesireBubble(this)">
-        <img class="closeupBubble" id="desire3" onclick="clickDesireBubble(this)">
-        <span class="closeupButton" id="areaSpan">
-            <input type="button" class="navButton" value="area" onclick="backToArea()"/>
-        </span>
-        <span class="closeupButton" id="infoSpan">
-            <input type="button" class="navButton" value="info" onclick="clickInfo()"/>
-        </span>
+                <img class="closeupBubble" id="desire0" onclick="clickDesireBubble(this)">
+                <img class="closeupBubble" id="desire1" onclick="clickDesireBubble(this)">
+                <img class="closeupBubble" id="desire2" onclick="clickDesireBubble(this)">
+                <img class="closeupBubble" id="desire3" onclick="clickDesireBubble(this)">
+                <span class="closeupButton" id="areaSpan">
+                    <input type="button" class="navButton" value="area" onclick="backToArea()"/>
+                </span>
+                <span class="closeupButton" id="infoSpan">
+                    <input type="button" class="navButton" value="info" onclick="clickInfo()"/>
+                </span>
+            </div>
+        </div>
     </div>
 
     <div class="popup" id="happinessPopup" onclick="hideHappiness()">

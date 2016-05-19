@@ -5,6 +5,7 @@
         Laser Lions
     </title>
     <link rel="icon" href="../images/icon.ico" />
+    <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -123,37 +124,37 @@
         <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage" pagespeed_no_transform>
         </img>
     </div>
-    <!--
-        <input type="checkbox" id="test1" />
-        <button for="test1">TEST1</button>
-    -->
 
-    <div>
-        <table>
-            <tr>
-                <td class="buttonCell">
-                    <input type="checkbox" id="profileTab" checked=true/>
-                    <button for="profileTab" onclick="clickDivButton(this)">profile</button>
-                </td>
-                <td class="buttonCell">
-                    <input type="checkbox" id="statusTab" />
-                    <button for="statusTab" onclick="clickDivButton(this)">status</button>
-                </td>
-                <td class="buttonCell">
-                    <input type="checkbox" id="familyTab" />
-                    <button for="familyTab" onclick="clickDivButton(this)">family</button>
-                </td>
-                <!--
+    <div class=wrapper>
+        <div class="wrapped">
+            <table>
+                <tr>
+                    <td class="buttonCell">
+                        <input type="checkbox" id="profileTab" checked=true/>
+                        <button for="profileTab" onclick="clickDivButton(this)">profile</button>
+                    </td>
+
+                    <td class="buttonCell">
+                        <input type="checkbox" id="statusTab" />
+                        <button for="statusTab" onclick="clickDivButton(this)">status</button>
+                    </td>
+                    <td class="buttonCell">
+                        <input type="checkbox" id="familyTab" />
+                        <button for="familyTab" onclick="clickDivButton(this)">family</button>
+                    </td>
+
+                    <!--
 <td class="buttonCell">
     <input class="divButton" type="button" value="photos" onclick="clickDivButton(this)" />
 </td>
 -->
-                <td class="buttonCell">
-                    <input type="checkbox" id="historyTab" />
-                    <button for="historyTab" onclick="clickDivButton(this)">history</button>
-                </td>
-            </tr>
-        </table>
+                    <td class="buttonCell">
+                        <input type="checkbox" id="historyTab" />
+                        <button for="historyTab" onclick="clickDivButton(this)">history</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <div id="profileDiv" class="infoDiv">
