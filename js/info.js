@@ -32,13 +32,18 @@ var updateInfoPage = function () {
 
     if (lionInfo.desires.length > 0) {
         var img = document.createElement("img");
-        img.src = "../images/bubble.png";
+        img.style.backgroundImage = 'url("../images/bubble.png")';
+        img.style.backgroundSize = "64px 64px";
         img.style.position = "absolute";
         img.style.top = 0;
         img.style.zIndex = 2;
         img.width = 64;
         img.height = 64;
         img.id = "bubbleImage";
+        var firstDesire = lionInfo.desires[0];
+        var desire = getDesireByActionName(firstDesire);
+        img.src = "../images/desires/" + desire.icon + ".png";
+
         //todo: remove
         if (location) {
             if (location.direction != "left") {
