@@ -14,35 +14,6 @@ p {
     margin-bottom: 0.5em;
 }
 
-.controls {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-input.menuButton {
-    float: right;
-    color: #A86;
-    background-color: #EDC;
-    border: 2px solid #A86;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 5px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.divButton {
-    color: #A86;
-    background-color: #EDC;
-    border: 2px solid #A86;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 5px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .buttonCell {
     text-align: center;
 }
@@ -56,14 +27,6 @@ div.infoDiv#profileDiv {
 }
 
 .navButton {
-    color: #A86;
-    background-color: #EDC;
-    border: 2px solid #A86;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 5px;
-    text-decoration: none;
-    cursor: pointer;
     float: right;
 }
 
