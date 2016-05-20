@@ -27,18 +27,23 @@ var updateInfoPage = function () {
     var lionImageDiv = document.getElementById("lionImageDiv");
     var bubbleImage = document.getElementById("bubbleImage");
     if (bubbleImage) {
-        lionImageDiv.removeChild(bubbleImage);
+        bubbleImage.parentElement.removeChild(bubbleImage);
     }
 
     if (lionInfo.desires.length > 0) {
+        var div = document.createElement("div");
+        div.className = "imageWrapper";
+        div.style.position = "absolute";
+        div.style.top = 0;
+        div.style.zIndex = 2;
+        div.width = 64;
+        div.height = 64;
+
         var img = document.createElement("img");
-        img.style.backgroundImage = 'url("../images/bubble.png")';
-        img.style.backgroundSize = "64px 64px";
-        img.style.position = "absolute";
-        img.style.top = 0;
-        img.style.zIndex = 2;
         img.width = 64;
         img.height = 64;
+        img.style.backgroundSize = "64px 64px";
+        img.style.backgroundImage = 'url("../images/bubble.png")';
         img.id = "bubbleImage";
         var firstDesire = lionInfo.desires[0];
         var desire = getDesireByActionName(firstDesire);
@@ -48,12 +53,13 @@ var updateInfoPage = function () {
         if (location) {
             if (location.direction != "left") {
                 img.style.transform = "scaleX(-1)";
-                img.style.left = 0;
+                div.style.left = 0;
             } else {
-                img.style.right = 0;
+                div.style.right = 0;
             }
         }
-        lionImageDiv.appendChild(img);
+        div.appendChild(img);
+        lionImageDiv.appendChild(div);
     }
 
     updateLionColorLabels();
