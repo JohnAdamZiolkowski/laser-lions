@@ -132,7 +132,7 @@ var desires = [
         //move laser pointer around to make it chase
     },
     {
-        action: "give present",
+        action: "give you a present",
         more: "generous",
         less: "hoarder",
         type: "player",
@@ -176,7 +176,7 @@ var desires = [
         //list of accessories in inventory
     },
     {
-        action: "love",
+        action: "find a love",
         more: "charming",
         less: "reserved",
         type: "passive",
@@ -187,7 +187,7 @@ var desires = [
         //chance of adding eachother to love list?
     },
     {
-        action: "befriend",
+        action: "make a new friend",
         more: "friendly",
         less: "loner",
         type: "passive",

@@ -5,62 +5,9 @@
         Laser Lions
     </title>
     <link rel="icon" href="../images/icon.ico" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/info.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        img {
-            image-rendering: pixelated;
-        }
-        
-        div#lionImageDiv {
-            background-image: url("../images/sand.jpg");
-            cursor: pointer;
-            width: 128;
-            height: 128;
-            position: relative;
-        }
-        
-        ul {
-            margin-top: 0.5em;
-        }
-        
-        p {
-            margin-bottom: 0.5em;
-        }
-        
-        .controls {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-        
-        input.menuButton {
-            float: right;
-        }
-        
-        .divButton {
-            color: #A86;
-            background-color: #EDC;
-            border: 2px solid #A86;
-            font-size: 22px;
-            font-weight: bold;
-            padding: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        .buttonCell {
-            text-align: center;
-        }
-        
-        div.infoDiv {
-            display: none;
-        }
-        
-        div.infoDiv#profileDiv {
-            display: block;
-        }
-    </style>
 </head>
 
 <body onload="setupPage('info')">
@@ -69,38 +16,50 @@
     <h1 id="nameTag">
 		Laser Lions
 	</h1>
+    <input type="button" value="area" onclick="backToArea()" class="navButton" />
+    <input type="button" value="closeup" onclick="backToCloseup()" class="navButton" />
 
     <div id="lionImageDiv" onclick="backToCloseup()">
-        <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage" pagespeed_no_transform>
-        </img>
+        <div class="imageWrapper">
+            <img src="../images/Sprite2biggermane.png" style="visibility:hidden" width="128px" height="128px" id="lionImage" pagespeed_no_transform>
+            </img>
+        </div>
     </div>
 
-    <div>
-        <table>
-            <tr>
-                <td class="buttonCell">
-                    <input class="divButton" type="button" value="profile" onclick="clickDivButton(this)" />
-                </td>
-                <td class="buttonCell">
-                    <input class="divButton" type="button" value="status" onclick="clickDivButton(this)" />
-                </td>
-                <td class="buttonCell">
-                    <input class="divButton" type="button" value="family" onclick="clickDivButton(this)" />
-                </td>
-                <!--
+    <div class=wrapper>
+        <div class="wrapped">
+            <table>
+                <tr>
+                    <td class="buttonCell">
+                        <input type="checkbox" id="profileTab" checked=true/>
+                        <button for="profileTab" onclick="clickDivButton(this)">profile</button>
+                    </td>
+
+                    <td class="buttonCell">
+                        <input type="checkbox" id="statusTab" />
+                        <button for="statusTab" onclick="clickDivButton(this)">status</button>
+                    </td>
+                    <td class="buttonCell">
+                        <input type="checkbox" id="familyTab" />
+                        <button for="familyTab" onclick="clickDivButton(this)">family</button>
+                    </td>
+
+                    <!--
 <td class="buttonCell">
     <input class="divButton" type="button" value="photos" onclick="clickDivButton(this)" />
 </td>
 -->
-                <td class="buttonCell">
-                    <input class="divButton" type="button" value="history" onclick="clickDivButton(this)" />
-                </td>
-            </tr>
-        </table>
+                    <td class="buttonCell">
+                        <input type="checkbox" id="historyTab" />
+                        <button for="historyTab" onclick="clickDivButton(this)">history</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <div id="profileDiv" class="infoDiv">
-        <h3>Profile</h3>
+        <!--        <h3>Profile</h3>-->
         <!--name, edit button-->
         <!--image-->
         <!--colors-->
@@ -154,7 +113,7 @@
         </p>
     </div>
     <div id="statusDiv" class="infoDiv">
-        <h3>Status</h3>
+        <!--        <h3>Status</h3>-->
         <!--age-->
         <!--happiness level-->
         <!--happiness exp, next, bar-->
@@ -190,61 +149,24 @@
         </p>
     </div>
     <div id="familyDiv" class="infoDiv">
-        <h3>Family</h3>
+        <!--        <h3>Family</h3>-->
         <!--parents, list-->
         <!--raised by-->
         <!--cubs raised, list-->
         <!--eggs laid, list-->
         <!--friends with, list-->
         <!--loved, list-->
-        <p>Parents:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>
+            Parents: Julie and Mike
         </p>
-        <p>Raised by:</p>
-        <p>Eggs laid:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Raised by: Jessica</p>
+        <p>Cubs had: Mike, Lisa, unhatached, unhatched, and unhatched
         </p>
-        <p>Cubs raised:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Cubs raised: Sebastian
         </p>
-        <p>Friends with:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Friends with: Alex and Peter
         </p>
-        <p>Loved ones:
-            <ul>
-                <li>
-                </li>
-                <li>
-                </li>
-                <li>
-                </li>
-            </ul>
+        <p>Loved by: Luke, Shulk, Steven
         </p>
     </div>
     <!--
@@ -253,7 +175,7 @@
 </div>
 -->
     <div id="historyDiv" class="infoDiv">
-        <h3>History</h3>
+        <!--        <h3>History</h3>-->
         <table>
             <tr>
                 <td>times reborn:</td>
@@ -306,8 +228,6 @@
         </table>
     </div>
 
-    <input type="button" value="Area" onclick="backToArea()" />
-    <input type="button" value="Lion" onclick="backToCloseup()" />
 </body>
 
 <script src="../js/info.js"></script>

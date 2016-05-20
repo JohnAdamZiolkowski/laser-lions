@@ -5,41 +5,18 @@
         Laser Lions
     </title>
     <link rel="icon" href="../images/icon.ico" />
+    <link rel="stylesheet" href="../css/menu.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .restartButton {
-            background-color: #EAA;
-            color: #C66;
-            border: 2px solid #C66;
-            font-size: 24px;
-            font-weight: bold;
-            padding: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        .navButton {
-            background-color: #EDC;
-            color: #A86;
-            border: 2px solid #A86;
-            font-size: 24px;
-            font-weight: bold;
-            padding: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
 
 </head>
 
 <body onload="setupPage('menu')">
+    <input type=button class="menuButton" value="close menu" onclick=backToArea()>
+    </input>
     <h1>
 		Menu
 	</h1>
-
-
-    <input type=button class="navButton" value="close menu" onclick=backToArea()>
-    </input>
 
     <p>
         <span id="timerTag">Timer:</span>

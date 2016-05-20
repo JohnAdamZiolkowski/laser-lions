@@ -5,28 +5,9 @@
         Laser Lions
     </title>
     <link rel="icon" href="../images/icon.ico" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/area.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        img {
-            image-rendering: pixelated;
-            cursor: pointer;
-        }
-        
-        td {
-            width: 64px;
-            height: 64px;
-            padding: 0;
-        }
-        
-        table {
-            border-collapse: collapse;
-            background-image: url("../images/sand.jpg");
-        }
-        
-        input.menuButton {
-            float: right;
-        }
-    </style>
 
 </head>
 
@@ -36,8 +17,11 @@
     <h1>
 		Laser Lions
 	</h1>
-    <div id="menuDiv"></div>
-    <table id="areaTable"> </table>
+    <div class="wrapper">
+        <div class="wrapped">
+            <table id="areaTable"> </table>
+        </div>
+    </div>
 </body>
 
 <script src="../js/area.js"></script>

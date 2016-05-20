@@ -1,0 +1,79 @@
+.closeupDiv {
+    position: relative;
+    background-color: blueviolet;
+    width: 320;
+    height: 320;
+    background-image: url("../images/sand.jpg");
+}
+
+#closeupLion {
+    left: 64;
+    top: 96;
+    width: 192;
+    height: 192;
+    position: absolute;
+}
+
+.closeupBubble {
+    width: 96;
+    height: 96;
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    background-image: url(../images/bubble.png);
+    background-size: 96px 96px;
+    border: 0;
+}
+
+.closeupBubble#desire0 {
+    left: 64;
+    top: 0;
+    transform: scaleX(-1);
+}
+
+.closeupBubble#desire1 {
+    left: 160;
+    top: 0;
+}
+
+.closeupBubble#desire2 {
+    left: 0;
+    top: 96;
+    transform: scaleX(-1);
+}
+
+.closeupBubble#desire3 {
+    left: 224;
+    top: 96;
+}
+
+.closeupButton {
+    width: 96;
+    height: 64;
+    position: absolute;
+    text-align: center;
+}
+
+#areaSpan {
+    left: 0;
+    top: 256;
+}
+
+#infoSpan {
+    left: 224;
+    top: 256;
+}
+
+.popupImage {
+    width: 64;
+    height: 64;
+}
+
+.popupImageDiv {
+    text-align: center;
+}
+
+.popupButtonDiv {
+    text-align: right;
+}

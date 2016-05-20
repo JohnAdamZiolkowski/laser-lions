@@ -1,0 +1,54 @@
+div#lionImageDiv {
+    background-image: url("../images/sand.jpg");
+    cursor: pointer;
+    width: 128;
+    height: 128;
+    position: relative;
+}
+
+ul {
+    margin-top: 0.5em;
+}
+
+p {
+    margin-bottom: 0.5em;
+}
+
+.buttonCell {
+    text-align: center;
+}
+
+div.infoDiv {
+    display: none;
+}
+
+div.infoDiv#profileDiv {
+    display: block;
+}
+
+.navButton {
+    float: right;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + button {
+    color: #68A;
+    background-color: #CDE;
+    border: 2px solid #68A;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type=checkbox]:checked + button {
+    color: #468;
+    background-color: #9AB;
+    border: 2px solid #468;
+    margin-top: 5px;
+    cursor: auto;
+}
