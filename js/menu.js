@@ -35,3 +35,31 @@ var clickRestart = function () {
         restart();
     }
 };
+
+var clickUpdateFreq = function (element) {
+
+    var row = element.parentElement.parentElement;
+
+    //uncheck all checkboxes
+    var cellIndex = 0;
+    while (cellIndex < row.cells.length) {
+
+        var cell = row.cells[cellIndex];
+        var button = cell.children[1];
+        var checkbox = cell.children[0];
+
+        //        var divId = button.textContent + "Div";
+        //        var div = document.getElementById(divId);
+        //        div.style.display = "none";
+        checkbox.checked = false;
+        cellIndex += 1;
+    };
+
+    //check selected box
+    //    var divId = element.textContent + "Div";
+    //    var div = document.getElementById(divId);
+    element.parentElement.children[0].checked = true;
+
+    //    div.style.display = "block";
+
+};

@@ -27,10 +27,31 @@
     </p>
 
     <p>
+        Update frequency:
+
+        <table>
+            <tr>
+                <td>
+                    <input type="checkbox" id="lowTab" class="tabs" checked=true/>
+                    <button for="lowTab" onclick="clickUpdateFreq(this)">5 mins</button>
+                </td>
+                <td>
+                    <input type="checkbox" id="medTab" class="tabs" />
+                    <button for="medTab" onclick="clickUpdateFreq(this)">1 hour</button>
+                </td>
+                <td>
+                    <input type="checkbox" id="highTab" class="tabs" />
+                    <button for="highTab" onclick="clickUpdateFreq(this)">8 hours</button>
+                </td>
+            </tr>
+        </table>
+    </p>
+
+    <p>
         <span id="nextUpdateTag">Next update at </span>
         <input type="button" value="update now" onclick="clickForceUpdate()" class="navButton" />
-
     </p>
+
     <p>
         <span>
             Start new save data:

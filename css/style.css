@@ -108,3 +108,26 @@ div.popupContent {
     width: 80%;
     max-width: 320px;
 }
+
+input[type=checkbox].tabs {
+    display: none;
+}
+
+input[type=checkbox].tabs + button {
+    color: #68A;
+    background-color: #CDE;
+    border: 2px solid #68A;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type=checkbox].tabs:checked + button {
+    color: #468;
+    background-color: #9AB;
+    border: 2px solid #468;
+    margin-top: 5px;
+    cursor: auto;
+}

@@ -29,26 +29,3 @@ div.infoDiv#profileDiv {
 .navButton {
     float: right;
 }
-
-input[type=checkbox] {
-    display: none;
-}
-
-input[type=checkbox] + button {
-    color: #68A;
-    background-color: #CDE;
-    border: 2px solid #68A;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 5px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-input[type=checkbox]:checked + button {
-    color: #468;
-    background-color: #9AB;
-    border: 2px solid #468;
-    margin-top: 5px;
-    cursor: auto;
-}
