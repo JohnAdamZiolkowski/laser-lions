@@ -20,12 +20,21 @@
     <div class="wrapper">
         <div class="wrapped">
             <div class="closeupDiv">
-                <img id="closeupLion" src="../images/Sprite2biggermane.png">
-
-                <img class="closeupBubble" id="desire0" onclick="clickDesireBubble(this)">
-                <img class="closeupBubble" id="desire1" onclick="clickDesireBubble(this)">
-                <img class="closeupBubble" id="desire2" onclick="clickDesireBubble(this)">
-                <img class="closeupBubble" id="desire3" onclick="clickDesireBubble(this)">
+                <div class="imageWrapper">
+                    <img id="closeupLion" src="../images/Sprite2biggermane.png">
+                </div>
+                <div class="imageWrapper">
+                    <img class="closeupBubble" id="desire0" onclick="clickDesireBubble(this)">
+                </div>
+                <div class="imageWrapper">
+                    <img class="closeupBubble" id="desire1" onclick="clickDesireBubble(this)">
+                </div>
+                <div class="imageWrapper">
+                    <img class="closeupBubble" id="desire2" onclick="clickDesireBubble(this)">
+                </div>
+                <div class="imageWrapper">
+                    <img class="closeupBubble" id="desire3" onclick="clickDesireBubble(this)">
+                </div>
                 <span class="closeupButton" id="areaSpan">
                     <input type="button" class="navButton" value="area" onclick="backToArea()"/>
                 </span>
@@ -39,7 +48,7 @@
     <div class="popup" id="happinessPopup" onclick="hideHappiness()">
         <div class="popupContent">
             <div class="popupImageDiv">
-                <img src="../images/Sprite2biggermane.png" class="popupImage">
+                <img src="../images/Sprite2biggermane.png" class="popupImage" id="popupHappyLionImage">
                 <img src="../images/desires/happy.png" class="popupImage">
             </div>
             <p>
@@ -57,8 +66,8 @@
     <div class="popup" id="desirePopup" onclick="hideDesirePopup()">
         <div class="popupContent">
             <div class="popupImageDiv">
-                <img src="../images/Sprite2biggermane.png" class="popupImage">
-                <img src="../images/desires/food.png" class="popupImage">
+                <img src="../images/Sprite2biggermane.png" class="popupImage" id="popupDesireLionImage">
+                <img src="../images/desires/food.png" class="popupImage" id="popupDesireImage">
             </div>
             <p id="desirePopupQuestion">
                 Fred wants to have an egg.

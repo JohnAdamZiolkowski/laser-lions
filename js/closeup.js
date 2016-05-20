@@ -39,6 +39,16 @@ var updateCloseupPage = function () {
         imageTag.style.transform = "";
     }
 
+    //change lion colors on desire popup
+    var imageTag = document.getElementById("popupDesireLionImage");
+    var imageSrc = "../images/Sprite2biggermane.png";
+    updateLionColors(imageTag, imageSrc, lionInfo, true);
+
+    //change lion colors on happiness popup
+    var imageTag = document.getElementById("popupHappyLionImage");
+    var imageSrc = "../images/Sprite2biggermane.png";
+    updateLionColors(imageTag, imageSrc, lionInfo, true);
+
     var closeupDiv = document.getElementById("closeupDiv");
 
     //clear out old bubbles
@@ -97,6 +107,11 @@ var showDesirePopup = function (lionInfo, desireIndex) {
     var popup = document.getElementById("desirePopup");
     var question = document.getElementById("desirePopupQuestion");
     question.textContent = lionInfo.name + " wants to " + desire + ".";
+
+    //change the desire icon to the one clicked on
+    var selectedDesire = getDesireByActionName(desire);
+    var imageTag = document.getElementById("popupDesireImage");
+    imageTag.src = "../images/desires/" + selectedDesire.icon + ".png";
 
     toggleTimer(false);
 
