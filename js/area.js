@@ -76,7 +76,11 @@ var distributeLions = function () {
 
                 if (lionInfo.desires.length > 0) {
                     var img = document.createElement("img");
-                    img.src = "../images/bubble.png";
+                    img.style.backgroundImage = "url('../images/bubble.png')"
+
+                    var firstDesire = lionInfo.desires[0];
+                    var desire = getDesireByActionName(firstDesire);
+                    img.src = "../images/desires/" + desire.icon + ".png";
                     img.style.position = "absolute";
                     img.style.top = 0;
                     img.style.zIndex = 2;
@@ -99,66 +103,6 @@ var distributeLions = function () {
         }
         rowIndex += 1;
     }
-};
-
-var distributeLionsOld = function () {
-    var areaTable = document.getElementById("areaTable");
-
-    var unplacedLions = lions.slice(0);
-
-    while (unplacedLions.length > 0) {
-
-        var rowIndex = Math.floor(Math.random() * rowsToCreate);
-        var colIndex = Math.floor(Math.random() * colsToCreate);
-
-        var row = areaTable.rows[rowIndex];
-        var col = row.cells[colIndex];
-
-        if (col.children.length == 0) {
-            var div = document.createElement("div");
-            div.style.position = "relative";
-            div.style.width = "64px";
-            div.style.height = "64px";
-
-            var lionIndex = Math.floor(Math.random() * unplacedLions.length);
-            var lionInfo = unplacedLions[lionIndex];
-            unplacedLions.splice(lionIndex, 1);
-
-            var img = document.createElement("img");
-            img.src = "../images/Sprite2biggermane.png";
-            img.style.visibility = "hidden";
-            img.width = 64;
-            img.height = 64;
-            img.style.position = "absolute";
-            img.style.top = 0;
-            img.style.left = 0;
-            img.style.zIndex = 1;
-            img.dataset.lionIndex = getLionIndexByName(lionInfo.name);
-            img.onclick = function () {
-                clickLionIcon(this);
-            };
-            col.appendChild(div);
-            div.appendChild(img);
-
-            var imageSrc = "../images/Sprite2biggermane.png";
-
-            updateLionColors(img, imageSrc, lionInfo, true);
-
-
-            if (lionInfo.desires.length > 0) {
-                var img = document.createElement("img");
-                img.src = "../images/bubble.png";
-                img.style.position = "absolute";
-                img.style.top = 0;
-                img.style.left = 0;
-                img.style.zIndex = 2;
-                img.style.transform = "scaleX(-1)";
-                div.appendChild(img);
-
-            }
-        }
-    }
-
 };
 
 var clickLionIcon = function (element) {
