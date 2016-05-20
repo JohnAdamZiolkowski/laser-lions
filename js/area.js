@@ -47,6 +47,7 @@ var distributeLions = function () {
                 div.style.position = "relative";
                 div.style.width = "64px";
                 div.style.height = "64px";
+                div.className = "imageWrapper";
 
                 var lionIndex = getLionIndexByName(contents.name);
                 var lionInfo = lions[lionIndex];

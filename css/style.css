@@ -36,7 +36,6 @@ input[type=button]:active {
     transform: translateY(4px);
 }
 
-img:active,
 .imageWrapper:active {
     transform: translateY(4px);
 }
