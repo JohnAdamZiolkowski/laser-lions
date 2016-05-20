@@ -64,3 +64,16 @@
     left: 224;
     top: 256;
 }
+
+.popupImage {
+    width: 64;
+    height: 64;
+}
+
+.popupImageDiv {
+    text-align: center;
+}
+
+.popupButtonDiv {
+    text-align: right;
+}
