@@ -7,9 +7,11 @@ var traitsToCreate = 3;
 //must be less than the number of desires
 var desiresToCreate = 4;
 
-//time between updates
-var updatePeriod = 1000 * 60; // every minute
-//var updatePeriod = 1000 * 60 * 60; //every hour
+var updatePeriods = {
+    low: 1000 * 60, //every minute
+    mid: 1000 * 60 * 60, //every hour
+    high: 1000 * 60 * 60 * 4, //every 4 hours
+};
 
 //how often to check to see if an hour has passed
 var updateCheck = 1000 * 10; // every 10 seconds

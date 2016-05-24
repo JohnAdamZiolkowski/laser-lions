@@ -29,19 +29,19 @@
     <p>
         Update frequency:
 
-        <table>
+        <table id="updateLevelButtons">
             <tr>
                 <td>
-                    <input type="checkbox" id="lowTab" class="tabs" checked=true/>
-                    <button for="lowTab" onclick="clickUpdateFreq(this)">5 mins</button>
+                    <input type="checkbox" id="lowTab" class="tabs" />
+                    <button for="lowTab" onclick="clickUpdateFreq(this)" id="lowButton">1 min</button>
                 </td>
                 <td>
-                    <input type="checkbox" id="medTab" class="tabs" />
-                    <button for="medTab" onclick="clickUpdateFreq(this)">1 hour</button>
+                    <input type="checkbox" id="midTab" class="tabs" />
+                    <button for="midTab" onclick="clickUpdateFreq(this)" id="midButton">1 hour</button>
                 </td>
                 <td>
                     <input type="checkbox" id="highTab" class="tabs" />
-                    <button for="highTab" onclick="clickUpdateFreq(this)">8 hours</button>
+                    <button for="highTab" onclick="clickUpdateFreq(this)" id="highButton">4 hours</button>
                 </td>
             </tr>
         </table>

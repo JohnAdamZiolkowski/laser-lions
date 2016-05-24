@@ -9,6 +9,9 @@ var dateLastUpdated;
 var timer;
 var timerOn;
 
+var updateLevel;
+var updatePeriod;
+
 var setupGlobal = function () {
     var loadData = load_from_storage();
 
@@ -23,6 +26,13 @@ var setupGlobal = function () {
         if (!areas) {
             createAreas();
         }
+
+        updateLevel = loadData.updateLevel;
+        if (!updateLevel) {
+            updatePeriod = updatePeriods.mid;
+            updateLevel = "mid";
+        }
+        updatePeriod = updatePeriods[updateLevel];
 
         dateLastUpdated = Date.parse(loadData.dateLastUpdated);
         if (dateLastUpdated == undefined) {
@@ -365,6 +375,7 @@ var updateSaveData = function () {
 
     saveData.dateLastUpdated = new Date(dateLastUpdated).toUTCString();
     saveData.timerOn = timerOn;
+    saveData.updateLevel = updateLevel;
 
     save_into_storage(saveData);
 };

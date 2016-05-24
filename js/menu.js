@@ -1,5 +1,6 @@
 var updateMenuPage = function () {
     updateTimerTag();
+    updatePeriodTabs();
     updateNextUpdateLabel();
 };
 
@@ -20,6 +21,30 @@ var updateTimerTag = function () {
     }
 };
 
+var updatePeriodTabs = function () {
+    var table = document.getElementById("updateLevelButtons");
+    var row = table.rows[0];
+
+    //uncheck all checkboxes
+    var cellIndex = 0;
+    while (cellIndex < row.cells.length) {
+
+        var cell = row.cells[cellIndex];
+        var button = cell.children[1];
+        var checkbox = cell.children[0];
+
+        var buttonLevel = button.id.replace("Button", "");
+
+        if (updateLevel == buttonLevel) {
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+
+        cellIndex += 1;
+    };
+};
+
 var updateNextUpdateLabel = function () {
     var label = document.getElementById("nextUpdateTag");
     var dateOfNextUpdate = dateLastUpdated - 0 + updatePeriod;
@@ -37,29 +62,26 @@ var clickRestart = function () {
 };
 
 var clickUpdateFreq = function (element) {
-
-    var row = element.parentElement.parentElement;
-
-    //uncheck all checkboxes
-    var cellIndex = 0;
-    while (cellIndex < row.cells.length) {
-
-        var cell = row.cells[cellIndex];
-        var button = cell.children[1];
-        var checkbox = cell.children[0];
-
-        //        var divId = button.textContent + "Div";
-        //        var div = document.getElementById(divId);
-        //        div.style.display = "none";
-        checkbox.checked = false;
-        cellIndex += 1;
-    };
+    //
+    //	var row = element.parentElement.parentElement;
+    //
+    //	//uncheck all checkboxes
+    //	var cellIndex = 0;
+    //	while (cellIndex < row.cells.length) {
+    //
+    //		var cell = row.cells[cellIndex];
+    //		var button = cell.children[1];
+    //		var checkbox = cell.children[0];
+    //		checkbox.checked = false;
+    //		cellIndex += 1;
+    //	};
 
     //check selected box
-    //    var divId = element.textContent + "Div";
-    //    var div = document.getElementById(divId);
     element.parentElement.children[0].checked = true;
+    var level = element.id.replace("Button", "");
+    updateLevel = level;
+    var updatePeriod = updatePeriods[updateLevel];
 
-    //    div.style.display = "block";
-
+    updateSaveData();
+    updatePage();
 };
