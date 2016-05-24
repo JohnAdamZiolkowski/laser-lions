@@ -62,25 +62,10 @@ var clickRestart = function () {
 };
 
 var clickUpdateFreq = function (element) {
-    //
-    //	var row = element.parentElement.parentElement;
-    //
-    //	//uncheck all checkboxes
-    //	var cellIndex = 0;
-    //	while (cellIndex < row.cells.length) {
-    //
-    //		var cell = row.cells[cellIndex];
-    //		var button = cell.children[1];
-    //		var checkbox = cell.children[0];
-    //		checkbox.checked = false;
-    //		cellIndex += 1;
-    //	};
-
-    //check selected box
     element.parentElement.children[0].checked = true;
     var level = element.id.replace("Button", "");
     updateLevel = level;
-    var updatePeriod = updatePeriods[updateLevel];
+    updatePeriod = updatePeriods[updateLevel];
 
     updateSaveData();
     updatePage();
