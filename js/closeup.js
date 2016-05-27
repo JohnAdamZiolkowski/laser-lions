@@ -9,8 +9,12 @@ var clickInfo = function () {
 var clickDesireBubble = function (element) {
     var desireIndex = element.dataset.desireIndex;
     var desire = lionInfo.desires[desireIndex];
-    //        alert("You clicked desire " + desireIndex + ": " + desire);
+
+    //alert("You clicked desire " + desireIndex + ": " + desire);
     showDesirePopup(lionInfo, desireIndex);
+
+    promptAction(desire);
+
     //satisfyDesire(lionInfo, desireIndex);
 };
 
